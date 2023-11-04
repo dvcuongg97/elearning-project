@@ -1,0 +1,149 @@
+.searchPage {
+  .searchTitle {
+    padding: 50px;
+    margin-bottom: 50px;
+    background-color: #facc15;
+    color: var(--colorWhite);
+    h3 {
+      text-transform: uppercase;
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+    p {
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+  }
+  .searchContainer {
+    padding: 0 50px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    .resultContainer {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 50px;
+    }
+    .inputField {
+      grid-column: 1/13;
+      margin: 50px auto;
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      .labelInputField {
+        display: block;
+        text-transform: capitalize;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 500;
+        color: #111827;
+      }
+      .textInput {
+        background: #b7b9bb;
+        // border-color: #b7b9bb;
+        &:focus {
+          outline: none;
+        }
+        color: #111827;
+        font-size: 14px;
+        line-height: 20px;
+        border-radius: 8px;
+        padding: 10px;
+        width: 100%;
+      }
+    }
+    .searchCheckbox {
+      grid-column: 1/3;
+      .filterItem {
+        margin-bottom: 10px;
+        h3 {
+          padding-bottom: 10px;
+          font-size: 20px;
+          font-weight: 600;
+        }
+        /* Customize the label (the containerLabel) */
+        .containerLabel {
+          display: block;
+          position: relative;
+          padding-left: 35px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          font-size: 18px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+
+        /* Hide the browser's default checkbox */
+        .containerLabel input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 25px;
+          width: 25px;
+          background-color: #eee;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .containerLabel:hover input ~ .checkmark {
+          background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .containerLabel input:checked ~ .checkmark {
+          background-color: #2196f3;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .containerLabel input:checked ~ .checkmark:after {
+          display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .containerLabel .checkmark:after {
+          left: 9px;
+          top: 5px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 3px 3px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+      }
+    }
+    .searchResult {
+      grid-column: 3/13;
+      .notFound {
+        grid-column: span 12 / span 12;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span:first-of-type {
+          font-size: 20px;
+          text-transform: capitalize;
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+}

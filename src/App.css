@@ -1,5 +1,6 @@
 :root {
     --colorGlobal: #41b294;
+    --colorHeading: #505489;
     --colorFPrimary: #4caf50;
     --colorSPrimary: #f6ba35;
     --colorTPrimary: #ed85ab;
@@ -19,9 +20,11 @@
 }
 
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Source Sans 3', sans-serif;
     color: var(--colorText);
     overflow-x: hidden;
+    /* padding: 0 50px; */
+    /* background-color: #fff; */
 }
 
 body::-webkit-scrollbar {
@@ -82,27 +85,26 @@ a:hover {
     flex-direction: column;
     transition: all 0.5s;
     width: 280px;
-    /* width: 100%; */
     min-width: 280px;
     min-height: 370px;
     word-wrap: break-word;
-    background-color: #fff;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
+    box-shadow: 0px 0px 5px 2px rgb(0 0 0 / 10%);
+}
+
+.cardGlobal:hover {
+    transform: translateY(-5px);
     box-shadow: 0px 0px 10px 4px rgb(0 0 0 / 20%);
+}
+
+.cardBodyGlobal h6 {
+    text-align: justify;
 }
 
 .cardGlobal>img {
     height: 185px;
     min-height: 185px;
-}
-
-.cardEffect {
-    transition: all 0.5s;
-}
-
-.cardEffect:hover {
-    transform: translateY(-2px);
 }
 
 .cardImgGlobal {
@@ -129,7 +131,6 @@ a:hover {
     padding: 0 10px;
     color: var(--colorWhite);
     background-color: var(--colorGlobal);
-    /* transform: translateY(20%); */
 }
 
 .titleMaker {
@@ -185,21 +186,17 @@ a:hover {
     color: var(--colorTextCard);
 }
 
-/* Responsive when component subcard over sreen */
-.moveSubCard .subCard {
-    right: 0;
-    left: -132%;
+
+/* swiper */
+/* .swiper-pagination */
+.swiper-pagination-bullet {
+    width: 12px !important;
+    height: 12px !important;
 }
 
-.moveSubCard .subCard::before {
-    left: 100%;
-    border-left: 15px solid var(--colorWhite);
-    border-right: 15px solid transparent;
-    ;
-}
-
-/* .cardGlobalRes {
-    display: flex;
+.swiper,
+.swiper-slide {
+    display: flex !important;
     justify-content: center;
-    position: absolute;
-} */
+    padding: 20px !important;
+}

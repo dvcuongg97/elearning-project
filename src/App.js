@@ -1,22 +1,67 @@
 import "./App.css";
-import HomePage from "./Page/HomePage/HomePage";
-import NavBar from "./component/NavBar/Navbar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Ex_HomePage from "./Page/HomePage/Ex_HomePage";
+import HomeLayout from "./template/HomeTemplate/LayoutHome";
+import KhoaHocTheoDanhMuc from "./Page/KhoaHocTheoDanhMuc/KhoaHocTheoDanhMuc";
+import ChiTietKhoaHoc from "./Page/ChiTietKhoaHoc/ChiTietKhoaHoc";
+import KhoaHocPagination from "./Page/KhoaHocPagination/KhoaHocPagination";
+import TimKiemKhoaHoc from "./Page/TimKiemKhoaHoc/TimKiemKhoaHoc";
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
-      <HomePage />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomeLayout>
+                <Ex_HomePage />
+              </HomeLayout>
+            }
+          ></Route>
+          <Route
+            path="/danhmuckhoahoc/:maDanhMuc"
+            element={
+              <HomeLayout>
+                <KhoaHocTheoDanhMuc />
+              </HomeLayout>
+            }
+          ></Route>
+          <Route
+            path="/chitietkhoahoc/:maKhoaHoc"
+            element={
+              <HomeLayout>
+                <ChiTietKhoaHoc />
+              </HomeLayout>
+            }
+          ></Route>
+          <Route
+            path="/khoahoc"
+            element={
+              <HomeLayout>
+                <KhoaHocPagination />
+              </HomeLayout>
+            }
+          ></Route>
+          <Route
+            path="/timkiemkhoahoc/:tenKhoaHoc"
+            element={
+              <HomeLayout>
+                <TimKiemKhoaHoc />
+              </HomeLayout>
+            }
+          ></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
 
-/*
-
-
-<>
+{
+  /* <>
       <Spinner />
       <BrowserRouter>
         <Routes>
@@ -58,6 +103,5 @@ export default App;
           <Route path="*" element={<PageNotFound />}></Route>
         </Routes>
       </BrowserRouter>
-    </>
-
-*/
+    </> */
+}

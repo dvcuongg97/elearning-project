@@ -1,0 +1,37 @@
+/* Tabs */
+.tabz-wraper {
+  width: 100%;
+  margin: 30px auto;
+}
+.tabz-label {
+  width: 60%;
+  margin: auto;
+  padding: 10px 10px;
+  background-color: rgba(137, 110, 255, 0.1);
+  border-radius: 50px;
+  margin-bottom: 50px;
+  .labelz-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+    font-weight: 600;
+    text-transform: capitalize;
+    .labelz-name {
+      cursor: pointer;
+      text-transform: capitalize;
+      padding: 10px 20px;
+      margin: 0 3px;
+      transition: all 0.2s;
+    }
+  }
+  .labelz-name:hover,
+  .labelz-active {
+    background-color: #896eff;
+    border-radius: 50px;
+    box-shadow: 0 2px 15px rgba(137, 110, 255, 0.5);
+    color: #fff;
+    // transition: all 0.3s;
+  }
+}

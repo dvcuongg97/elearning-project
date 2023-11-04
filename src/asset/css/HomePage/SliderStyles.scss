@@ -12,7 +12,7 @@
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   position: absolute;
-  top: 5%;
+  top: 30%;
   left: 10%;
   width: 0;
   height: 0;
@@ -32,14 +32,14 @@
 }
 
 .smallboxLeftTop {
-  top: 10%;
+  top: 30%;
   left: 10%;
   height: 70px;
   width: 20%;
 }
 
 .smallboxRightTop {
-  top: 0;
+  top: 30%;
   right: 0;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -56,14 +56,6 @@
 
 .doubleBox {
   left: 74%;
-}
-
-.smallboxRightBottom {
-  bottom: 10%;
-  left: 70%;
-  height: 10%;
-  width: 10%;
-  background-image: radial-gradient(var(--colorTPrimary) 10%, transparent 11%);
 }
 
 .sliderPlaneImg {
@@ -141,7 +133,7 @@
 }
 // ----INFO----
 .infoCoureBox {
-  padding: 50px 0;
+  margin-bottom: 50px;
 }
 .infoCourseHome {
   display: grid;
@@ -215,21 +207,163 @@
 .infoSmallItemC {
   background-color: #63c0a8;
 }
+// ---CARD INFO---
+.feature {
+  background-image: url(../../../../public/image/HomePage/CardFeature/carftbg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.cardft-wraper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 400px;
+  width: 320px;
+  padding: 30px;
+  transition: all 0.5s;
+  border-radius: 10px;
+  background-color: #fff;
+  &::before {
+    background-image: url(../../../../public/image/HomePage/CardFeature/beforer1.png);
 
-/* Animation img slider */
-@keyframes aniSider {
-  0% {
-    opacity: 0;
-    transform: translateY(-5%);
+    height: 100%;
+    top: -30px;
+    left: -30px;
+    width: 100%;
   }
-  50% {
+  &::after {
+    background-image: url(../../../../public/image/HomePage/CardFeature/after1.png);
+    height: 290px;
+    bottom: -40px;
+    right: -30px;
+    width: 250px;
+  }
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: all 0.5s;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    z-index: 0;
+  }
+  &:hover::after,
+  &:hover::before {
     opacity: 1;
-    transform: translateY(-10%);
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
-  100% {
-    opacity: 0;
-    transform: translateY(-15%);
+  &:hover {
+    box-shadow: 0 0 10px 4px rgba(31, 66, 135, 0.1);
   }
+}
+
+.cardft-wraper:hover {
+  .iconft-wraper1::after,
+  .iconft-wraper2::after,
+  .iconft-wraper3::after {
+    right: 50%;
+  }
+}
+
+.cardft-content {
+  position: absolute;
+  p {
+    color: var(--colorText);
+  }
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--colorHeading);
+    margin: 20px 0;
+  }
+}
+
+.iconft-wraper1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::after {
+    background-image: url(../../../../public/image/HomePage/CardFeature/icon1.png);
+    content: "";
+    position: absolute;
+    right: 20%;
+    top: -10px;
+    height: 150px;
+    width: 82px;
+    background-position: 100%;
+    z-index: 1;
+    transition: all 0.5s;
+  }
+}
+.iconft-wraper2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::after {
+    background-image: url(../../../../public/image/HomePage/CardFeature/icon2.png);
+    content: "";
+    position: absolute;
+    right: 20%;
+    top: -10px;
+    height: 150px;
+    width: 82px;
+    background-position: 100%;
+    z-index: 1;
+    transition: all 0.5s;
+  }
+}
+.iconft-wraper3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::after {
+    background-image: url(../../../../public/image/HomePage/CardFeature/icon3.png);
+    content: "";
+    position: absolute;
+    right: 20%;
+    top: -10px;
+    height: 150px;
+    width: 82px;
+    background-position: 100%;
+    z-index: 1;
+    transition: all 0.5s;
+  }
+}
+
+.iconft-style {
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 90px;
+  margin: 24px 0;
+  position: relative;
+  z-index: 1;
+  border-radius: 50%;
+}
+.iconft-style1 {
+  background-color: #ffa808;
+
+  box-shadow: 0 2px 15px rgb(235, 190, 75);
+}
+.iconft-style2 {
+  background-color: #ff586e;
+  box-shadow: 0 2px 15px rgba(255, 88, 110);
+}
+.iconft-style3 {
+  background-color: #029e76;
+  box-shadow: 0 2px 15px rgba(2, 158, 118);
+}
+
+.cardft-wraper:hover .iconft {
+  animation: iconCardft 0.5s forwards;
 }
 
 /* Mobie */
@@ -255,8 +389,8 @@
     display: none;
   }
   /* .cardGlobal{
-        overflow: hidden;
-    } */
+    overflow: hidden;
+  } */
   .instrutorContent p i {
     font-size: 13px;
   }
@@ -367,5 +501,37 @@
 @keyframes shine {
   100% {
     left: 170%;
+  }
+}
+
+/* Animation img slider */
+@keyframes aniSider {
+  0% {
+    opacity: 0;
+    transform: translateY(-5%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-15%);
+  }
+}
+
+// animation icon cardft
+@keyframes iconCardft {
+  49% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+  }
+  51% {
+    opacity: 1;
   }
 }

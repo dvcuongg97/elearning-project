@@ -1,71 +1,19 @@
 import React from "react";
-import "../../asset/css/HomePage/SliderStyles.scss";
-export default function Slider() {
+import { DiNpm, DiReact, DiStackoverflow } from "react-icons/di";
+
+export default function InfoComponent() {
   return (
-    <>
-      <div className="grid grid-cols-12">
-        <div className="col-span-6 sloganBox">
-          <div className="triangleTopRight" />
-          <div className="smallBox smallboxLeftTop" />
-          <div className="smallBox smallboxRightTop" />
-          <div className="smallBox smallboxRightBottom" />
-          <div className="smallBox smallboxRightBottom doubleBox" />
-          <div className="sloganContainer">
-            <div>
-              <img
-                className="sliderPlaneImg"
-                src="../image/HomePage/HomeSlider/planedSlider.png"
-                alt="..."
-              />
-            </div>
-            <h1>Chào mừng</h1>
-            <h1>đến với môi trường </h1>
-            <h1>
-              V<span>learning</span>
-            </h1>
-            <button className="btnGlobal btnSlider mt-4">Bắt đâu nào</button>
-          </div>
-        </div>
-        <div className="col-span-6">
-          <div className="sliderRight">
-            <div>
-              <img
-                className="sliderMainImg"
-                src="../image/HomePage/HomeSlider/slider2.png"
-                alt="..."
-              />
-              <img
-                className="sliderSubImg sliderCodeImg"
-                src="../image/HomePage/HomeSlider/codeSlider.png"
-                alt="..."
-              />
-              <img
-                className="sliderSubImg sliderMesImg "
-                src="../image/HomePage/HomeSlider/messageSlider.png"
-                alt="..."
-              />
-              <img
-                className="sliderSubImg sliderCloudImg"
-                src="../image/HomePage/HomeSlider/cloudsSlider.png"
-                alt="..."
-              />
-              <img
-                className="sliderSubImg sliderCloud2Img"
-                src="../image/HomePage/HomeSlider/cloudsSlider.png"
-                alt="..."
-              />
-              <img
-                className="sliderSubImg sliderCloud3Img"
-                src="../image/HomePage/HomeSlider/cloudsSlider.png"
-                alt="..."
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* INFO */}
-      <div className="infoCoureBox">
-        <div className="infoCourseHome">
+    <section className="feature mb-12">
+      {/* content */}
+      <div
+        style={{
+          backgroundImage: `url('../image/HomePage/HomeSlider/infobg.png')`,
+          backgroundPosition: "center",
+          padding: "0 48px",
+        }}
+        className="infoCoureBox"
+      >
+        <div className="infoCourseHome ">
           <div className="infoItemHome infoLargeItem">
             <div className="infoItemContent">
               <h3>Khóa học</h3>
@@ -207,6 +155,83 @@ export default function Slider() {
           </div>
         </div>
       </div>
-    </>
+      {/* card */}
+      <div className=" w-3/4 mx-auto mb-12">
+        <div className="grid grid-cols-12">
+          <div className="col-span-4 flex justify-center">
+            <div className="cardft-wraper">
+              <div className="cardft-content">
+                <div className="iconft-wraper1">
+                  <div className="iconft-style iconft-style1 ">
+                    <DiNpm className="iconft" size={60} />
+                  </div>
+                </div>
+                <h3
+                  // style={{ fontWeight: 600, margin: "20px 0" }}
+                  className="text-center font-medium"
+                >
+                  Công nghệ mới, chuyên sâu, thực tế
+                </h3>
+                <div className="w-3/4 mx-auto text-justify">
+                  <p>
+                    Fusce sit amet dui vitae urna tristique imperdiet. Donec
+                    eget sapien euismod, faucibus nibh non, consequat elit.
+                    Praesent sed vehicula.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-span-4 flex justify-center">
+            <div className="cardft-wraper">
+              <div className="cardft-content">
+                <div className="iconft-wraper2">
+                  <div className="iconft-style iconft-style2">
+                    <DiReact className="iconft" size={60} />
+                  </div>
+                </div>
+                <h3
+                  // style={{ fontWeight: 600, margin: "20px 0" }}
+                  className="text-center"
+                >
+                  Trao tay chìa khóa thành công toàn diện
+                </h3>
+                <div className="w-3/4 mx-auto text-justify">
+                  <p>
+                    Fusce sit amet dui vitae urna tristique imperdiet. Donec
+                    eget sapien euismod, faucibus nibh non, consequat elit.
+                    Praesent sed vehicula.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-span-4 flex justify-center">
+            <div className="cardft-wraper">
+              <div className="cardft-content">
+                <div className="iconft-wraper3">
+                  <div className="iconft-style iconft-style3">
+                    <DiStackoverflow className="iconft" size={60} />
+                  </div>
+                </div>
+                <h3
+                  // style={{ fontWeight: 600, margin: "20px 0" }}
+                  className="text-center font-medium"
+                >
+                  Nền tảng, tư duy, cốt lõi trong lập trình
+                </h3>
+                <div className="w-3/4 mx-auto text-justify">
+                  <p>
+                    Fusce sit amet dui vitae urna tristique imperdiet. Donec
+                    eget sapien euismod, faucibus nibh non, consequat elit.
+                    Praesent sed vehicula.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

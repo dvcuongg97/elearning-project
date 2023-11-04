@@ -1,0 +1,61 @@
+.cardIcon {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  span {
+    color: var(--colorTextCard);
+    i {
+      margin-right: 8px;
+    }
+  }
+  .iconOclock {
+    color: #f5c002;
+  }
+  .iconCalendar {
+    color: #f06f68;
+  }
+  .iconLevel {
+    color: #65c9ff;
+  }
+}
+.cardFooter .iconTag {
+  font-size: 18px;
+  color: red;
+  margin-left: 4px;
+}
+/* card Sale */
+.cardSale {
+  position: absolute;
+  top: 15px;
+  left: -5px;
+
+  padding: 3px 8px;
+  color: var(--colorWhite);
+  background-color: red;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -12px;
+    width: 0;
+    height: 0;
+    border-width: 15px 12px 15px 0px;
+    border-style: solid;
+    border-color: red transparent red transparent;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid transparent;
+    border-right: 5px solid red;
+    filter: brightness(0.8);
+  }
+}

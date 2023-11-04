@@ -1,0 +1,138 @@
+.section-testi {
+  padding: 0 50px;
+  margin: 10px;
+  margin-bottom: 50px;
+  .testi-card {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: all 0.3s;
+    &:hover {
+      box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.13);
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+    .card__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      p {
+        color: var(--colorText);
+        font-size: 18px;
+        font-weight: 600;
+      }
+      p:nth-of-type(2) {
+        color: #000;
+        font-weight: 400;
+        font-size: 16px;
+      }
+    }
+    .card__footer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.review {
+  padding: 20px 50px;
+  position: relative;
+  .reviewStudent {
+    position: relative;
+    padding: 50px 0;
+    .hvreview-wraper {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      .reviewImg {
+        display: flex;
+        position: relative;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+        .bgStudentReview {
+          top: -10%;
+          z-index: 1;
+          height: 220px;
+          width: 230px;
+          position: absolute;
+          background-color: var(--colorTPrimary);
+          border-radius: 10px 100px 110px;
+        }
+        img {
+          width: 200px;
+          height: 200px;
+          position: relative;
+          z-index: 10;
+        }
+      }
+      .quoteRight {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        // align-items: center;
+        .qouteName {
+          padding: 20px 0;
+        }
+      }
+    }
+  }
+}
+
+.triangleTopRight {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 30%;
+  left: 10%;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 50px solid var(--colorSPrimary);
+}
+
+.smallBox {
+  position: absolute;
+  z-index: 1;
+  height: 10%;
+  width: 10%;
+  background-image: radial-gradient(var(--colorGlobal) 10%, transparent 11%),
+    radial-gradient(var(--colorGlobal) 10%, transparent 11%);
+  background-size: 10px 10px;
+}
+
+.smallboxLeftTop {
+  top: 30%;
+  left: 10%;
+  height: 70px;
+  width: 20%;
+}
+
+.smallboxRightTop {
+  top: 30%;
+  right: 0;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  background-image: radial-gradient(var(--colorSPrimary) 10%, transparent 11%);
+}
+
+.smallboxRightBottom {
+  bottom: 10%;
+  left: 70%;
+  height: 10%;
+  width: 10%;
+  background-image: radial-gradient(var(--colorTPrimary) 10%, transparent 11%);
+}
