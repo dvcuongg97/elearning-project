@@ -99,7 +99,9 @@ export default function DangNhapDangKy() {
 
   useEffect(() => {
     if (clientInfo?.accessToken) {
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     }
   }, [clientInfo?.accessToken]);
 
