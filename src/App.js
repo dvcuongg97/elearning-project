@@ -6,6 +6,7 @@ import KhoaHocTheoDanhMuc from "./Page/KhoaHocTheoDanhMuc/KhoaHocTheoDanhMuc";
 import ChiTietKhoaHoc from "./Page/ChiTietKhoaHoc/ChiTietKhoaHoc";
 import KhoaHocPagination from "./Page/KhoaHocPagination/KhoaHocPagination";
 import TimKiemKhoaHoc from "./Page/TimKiemKhoaHoc/TimKiemKhoaHoc";
+import DangNhapDangKy from "./Page/DangNhap_DangKy/DangNhapDangKy";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
               </HomeLayout>
             }
           ></Route>
+          <Route path="/dangnhapdangky" element={<DangNhapDangKy />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

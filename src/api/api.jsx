@@ -28,3 +28,12 @@ export const clientApi = {
     );
   },
 };
+
+export const clientProfileApi = {
+  dangNhap: (values) => {
+    return https.post("api/QuanLyNguoiDung/DangNhap", values);
+  },
+  dangKy: (values) => {
+    return https.post("api/QuanLyNguoiDung/DangKy", values);
+  },
+};

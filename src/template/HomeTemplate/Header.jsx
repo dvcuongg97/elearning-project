@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import "../../asset/css/Layout/Header.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { layDanhMucKhoaHocAction } from "../../redux/danhMucKhoaHocSlice";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { userLocalStorage } from "../../api/localService";
 
 export default function Header() {
-  let dispatch = useDispatch();
-  let navigate = useNavigate();
-  let { danhMucKhoaHoc } = useSelector((state) => state.danhMucKhoaHocSlice);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { clientInfo } = useSelector((state) => state.clientProfileSlice);
+  const { danhMucKhoaHoc } = useSelector((state) => state.danhMucKhoaHocSlice);
   useEffect(() => {
     window.addEventListener("scroll", isSticky);
     return () => {
@@ -39,7 +41,11 @@ export default function Header() {
     // const search = toLowerCaseNonAccentVietnamese(e.target.search.value);
     navigate(`/timkiemkhoahoc/${e.target.search.value}`);
   };
-
+  const handleLogout = () => {
+    userLocalStorage.remove("USER");
+    navigate("/");
+    window.location.reload();
+  };
   return (
     <section className="header ">
       <div className="headerLeft">
@@ -89,9 +95,25 @@ export default function Header() {
         </ul>
       </div>
       <div className="showIconHeader">
-        <button className="btnGlobal">
-          <a href="/login">Đăng nhập</a>
-        </button>
+        {clientInfo ? (
+          <div className="flex justify-between items-center">
+            <NavLink className="infoHeader" to="/thongtincanhan">
+              <img
+                className="avatar"
+                src={`https://i.pravatar.cc/150?u=${clientInfo?.taiKhoan}`}
+              ></img>
+            </NavLink>
+            <i
+              onClick={handleLogout}
+              className="fas fa-power-off cursor-pointer text-yellow-500 hover:text-yellow-400 text-2xl ml-2"
+            ></i>
+          </div>
+        ) : (
+          <button className="btnGlobal">
+            <NavLink to="/dangnhapdangky">Đăng nhập</NavLink>
+          </button>
+        )}
+
         {/* <div className="menuMobie">
           <i className="fas fa-sort-down iconMenuMobie" />
           <ul className="menuHeaderMobie">
