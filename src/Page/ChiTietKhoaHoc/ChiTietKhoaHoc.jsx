@@ -4,16 +4,19 @@ import { Rate } from "antd";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { renderCard } from "../renderCard/renderCard";
-import { layDanhSachKhoaHocAction } from "../../redux/danhSachKhoaHocSlice";
+// import { layDanhSachKhoaHocAction } from "../../redux/danhSachKhoaHocSlice";
 import { clientApi } from "../../api/api";
+import { layDanhSachKhoaHocAction } from "../../redux/khoaHocSlice";
 
 export default function ChiTietKhoaHoc() {
   let [chiTietKhoaHoc, setChiTietKhoaHoc] = useState({});
-  let { danhSachKhoaHoc } = useSelector((state) => state.danhSachKhoaHocSlice);
+  // let { danhSachKhoaHoc } = useSelector((state) => state.danhSachKhoaHocSlice);
+  const { danhSachKhoaHoc } = useSelector((state) => state.khoaHocSlice);
 
   const param = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
+    // dispatch(layDanhSachKhoaHocAction());
     dispatch(layDanhSachKhoaHocAction());
 
     const layChiTietKhoaHocAction = async (maKhoaHoc) => {
@@ -23,7 +26,7 @@ export default function ChiTietKhoaHoc() {
           setChiTietKhoaHoc(res.data);
         }
       } catch (error) {
-        console.log("🚀 error:", error.message);
+        console.log("🚀 error:", error.respone.data);
       }
     };
     layChiTietKhoaHocAction(param.maKhoaHoc);

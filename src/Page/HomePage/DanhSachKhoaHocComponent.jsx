@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import "../../asset/css/HomePage/DanhSachKhoaHocStyles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { layDanhSachKhoaHocAction } from "../../redux/danhSachKhoaHocSlice";
 import { renderCard } from "../renderCard/renderCard";
+import { layDanhSachKhoaHocAction } from "../../redux/khoaHocSlice";
 
 export default function DanhSachKhoaHocComponent() {
-  let { danhSachKhoaHoc } = useSelector((state) => state.danhSachKhoaHocSlice);
-  let { danhMucKhoaHoc } = useSelector((state) => state.danhMucKhoaHocSlice);
+  const { danhMucKhoaHoc, danhSachKhoaHoc } = useSelector(
+    (state) => state.khoaHocSlice
+  );
   let [labelState, setLabelState] = useState("BackEnd");
   let { filterCard, renderTabDanhMucKhoaHoc } = renderCard;
   let dispatch = useDispatch();

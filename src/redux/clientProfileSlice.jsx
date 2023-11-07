@@ -4,12 +4,13 @@ import { userLocalStorage } from "../api/localService";
 import { message } from "antd";
 export const clientSigninAction = createAsyncThunk(
   "clientSigninAction",
-  async (values) => {
+  async (values, { dispatch }) => {
     try {
       const res = await clientProfileApi.dangNhap(values);
       if (res.status === 200) {
-        userLocalStorage.get(res.data);
         message.success("Đăng Nhập Thành Công!");
+        // dispatch(setClientInfo(res.data));
+        userLocalStorage.set(res.data);
         return res.data;
       }
     } catch (error) {
@@ -33,6 +34,6 @@ const clientProfileSlice = createSlice({
   },
 });
 
-// export const {} = clientProfileSlice.actions;
+// export const { } = clientProfileSlice.actions;
 
 export default clientProfileSlice.reducer;

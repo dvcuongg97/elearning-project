@@ -12,7 +12,7 @@ export default function KhoaHocTheoDanhMuc() {
   const { filterCard, renderTabDanhMucKhoaHoc } = renderCard;
   let [labelState, setLabelState] = useState(param.maDanhMuc);
   let [khoaHocTheoDanhMuc, setKhoaHocTheoDanhMuc] = useState([]);
-  let { danhMucKhoaHoc } = useSelector((state) => state.danhMucKhoaHocSlice);
+  const { danhMucKhoaHoc } = useSelector((state) => state.khoaHocSlice);
 
   useEffect(() => {
     const layKhoaHocTheoDanhMucAction = async (labelState) => {

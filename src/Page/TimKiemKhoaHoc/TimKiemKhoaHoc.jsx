@@ -4,7 +4,10 @@ import { Rate } from "antd";
 import { renderCard } from "../renderCard/renderCard";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { layDanhSachKhoaHocAction } from "../../redux/danhSachKhoaHocSlice";
+import {
+  layDanhMucKhoaHocAction,
+  layDanhSachKhoaHocAction,
+} from "../../redux/khoaHocSlice";
 
 function toLowerCaseNonAccentVietnamese(str) {
   str = str?.toLowerCase();
@@ -25,13 +28,16 @@ export default function TimKiemKhoaHoc() {
   const param = useParams();
   const dispatch = useDispatch();
   const { allCard } = renderCard;
-  const { danhSachKhoaHoc } = useSelector(
-    (state) => state.danhSachKhoaHocSlice
+  const { danhSachKhoaHoc } = useSelector((state) => state.khoaHocSlice);
+  console.log(
+    "🚀 ~ file: TimKiemKhoaHoc.jsx:29 ~ TimKiemKhoaHoc ~ danhSachKhoaHoc:",
+    danhSachKhoaHoc
   );
   const [search, setSearch] = useState(param.tenKhoaHoc);
 
   useEffect(() => {
     dispatch(layDanhSachKhoaHocAction());
+    dispatch(layDanhMucKhoaHocAction());
   }, [search]);
 
   const handleSubmit = (event) => {
@@ -46,6 +52,11 @@ export default function TimKiemKhoaHoc() {
     return filterRes;
   };
   const filterResult = filterSearch(search);
+  let filterLength = filterResult.length;
+  console.log(
+    "🚀 ~ file: TimKiemKhoaHoc.jsx:56 ~ TimKiemKhoaHoc ~ filterLength:",
+    filterLength
+  );
 
   return (
     <section className="searchPage">
@@ -140,7 +151,11 @@ export default function TimKiemKhoaHoc() {
                 />
               </form>
             </div>
-
+            <div className="grid col-span-12">
+              <span className="text-gray-500 text-md">
+                Tìm thấy {filterLength} khóa học
+              </span>
+            </div>
             {filterResult.length > 0 ? (
               allCard(filterResult)
             ) : (

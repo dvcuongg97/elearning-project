@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../../asset/css/Layout/Header.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { layDanhMucKhoaHocAction } from "../../redux/danhMucKhoaHocSlice";
 import { NavLink, useNavigate } from "react-router-dom";
 import { userLocalStorage } from "../../api/localService";
+import { layDanhMucKhoaHocAction } from "../../redux/khoaHocSlice";
 
 export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { clientInfo } = useSelector((state) => state.clientProfileSlice);
-  const { danhMucKhoaHoc } = useSelector((state) => state.danhMucKhoaHocSlice);
+  const { danhMucKhoaHoc } = useSelector((state) => state.khoaHocSlice);
   useEffect(() => {
     window.addEventListener("scroll", isSticky);
     return () => {
@@ -38,13 +38,7 @@ export default function Header() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const search = toLowerCaseNonAccentVietnamese(e.target.search.value);
     navigate(`/timkiemkhoahoc/${e.target.search.value}`);
-  };
-  const handleLogout = () => {
-    userLocalStorage.remove("USER");
-    navigate("/");
-    window.location.reload();
   };
   return (
     <section className="header ">
@@ -73,10 +67,10 @@ export default function Header() {
             <a href="/khoahoc">Khóa học</a>
           </li>
           <li>
-            <a href="/blog">Blog</a>
+            <a href="/">Blog</a>
           </li>
           <li className="eventHeader courseCate">
-            <a href="/sukien">Sự kiện</a>
+            <a href="/">Sự kiện</a>
             <ul className="courseCateList">
               <li>
                 <button>Sự kiện Sale Cuối Năm</button>
@@ -90,7 +84,7 @@ export default function Header() {
             </ul>
           </li>
           <li>
-            <a href="/thongtin">Thông tin</a>
+            <a href="/">Thông tin</a>
           </li>
         </ul>
       </div>
@@ -101,10 +95,15 @@ export default function Header() {
               <img
                 className="avatar"
                 src={`https://i.pravatar.cc/150?u=${clientInfo?.taiKhoan}`}
-              ></img>
+                alt="..."
+              />
             </NavLink>
             <i
-              onClick={handleLogout}
+              onClick={() => {
+                userLocalStorage.remove("USER");
+                navigate("/");
+                window.location.reload();
+              }}
               className="fas fa-power-off cursor-pointer text-yellow-500 hover:text-yellow-400 text-2xl ml-2"
             ></i>
           </div>

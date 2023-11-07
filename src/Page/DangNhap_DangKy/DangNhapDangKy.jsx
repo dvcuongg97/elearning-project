@@ -19,16 +19,7 @@ export default function DangNhapDangKy() {
   const delID = () => {
     setClassContainer("container");
   };
-  const handleSignup = async (values) => {
-    try {
-      const res = await clientProfileApi.dangKy(values);
-      if (res.status === 200) {
-        message.success("Đăng ký thành công!");
-      }
-    } catch (error) {
-      message.error(error.response.data);
-    }
-  };
+
   const formikSignup = useFormik({
     initialValues: {
       taiKhoan: "",
@@ -82,9 +73,6 @@ export default function DangNhapDangKy() {
     },
   });
 
-  const handleLogin = async (values) => {
-    dispatch(clientSigninAction(values));
-  };
   const formikLogin = useFormik({
     initialValues: {
       taiKhoan: "",
@@ -94,7 +82,10 @@ export default function DangNhapDangKy() {
       taiKhoan: Yup.string().required("Tài khoản không được để trống"),
       matKhau: Yup.string().required("Mật khẩu không được để trống"),
     }),
-    onSubmit: handleLogin,
+    // onSubmit: handleLogin,
+    onSubmit: (values) => {
+      dispatch(clientSigninAction(values));
+    },
   });
 
   useEffect(() => {

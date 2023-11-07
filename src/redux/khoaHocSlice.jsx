@@ -1,6 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { clientApi } from "../api/api";
 
+export const layDanhSachKhoaHocAction = createAsyncThunk(
+  "layDanhSachKhoaHocAction",
+  async () => {
+    let res = await clientApi.layDanhSachKhoaHocApi();
+    return res.data;
+  }
+);
 export const layDanhMucKhoaHocAction = createAsyncThunk(
   "layDanhMucKhoaHocAction",
   async () => {
@@ -8,26 +15,25 @@ export const layDanhMucKhoaHocAction = createAsyncThunk(
     return res.data;
   }
 );
-
 const initialState = {
+  danhSachKhoaHoc: [],
   danhMucKhoaHoc: [],
 };
 
-const danhMucKhoaHocSlice = createSlice({
-  name: "danhMucKhoaHocSlice",
+const khoaHocSlice = createSlice({
+  name: "khoaHocSlice",
   initialState,
-  reducers: {
-    setSearchState: (state, action) => {
-      state.search = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(layDanhSachKhoaHocAction.fulfilled, (state, action) => {
+      state.danhSachKhoaHoc = action.payload;
+    });
     builder.addCase(layDanhMucKhoaHocAction.fulfilled, (state, action) => {
       state.danhMucKhoaHoc = action.payload;
     });
   },
 });
 
-// export const { setSearchState } = danhMucKhoaHocSlice.actions;
+// export const {} = khoaHocSlice.actions;
 
-export default danhMucKhoaHocSlice.reducer;
+export default khoaHocSlice.reducer;
