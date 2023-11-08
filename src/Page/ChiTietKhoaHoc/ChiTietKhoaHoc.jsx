@@ -1,36 +1,64 @@
 import React, { useEffect, useState } from "react";
 import "../../asset/css/ChiTietKhoaHocPage/ChiTietKhoaHocPage.scss";
-import { Rate } from "antd";
+import { Rate, message } from "antd";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { renderCard } from "../renderCard/renderCard";
-// import { layDanhSachKhoaHocAction } from "../../redux/danhSachKhoaHocSlice";
-import { clientApi } from "../../api/api";
+import { clientApi, clientProfileApi } from "../../api/api";
 import { layDanhSachKhoaHocAction } from "../../redux/khoaHocSlice";
+import { DangKyKhoaHoc } from "../../api/modal/clientAction";
+import { layThongTinTaiKhoanAction } from "../../redux/clientProfileSlice";
 
 export default function ChiTietKhoaHoc() {
-  let [chiTietKhoaHoc, setChiTietKhoaHoc] = useState({});
-  // let { danhSachKhoaHoc } = useSelector((state) => state.danhSachKhoaHocSlice);
+  const [chiTietKhoaHoc, setChiTietKhoaHoc] = useState({});
+  const { clientInfo, clientDetail } = useSelector(
+    (state) => state.clientProfileSlice
+  );
   const { danhSachKhoaHoc } = useSelector((state) => state.khoaHocSlice);
+  let clientCourses = [];
+  if (clientInfo) {
+    clientCourses = clientDetail.chiTietKhoaHocGhiDanh?.filter(
+      (item) => item.maKhoaHoc === chiTietKhoaHoc.maKhoaHoc
+    );
+  }
 
   const param = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(layDanhSachKhoaHocAction());
     dispatch(layDanhSachKhoaHocAction());
-
+    dispatch(layThongTinTaiKhoanAction());
     const layChiTietKhoaHocAction = async (maKhoaHoc) => {
       try {
-        const res = await clientApi.layThongTinKhoaHocApi(maKhoaHoc);
+        const res = await clientApi.layThongTinKhoaHoc(maKhoaHoc);
         if ((res.status = 200)) {
           setChiTietKhoaHoc(res.data);
         }
-      } catch (error) {
-        console.log("🚀 error:", error.respone.data);
-      }
+      } catch (error) {}
     };
     layChiTietKhoaHocAction(param.maKhoaHoc);
   }, [param.maKhoaHoc]);
+
+  const handleDangKy = async (chiTietKhoaHoc) => {
+    try {
+      if (!clientInfo) {
+        message.info("Bạn chưa đăng nhập!");
+      } else if (clientCourses.length > 0) {
+        message.info("Bạn đã đăng ký khóa học này!");
+      } else {
+        let dangKyKhoaHoc = new DangKyKhoaHoc();
+        dangKyKhoaHoc.taiKhoan = clientInfo.taiKhoan;
+        dangKyKhoaHoc.maKhoaHoc = chiTietKhoaHoc.maKhoaHoc;
+        clientProfileApi.dangKyKhoaHoc(dangKyKhoaHoc);
+        message.success("Đăng ký khóa học thành công");
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className="detail">
       <div className="page--title bg-yellow-400 p-12">
@@ -293,8 +321,6 @@ export default function ChiTietKhoaHoc() {
               </div>
             </div>
           </div>
-
-          <div className="recommendCourse"></div>
         </div>
         <div className="container__right">
           <div className="detail__bill">
@@ -302,7 +328,12 @@ export default function ChiTietKhoaHoc() {
             <p className="priceCourse">
               <i className="fas fa-bolt"></i>500.000<sup>đ</sup>
             </p>
-            <button className="btnDangKy">đăng ký</button>
+            <button
+              onClick={() => handleDangKy(chiTietKhoaHoc)}
+              className="btnDangKy"
+            >
+              đăng ký
+            </button>
             <ul className="ulDangKy">
               <li>
                 <p>

@@ -34,25 +34,21 @@ export default function DangNhapDangKy() {
         .min(2, "Tài khoản quá ít kí tự")
         .max(16, "Tài khoản quá 16 kí tự")
         .required("Tài khoản không được để trống"),
-
       matKhau: Yup.string()
         .required("Mật khẩu không được để trống")
         .matches(
           /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
           "Mật khẩu phải ít nhất 8 tự gồm chữ, số, và kí tự đặc biệt"
         ),
-
       hoTen: Yup.string()
         .required("Tên không được để trống")
         .matches(
           /^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" + "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" + "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý\\s]+$/,
           "Chỉ nhập kí tự chữ"
         ),
-
       email: Yup.string()
         .email("Email không hợp lệ")
         .required("Email không được để trống"),
-
       soDT: Yup.string()
         .required("Số điện thoại không được để trống")
         .matches(

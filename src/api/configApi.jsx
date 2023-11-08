@@ -1,4 +1,5 @@
 import axios from "axios";
+import { userLocalStorage } from "./localService";
 
 export const BASE_URL = "https://elearningnew.cybersoft.edu.vn/";
 export const TOKEN_CYBERSOFT =
@@ -8,7 +9,7 @@ export const https = axios.create({
   baseURL: BASE_URL,
   headers: {
     TokenCybersoft: TOKEN_CYBERSOFT,
-    // Authorization: "Bearer " + userLocalStorage.get()?.accessToken,
+    Authorization: "Bearer " + userLocalStorage.get()?.accessToken,
   },
 });
 

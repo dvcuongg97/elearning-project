@@ -23,7 +23,7 @@ export default function Header() {
   const isSticky = (e) => {
     const header = document.querySelector(".header");
     const scrollTop = window.scrollY;
-    scrollTop >= 300
+    scrollTop >= 250
       ? header.classList.add("headerFixed")
       : header.classList.remove("headerFixed");
   };
@@ -41,7 +41,7 @@ export default function Header() {
     navigate(`/timkiemkhoahoc/${e.target.search.value}`);
   };
   return (
-    <section className="header ">
+    <section className="header">
       <div className="headerLeft">
         <a aria-current="page" className="textLogo active" href="/">
           <img src="../image/logo/cyberlogo.png" alt="..." width={250} />
@@ -91,7 +91,7 @@ export default function Header() {
       <div className="showIconHeader">
         {clientInfo ? (
           <div className="flex justify-between items-center">
-            <NavLink className="infoHeader" to="/thongtincanhan">
+            <NavLink className="infoHeader" to="/thongtintaikhoan">
               <img
                 className="avatar"
                 src={`https://i.pravatar.cc/150?u=${clientInfo?.taiKhoan}`}

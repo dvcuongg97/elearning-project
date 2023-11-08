@@ -9,7 +9,7 @@ export default function KhoaHocPagination() {
   useEffect(() => {
     async function layDSKH_PhanTrangAction() {
       try {
-        const res = await clientApi.layDSKH_PhanTrangApi(page);
+        const res = await clientApi.layDSKH_PhanTrang(page);
         if (res.status === 200) {
           setKhoaHocPhanTrang(res.data);
         }

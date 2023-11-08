@@ -4,12 +4,11 @@ import { userLocalStorage } from "../api/localService";
 import { message } from "antd";
 export const clientSigninAction = createAsyncThunk(
   "clientSigninAction",
-  async (values, { dispatch }) => {
+  async (values) => {
     try {
       const res = await clientProfileApi.dangNhap(values);
       if (res.status === 200) {
         message.success("Đăng Nhập Thành Công!");
-        // dispatch(setClientInfo(res.data));
         userLocalStorage.set(res.data);
         return res.data;
       }
@@ -19,8 +18,20 @@ export const clientSigninAction = createAsyncThunk(
   }
 );
 
+export const layThongTinTaiKhoanAction = createAsyncThunk(
+  "layThongTinTaiKhoanAction",
+  async () => {
+    try {
+      const res = await clientProfileApi.layThongTinTaiKhoan();
+      if (res.status === 200) {
+        return res.data;
+      }
+    } catch (error) {}
+  }
+);
 const initialState = {
   clientInfo: userLocalStorage.get(),
+  clientDetail: {},
 };
 
 const clientProfileSlice = createSlice({
@@ -31,9 +42,12 @@ const clientProfileSlice = createSlice({
     builder.addCase(clientSigninAction.fulfilled, (state, action) => {
       state.clientInfo = action.payload;
     });
+    builder.addCase(layThongTinTaiKhoanAction.fulfilled, (state, action) => {
+      state.clientDetail = action.payload;
+    });
   },
 });
 
-// export const { } = clientProfileSlice.actions;
+// export const { setClientDetail } = clientProfileSlice.actions;
 
 export default clientProfileSlice.reducer;

@@ -4,15 +4,23 @@ import { clientApi } from "../api/api";
 export const layDanhSachKhoaHocAction = createAsyncThunk(
   "layDanhSachKhoaHocAction",
   async () => {
-    let res = await clientApi.layDanhSachKhoaHocApi();
-    return res.data;
+    try {
+      let res = await clientApi.layDanhSachKhoaHoc();
+      if (res.status === 200) {
+        return res.data;
+      }
+    } catch (error) {}
   }
 );
 export const layDanhMucKhoaHocAction = createAsyncThunk(
   "layDanhMucKhoaHocAction",
   async () => {
-    const res = await clientApi.layDanhMucKhoaHocApi();
-    return res.data;
+    try {
+      const res = await clientApi.layDanhMucKhoaHoc();
+      if (res.status === 200) {
+        return res.data;
+      }
+    } catch (error) {}
   }
 );
 const initialState = {

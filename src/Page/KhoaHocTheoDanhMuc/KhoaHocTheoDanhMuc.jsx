@@ -17,7 +17,7 @@ export default function KhoaHocTheoDanhMuc() {
   useEffect(() => {
     const layKhoaHocTheoDanhMucAction = async (labelState) => {
       try {
-        const res = await clientApi.layKhoaHocTheoDanhMucApi(labelState);
+        const res = await clientApi.layKhoaHocTheoDanhMuc(labelState);
         if (res.status === 200) {
           setKhoaHocTheoDanhMuc(res.data);
         }
