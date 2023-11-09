@@ -14,12 +14,20 @@ export default function ThongTinTaiKhoan() {
   const tabsContent = [
     {
       key: "1",
-      label: <span className="text-lg font-medium">Thông tin tài khoản</span>,
+      label: (
+        <span className=" text-center md:text-lg font-medium">
+          Thông tin tài khoản
+        </span>
+      ),
       children: <TaiKhoan />,
     },
     {
       key: "2",
-      label: <span className="text-lg font-medium">Danh Sách Khóa Học</span>,
+      label: (
+        <span className="text-center md:text-lg font-medium">
+          Danh Sách Khóa Học
+        </span>
+      ),
       children: <KhoaHoc />,
     },
   ];
@@ -45,6 +53,7 @@ export default function ThongTinTaiKhoan() {
           </div>
           <div className="rightInfoPage">
             <Tabs
+              className="mx-auto"
               defaultActiveKey="1"
               items={tabsContent}
               onChange={onChange}

@@ -68,111 +68,110 @@ export default function TaiKhoan() {
     },
   });
   return (
-    <div>
-      <>
-        <div className="grid grid-cols-2 mb-12">
-          <div className="col-span-1 space-y-1 text-lg">
-            <p className="font-medium">
-              Email:{" "}
-              <span className="text-gray-400 font-normal ml-2">
-                {clientInfo.email}
-              </span>
-            </p>
-            <p className="font-medium">
-              Họ và tên:
-              <span className="text-gray-400 font-normal ml-2">
-                {clientInfo.hoTen}
-              </span>
-            </p>
-            <p className="font-medium">
-              Số điện thoại:{" "}
-              <span className="text-gray-400 font-normal ml-2">
-                {clientInfo.soDT}
-              </span>
-            </p>
-          </div>
-          <div className="col-span-1 space-y-1 text-lg">
-            <p className="font-medium">
-              Tài khoản:{" "}
-              <span className="text-gray-400 font-normal ml-2">
-                {clientInfo.taiKhoan}
-              </span>
-            </p>
-            <p className="font-medium">
-              Nhóm:{" "}
-              <span className="text-gray-400 font-normal ml-2">
-                {clientInfo.maNhom}
-              </span>
-            </p>
-            <p className="font-medium">
-              Đối tượng:{" "}
-              <span className="text-gray-400 font-normal ml-2">
-                {clientInfo.maLoaiNguoiDung === "HV" ? "Học viên" : "Admin"}
-              </span>
-            </p>
-            <Button
-              className="px-4 py-1 font-medium hover:text-white bg-blue-500 hover:bg-blue-400 mt-6"
-              onClick={showModal}
-            >
-              Cập nhật
-            </Button>
-          </div>
+    <>
+      <div className="md:grid grid-cols-2 mb-12">
+        <div className="col-span-1 space-y-1 text-lg">
+          <p className="font-medium">
+            Email:{" "}
+            <span className="text-gray-400 font-normal ml-2">
+              {clientInfo.email}
+            </span>
+          </p>
+          <p className="font-medium">
+            Họ và tên:
+            <span className="text-gray-400 font-normal ml-2">
+              {clientInfo.hoTen}
+            </span>
+          </p>
+          <p className="font-medium">
+            Số điện thoại:{" "}
+            <span className="text-gray-400 font-normal ml-2">
+              {clientInfo.soDT}
+            </span>
+          </p>
         </div>
-        <div className="userProgress">
-          <Progress
-            size={[600, 20]}
-            percent={99.9}
-            format={(percent) => (
-              <span className="text-green-500 font-medium text-lg">
-                {percent}% HTML
-              </span>
-            )}
-            status="active"
-            strokeColor={{
-              "0%": "#87d068",
-              "50%": "#ffe58f",
-              "100%": "#ffccc7",
-            }}
-          />
-          <Progress
-            size={[600, 20]}
-            percent={99.9}
-            format={(percent) => (
-              <span className="text-green-500 font-medium text-lg">
-                {percent}% CSS
-              </span>
-            )}
-            status="active"
-            strokeColor={{ "0%": "#108ee9", "100%": "#87d068" }}
-          />
-          <Progress
-            size={[600, 20]}
-            percent={99.9}
-            format={(percent) => (
-              <span className="text-green-500 font-medium text-lg">
-                {percent}% JavaScript
-              </span>
-            )}
-            status="active"
-            strokeColor={{ from: "#108ee9", to: "#87d068" }}
-          />
-          <Progress
-            size={[600, 20]}
-            percent={99.9}
-            format={(percent) => (
-              <span className="text-green-500 font-medium text-lg">
-                {percent}% React JS
-              </span>
-            )}
-            status="active"
-            strokeColor={{
-              "0%": "#87d068",
-              "50%": "#ffe58f",
-              "100%": "#ffccc7",
-            }}
-          />
+        <div className="col-span-1 space-y-1 text-lg">
+          <p className="font-medium">
+            Tài khoản:{" "}
+            <span className="text-gray-400 font-normal ml-2">
+              {clientInfo.taiKhoan}
+            </span>
+          </p>
+          <p className="font-medium">
+            Nhóm:{" "}
+            <span className="text-gray-400 font-normal ml-2">
+              {clientInfo.maNhom}
+            </span>
+          </p>
+          <p className="font-medium">
+            Đối tượng:{" "}
+            <span className="text-gray-400 font-normal ml-2">
+              {clientInfo.maLoaiNguoiDung === "HV" ? "Học viên" : "Admin"}
+            </span>
+          </p>
+          <button
+            className="px-4 py-1 font-medium hover:text-white bg-blue-400 hover:bg-blue-400 mt-6"
+            onClick={showModal}
+          >
+            Cập nhật
+          </button>
         </div>
-      </>
+      </div>
+      <div className="userProgress md:block hidden">
+        <Progress
+          size={[600, 20]}
+          percent={99.9}
+          format={(percent) => (
+            <span className="text-green-500 font-medium text-lg">
+              {percent}% HTML
+            </span>
+          )}
+          status="active"
+          strokeColor={{
+            "0%": "#87d068",
+            "50%": "#ffe58f",
+            "100%": "#ffccc7",
+          }}
+        />
+        <Progress
+          size={[600, 20]}
+          percent={99.9}
+          format={(percent) => (
+            <span className="text-green-500 font-medium text-lg">
+              {percent}% CSS
+            </span>
+          )}
+          status="active"
+          strokeColor={{ "0%": "#108ee9", "100%": "#87d068" }}
+        />
+        <Progress
+          size={[600, 20]}
+          percent={99.9}
+          format={(percent) => (
+            <span className="text-green-500 font-medium text-lg">
+              {percent}% JavaScript
+            </span>
+          )}
+          status="active"
+          strokeColor={{ from: "#108ee9", to: "#87d068" }}
+        />
+        <Progress
+          size={[600, 20]}
+          percent={99.9}
+          format={(percent) => (
+            <span className="text-green-500 font-medium text-lg">
+              {percent}% React JS
+            </span>
+          )}
+          status="active"
+          strokeColor={{
+            "0%": "#87d068",
+            "50%": "#ffe58f",
+            "100%": "#ffccc7",
+          }}
+        />
+      </div>
+
       {/* modal cap nhat thong tin tai khoan */}
       <Modal
         title="Basic Modal"
@@ -242,7 +241,7 @@ export default function TaiKhoan() {
           ) : (
             <div className="message"></div>
           )}
-          <div class="modal-footer">
+          <div className="modal-footer">
             <button
               type="submit"
               className="bg-slate-500 hover:bg-slate-400 py-2 px-1 rounded-lg font-medium"
@@ -252,6 +251,6 @@ export default function TaiKhoan() {
           </div>
         </form>
       </Modal>
-    </div>
+    </>
   );
 }

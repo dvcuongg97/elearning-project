@@ -4,8 +4,8 @@ import "../../asset/css/Layout/Footer.scss";
 export default function Footer() {
   return (
     <section className="ssfooter">
-      <div className="ssfooterContainer">
-        <div className="content1 ">
+      <div className="grid grid-cols-1 md:grid-cols-12">
+        <div className="col-span-3">
           <div>
             <img
               className="cursor-pointer hover:scale-110 transition-all duration-300"
@@ -29,53 +29,53 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="content2 ">
-          <div>
-            <h3 className="f-heading">Liên Kết</h3>
-            <ul className="ulMenu">
-              <li>
-                <i className="fas fa-chevron-right"></i>
-                <span>Trang chủ</span>
-              </li>
-              <li>
-                <i className="fas fa-chevron-right"></i>
-                <span> Dịch vụ</span>
-              </li>
-              <li>
-                <i className="fas fa-chevron-right"></i>
-                <span> Nhóm </span>
-              </li>
-              <li>
-                <i className="fas fa-chevron-right"></i>
-                <span> Blog</span>
-              </li>
-            </ul>
+        <div className="col-span-6 grid">
+          <div className="grid grid-cols-2">
+            <div className="col-span-1">
+              <h3 className="f-heading">Liên Kết</h3>
+              <ul className="ulMenu">
+                <li>
+                  <i className="fas fa-chevron-right"></i>
+                  <span>Trang chủ</span>
+                </li>
+                <li>
+                  <i className="fas fa-chevron-right"></i>
+                  <span> Dịch vụ</span>
+                </li>
+                <li>
+                  <i className="fas fa-chevron-right"></i>
+                  <span> Nhóm </span>
+                </li>
+                <li>
+                  <i className="fas fa-chevron-right"></i>
+                  <span> Blog</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="f-heading">Khóa Học</h3>
+              <ul className="ulMenu">
+                <li>
+                  <i className="fas fa-chevron-right"></i>
+                  <span> Front End</span>
+                </li>
+                <li>
+                  <i className="fas fa-chevron-right"></i>
+                  <span> Back End</span>
+                </li>
+                <li>
+                  <i className="fas fa-chevron-right"></i>
+                  <span>Full stack</span>
+                </li>
+                <li>
+                  <i className="fas fa-chevron-right"></i>
+                  <span>Node Js</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="content3 ">
-          <div>
-            <h3 className="f-heading">Khóa Học</h3>
-            <ul className="ulMenu">
-              <li>
-                <i className="fas fa-chevron-right"></i>
-                <span> Front End</span>
-              </li>
-              <li>
-                <i className="fas fa-chevron-right"></i>
-                <span> Back End</span>
-              </li>
-              <li>
-                <i className="fas fa-chevron-right"></i>
-                <span>Full stack</span>
-              </li>
-              <li>
-                <i className="fas fa-chevron-right"></i>
-                <span>Node Js</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="content4 ">
+        <div className="col-span-3 ">
           <h3 className="f-heading">Đăng Ký Tư Vấn</h3>
           <form>
             <div>
@@ -140,9 +140,9 @@ export default function Footer() {
         </div>
         <div></div>
       </div>
-      <div className="py-6 mt-6 border-t-2 flex justify-between">
+      <div className="py-6 mt-6 border-t-2 md:flex justify-between">
         <div>
-          <p>Copyright © 2021. All rights reserved.</p>
+          <p className="mb-1">Copyright © 2021. All rights reserved.</p>
         </div>
         <div className="flex justify-around">
           <i className="fab fa-instagram mx-3 text-lg iconFooter" />

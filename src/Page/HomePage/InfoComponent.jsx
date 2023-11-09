@@ -156,7 +156,7 @@ export default function InfoComponent() {
         </div>
       </div>
       {/* card */}
-      <div className=" w-3/4 mx-auto mb-12">
+      <div className=" md:block hidden w-3/4 mx-auto mb-12">
         <div className="grid grid-cols-12">
           <div className="col-span-4 flex justify-center">
             <div className="cardft-wraper">

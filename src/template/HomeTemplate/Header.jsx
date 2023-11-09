@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { userLocalStorage } from "../../api/localService";
 import { layDanhMucKhoaHocAction } from "../../redux/khoaHocSlice";
+import { MenuFoldOutlined } from "@ant-design/icons";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -31,20 +32,64 @@ export default function Header() {
     return danhMucKhoaHoc.map((item, index) => {
       return (
         <li key={index}>
-          <a href={`/danhmuckhoahoc/${item.maDanhMuc}`}>{item.tenDanhMuc}</a>
+          <NavLink to={`/danhmuckhoahoc/${item.maDanhMuc}`}>
+            {item.tenDanhMuc}
+          </NavLink>
         </li>
       );
     });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/timkiemkhoahoc/${e.target.search.value}`);
+    navigate(`/timkiemkhoahoc/${e.target.search.value.trim()}`);
+  };
+  const handleLogout = () => {
+    userLocalStorage.remove("USER");
+    navigate("/");
+    window.location.reload();
+  };
+  const renderShowMobie = () => {
+    const menuMobie = document.querySelector(".menuHeaderMobie");
+    if (menuMobie) {
+      menuMobie.classList.toggle("active");
+    } else {
+      return "";
+    }
+  };
+  const renderLogin = () => {
+    if (clientInfo) {
+      return (
+        <div className="flex justify-between items-center">
+          <NavLink className="infoHeader" to="/thongtintaikhoan">
+            <img
+              className="avatar"
+              src={`https://i.pravatar.cc/150?u=${clientInfo?.taiKhoan}`}
+              alt="..."
+            />
+          </NavLink>
+          <div className="cursor-pointer text-yellow-500 hover:text-yellow-400 text-2xl ml-2">
+            <i onClick={handleLogout} className="fas fa-power-off "></i>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <button className="btnGlobal">
+          <NavLink to="/dangnhapdangky">Đăng nhập</NavLink>
+        </button>
+      );
+    }
   };
   return (
     <section className="header">
       <div className="headerLeft">
         <a aria-current="page" className="textLogo active" href="/">
-          <img src="../image/logo/cyberlogo.png" alt="..." width={250} />
+          <img
+            className=""
+            src="../image/logo/cyberlogo.png"
+            alt="..."
+            width={150}
+          />
         </a>
         <form onSubmit={handleSubmit}>
           <input
@@ -88,95 +133,40 @@ export default function Header() {
           </li>
         </ul>
       </div>
-      <div className="showIconHeader">
-        {clientInfo ? (
-          <div className="flex justify-between items-center">
-            <NavLink className="infoHeader" to="/thongtintaikhoan">
-              <img
-                className="avatar"
-                src={`https://i.pravatar.cc/150?u=${clientInfo?.taiKhoan}`}
-                alt="..."
+      <div className="showIconHeader">{renderLogin()}</div>
+      <div className="menuMobie">
+        <div onClick={renderShowMobie} className="iconMenuMobie ">
+          <MenuFoldOutlined />
+        </div>
+        <ul className="menuHeaderMobie">
+          <li>
+            <form onSubmit={handleSubmit}>
+              <input
+                name="search"
+                action=""
+                className="searchFormMobile"
+                type="text"
+                placeholder="Tìm kiếm"
               />
-            </NavLink>
-            <i
-              onClick={() => {
-                userLocalStorage.remove("USER");
-                navigate("/");
-                window.location.reload();
-              }}
-              className="fas fa-power-off cursor-pointer text-yellow-500 hover:text-yellow-400 text-2xl ml-2"
-            ></i>
-          </div>
-        ) : (
-          <button className="btnGlobal">
-            <NavLink to="/dangnhapdangky">Đăng nhập</NavLink>
-          </button>
-        )}
-
-        {/* <div className="menuMobie">
-          <i className="fas fa-sort-down iconMenuMobie" />
-          <ul className="menuHeaderMobie">
-            <li>
-              <form>
-                <input
-                  action
-                  className="searchFormMobile"
-                  type="text"
-                  placeholder="Tìm kiếm"
-                />
-              </form>
-            </li>
-            <li className="courseCateMobie">
-              <a href="/trangchu">Danh mục</a>
-              <ul className="courseCateListMobie">
-                <li>
-                  <a href="/danhmuckhoahoc/BackEnd">Lập trình Backend</a>
-                </li>
-                <li>
-                  <a href="/danhmuckhoahoc/Design">Thiết kế Web</a>
-                </li>
-                <li>
-                  <a href="/danhmuckhoahoc/DiDong">Lập trình di động</a>
-                </li>
-                <li>
-                  <a href="/danhmuckhoahoc/FrontEnd">Lập trình Front end</a>
-                </li>
-                <li>
-                  <a href="/danhmuckhoahoc/FullStack">Lập trình Full Stack</a>
-                </li>
-                <li>
-                  <a href="/danhmuckhoahoc/TuDuy">Tư duy lập trình</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="/khoahoc">Khóa học</a>
-            </li>
-            <li>
-              <a href="/blog">Blog</a>
-            </li>
-            <li className="eventHeaderMobie courseCateMobie">
-              <a href="/sukien">Sự kiện</a>
-              <ul className="courseCateListMobie">
-                <li>
-                  <a href="/sukien/lastYear">Sự kiện Sale Cuối Năm</a>
-                </li>
-                <li>
-                  <a href="/sukien/Noel">Sự kiện Giáng sinh</a>
-                </li>
-                <li>
-                  <a href="/sukien/Noel">Sự kiện Noel</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="/thongtin">Thông tin</a>
-            </li>
-            <li>
-              <a href="/trangchu">Đăng xuất</a>
-            </li>
-          </ul>
-        </div> */}
+            </form>
+          </li>
+          <li className="courseCateMobie">
+            <NavLink to="#">Danh mục</NavLink>
+            <ul className="courseCateListMobie">{renderMenuKhoaHoc()}</ul>
+          </li>
+          <li>
+            <NavLink to="/">Khóa học</NavLink>
+          </li>
+          <li>
+            <NavLink to="/">Blog</NavLink>
+          </li>
+          <li className="eventHeaderMobie courseCateMobie">
+            <NavLink to="/">Sự kiện</NavLink>
+          </li>
+          <li>
+            <NavLink to="/">Thông tin</NavLink>
+          </li>
+        </ul>
       </div>
     </section>
   );

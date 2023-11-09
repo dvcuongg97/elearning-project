@@ -1,25 +1,32 @@
-.infoPage {
-  .infoPageContainer {
-    padding: 50px;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    .leftInfoPage {
-      grid-column: 1/4;
-      .infoUserSection {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        row-gap: 10px;
-        img {
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-        }
+.infoPageContainer {
+  padding: 50px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  .leftInfoPage {
+    grid-column: 1/4;
+    .infoUserSection {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 10px;
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
       }
     }
-    .rightInfoPage {
-      grid-column: 4/13;
-    }
+  }
+  .rightInfoPage {
+    grid-column: 4/13;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .infoPageContainer {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
   }
 }

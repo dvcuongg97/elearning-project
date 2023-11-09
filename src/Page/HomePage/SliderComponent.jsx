@@ -5,8 +5,8 @@ import "../../asset/css/HomePage/SliderStyles.scss";
 export default function SliderComponent() {
   return (
     <section className="px-12">
-      <div className="grid grid-cols-12">
-        <div className="col-span-6 sloganBox">
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="col-span-1 sloganBox">
           <div className="triangleTopRight" />
           <div className="smallBox smallboxLeftTop" />
           <div className="smallBox smallboxRightTop" />
@@ -28,7 +28,7 @@ export default function SliderComponent() {
             <button className="btnGlobal btnSlider mt-4">Bắt đâu nào</button>
           </div>
         </div>
-        <div className="col-span-6">
+        <div className="col-span-1">
           <div className="sliderRight">
             <div>
               <img

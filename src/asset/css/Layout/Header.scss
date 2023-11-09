@@ -302,6 +302,11 @@ ul.menuHeader {
 /* Mobie */
 @media screen and (max-width: 46.1875em) {
   /* Menu mobie */
+  .header,
+  .headerFixed {
+    padding: 10px;
+  }
+
   ul.menuHeader {
     display: none;
   }

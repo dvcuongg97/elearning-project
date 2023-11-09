@@ -103,8 +103,8 @@
                 background-color: var(--colorbgCourseDetail);
                 span {
                   text-transform: uppercase;
-                  font-size: 22px;
-                  font-weight: 400;
+                  // font-size: 22px;
+                  font-weight: 500;
                   margin-right: 20px;
                 }
                 button {
@@ -203,6 +203,47 @@
             outline: none;
             padding: 3px 10px;
             border: 1px solid #d0d0d0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .detail__container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    .container__left {
+      padding: 0;
+      .left__iconWraper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 10px;
+      }
+      .left__textWraper {
+        .ulText {
+          display: flex !important;
+          flex-direction: column;
+        }
+      }
+      .introCourse {
+        .introContent__wraper {
+          .introHeading {
+            font-size: 14px;
+          }
+          .ulIntro li {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            text-align: start;
+            span {
+              padding: 0 10px;
+              display: flex;
+              align-items: center;
+            }
           }
         }
       }

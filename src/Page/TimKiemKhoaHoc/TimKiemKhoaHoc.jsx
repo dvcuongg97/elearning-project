@@ -20,7 +20,6 @@ function toLowerCaseNonAccentVietnamese(str) {
   str = str.replace(/đ/g, "d");
   str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, "");
   str = str.replace(/\u02C6|\u0306|\u031B/g, "");
-  console.log("🚀toLowerCaseNonAccentVietnamese", str);
   return str;
 }
 
@@ -29,10 +28,6 @@ export default function TimKiemKhoaHoc() {
   const dispatch = useDispatch();
   const { allCard } = renderCard;
   const { danhSachKhoaHoc } = useSelector((state) => state.khoaHocSlice);
-  console.log(
-    "🚀 ~ file: TimKiemKhoaHoc.jsx:29 ~ TimKiemKhoaHoc ~ danhSachKhoaHoc:",
-    danhSachKhoaHoc
-  );
   const [search, setSearch] = useState(param.tenKhoaHoc);
 
   useEffect(() => {
@@ -45,18 +40,14 @@ export default function TimKiemKhoaHoc() {
     setSearch(event.target.search.value);
   };
   const filterSearch = (search) => {
-    toLowerCaseNonAccentVietnamese(search);
+    toLowerCaseNonAccentVietnamese(search.trim());
     const filterRes = danhSachKhoaHoc?.filter((khoaHoc) =>
-      khoaHoc.tenKhoaHoc.toLowerCase().includes(search.toLowerCase())
+      khoaHoc.tenKhoaHoc.toLowerCase().includes(search.trim().toLowerCase())
     );
     return filterRes;
   };
   const filterResult = filterSearch(search);
   let filterLength = filterResult.length;
-  console.log(
-    "🚀 ~ file: TimKiemKhoaHoc.jsx:56 ~ TimKiemKhoaHoc ~ filterLength:",
-    filterLength
-  );
 
   return (
     <section className="searchPage">

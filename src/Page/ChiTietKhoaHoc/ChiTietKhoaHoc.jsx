@@ -373,7 +373,7 @@ export default function ChiTietKhoaHoc() {
         </div>
       </div>
       <h3 className="text-xl font-medium px-9 mb-9">Khóa học tham khảo</h3>
-      <div className="grid grid-cols-12  mb-12">
+      <div className="md:grid grid-cols-12  mb-12">
         {renderCard.filterCard(
           4,
           8,

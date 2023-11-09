@@ -89,7 +89,7 @@ export const renderCard = {
           placement="right"
           title={TOOLTIP_TITLE}
         >
-          <div className="col-span-3 relative flex justify-center items-center">
+          <div className="lg:col-span-3 md:col-span-6 mb-6 relative flex justify-center items-center">
             <NavLink
               className="cardGlobal "
               to={`/chitietkhoahoc/${khoaHoc.maKhoaHoc}`}
@@ -245,7 +245,7 @@ export const renderCard = {
           placement="right"
           title={TOOLTIP_TITLE}
         >
-          <div className="col-span-3 relative flex justify-center items-center">
+          <div className="col-span-3 relative flex justify-center items-center md:mb-0 mb-6">
             <NavLink
               className="cardGlobal "
               to={`/chitietkhoahoc/${khoaHoc.maKhoaHoc}`}

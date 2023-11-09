@@ -109,7 +109,7 @@ export default function TestimonialComponent() {
   };
   return (
     <>
-      <section className="couter-section relative">
+      <section className="md:block hidden couter-section relative">
         <div className="container mx-auto">
           <Swiper
             className="w-3/4 mb-3"
@@ -142,10 +142,10 @@ export default function TestimonialComponent() {
           }}
           className="py-20 mb-9 "
         >
-          <div className="w-2/3 mx-auto grid grid-cols-12 w-">
-            <div className="col-span-3 hover:-translate-y-4 transition-all duration-500">
+          <div className="w-2/3 grid grid-cols-2 gap-6 lg:gap-0 lg:grid-cols-4  mx-auto">
+            <div className="col-span-1 hover:-translate-y-4 transition-all duration-500">
               <div className="flex justify-center">
-                <div className="flex-col justify-center items-center bg-white w-60 py-8 shadow-md shadow-white rounded-lg">
+                <div className="flex-col justify-center items-center bg-white w-60  py-8 shadow-md shadow-white rounded-lg">
                   <img
                     src="./image/HomePage/CountUp/icon1ct.png"
                     alt="..."
@@ -157,9 +157,9 @@ export default function TestimonialComponent() {
                 </div>
               </div>
             </div>
-            <div className="col-span-3 hover:-translate-y-2 transition-all duration-500 translate-y-6">
+            <div className="col-span-1 hover:-translate-y-2 transition-all duration-500 lg:translate-y-6">
               <div className="flex justify-center ">
-                <div className="flex-col justify-center items-center bg-white w-60 py-8 shadow-md shadow-white rounded-lg">
+                <div className="flex-col justify-center items-center bg-white w-60   py-8 shadow-md shadow-white rounded-lg">
                   <img
                     alt="..."
                     className="block w-20 h-20 mx-auto"
@@ -171,9 +171,9 @@ export default function TestimonialComponent() {
                 </div>
               </div>
             </div>
-            <div className="col-span-3 hover:-translate-y-4 transition-all duration-500">
+            <div className="col-span-1 hover:-translate-y-4 transition-all duration-500">
               <div className="flex justify-center ">
-                <div className="flex-col justify-center items-center bg-white w-60 py-8 shadow-md shadow-white rounded-lg">
+                <div className="flex-col justify-center items-center bg-white w-60   py-8 shadow-md shadow-white rounded-lg">
                   <img
                     src="./image/HomePage/CountUp/icon3ct.png"
                     alt="..."
@@ -185,9 +185,9 @@ export default function TestimonialComponent() {
                 </div>
               </div>
             </div>
-            <div className="col-span-3 hover:-translate-y-2 transition-all duration-500 translate-y-6">
+            <div className="col-span-1 hover:-translate-y-2 transition-all duration-500 lg:translate-y-6">
               <div className="flex justify-center ">
-                <div className="flex-col justify-center items-center bg-white w-60 py-8 shadow-md shadow-white rounded-lg">
+                <div className="flex-col justify-center items-center bg-white w-60   py-8 shadow-md shadow-white rounded-lg">
                   <img
                     src="./image/HomePage/CountUp/icon4ct.png"
                     alt="..."
@@ -202,7 +202,7 @@ export default function TestimonialComponent() {
         </div>
       </section>
 
-      <section className="section-testi ">
+      <section className="section-testi md:block hidden">
         <Swiper
           className="p-3"
           slidesPerView={6}
@@ -212,12 +212,35 @@ export default function TestimonialComponent() {
             clickable: true,
           }}
           modules={[FreeMode, Pagination]}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            400: {
+              slidesPerView: 2,
+            },
+            639: {
+              slidesPerView: 4,
+            },
+            865: {
+              slidesPerView: 4,
+            },
+            1000: {
+              slidesPerView: 5,
+            },
+            1500: {
+              slidesPerView: 6,
+            },
+            1700: {
+              slidesPerView: 7,
+            },
+          }}
         >
           {renderTeamGV()}
         </Swiper>
       </section>
 
-      <div className="review mt-5">
+      <div className="review mt-5 md:block hidden">
         <div className="reviewStudent">
           <div className="triangleTopRight" />
           <div className="smallBox smallboxLeftTop" />

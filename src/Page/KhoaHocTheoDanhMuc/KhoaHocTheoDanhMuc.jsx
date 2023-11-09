@@ -9,15 +9,14 @@ import { clientApi } from "../../api/api";
 
 export default function KhoaHocTheoDanhMuc() {
   const param = useParams();
-  const { filterCard, renderTabDanhMucKhoaHoc } = renderCard;
-  let [labelState, setLabelState] = useState(param.maDanhMuc);
+  const { filterCard } = renderCard;
   let [khoaHocTheoDanhMuc, setKhoaHocTheoDanhMuc] = useState([]);
   const { danhMucKhoaHoc } = useSelector((state) => state.khoaHocSlice);
 
   useEffect(() => {
-    const layKhoaHocTheoDanhMucAction = async (labelState) => {
+    const layKhoaHocTheoDanhMuc = async (params) => {
       try {
-        const res = await clientApi.layKhoaHocTheoDanhMuc(labelState);
+        const res = await clientApi.layKhoaHocTheoDanhMuc(params);
         if (res.status === 200) {
           setKhoaHocTheoDanhMuc(res.data);
         }
@@ -25,8 +24,23 @@ export default function KhoaHocTheoDanhMuc() {
         console.log("error", error.message);
       }
     };
-    layKhoaHocTheoDanhMucAction(labelState);
-  }, [labelState]);
+    layKhoaHocTheoDanhMuc(param.maDanhMuc);
+  }, [param.maDanhMuc]);
+
+  const renderTitle = () => {
+    return danhMucKhoaHoc
+      ?.filter((item) => item.maDanhMuc === param.maDanhMuc)
+      .map((item, index) => {
+        return (
+          <span
+            className="border-2 p-3  rounded-lg text-blue-500 font-medium"
+            key={index}
+          >
+            {item.tenDanhMuc}
+          </span>
+        );
+      });
+  };
 
   return (
     <section className="indexKhoaHoc">
@@ -42,15 +56,12 @@ export default function KhoaHocTheoDanhMuc() {
       </div>
 
       <div className="tabz-wraper">
-        <div className="tabz-label">
-          <ul className="labelz-list">
-            {renderTabDanhMucKhoaHoc(danhMucKhoaHoc, labelState, setLabelState)}
-          </ul>
-        </div>
+        <div className="block mb-12 ml-6">{renderTitle()}</div>
+        <div></div>
         <div className="content-activez">
-          <div className="w-4/5 mx-auto">
-            <div className="grid grid-cols-12 gap-12 mb-12">
-              {filterCard(0, 0, labelState, khoaHocTheoDanhMuc)}
+          <div className="md:w-4/5 w-full mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+              {filterCard(0, 0, param.maDanhMuc, khoaHocTheoDanhMuc)}
             </div>
           </div>
         </div>

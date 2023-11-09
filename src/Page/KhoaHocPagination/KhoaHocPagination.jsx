@@ -26,7 +26,7 @@ export default function KhoaHocPagination() {
         <p className="text-lg font-medium"> BẮT ĐẦU HÀNH TRÌNH NÀO!!!</p>
       </div>
       <div className="p-12">
-        <div className="grid grid-cols-6 w-full">
+        <div className="hidden md:grid grid-cols-6 w-full">
           <div
             style={{ backgroundColor: "#264653" }}
             className="px-5 py-7 flex flex-col justify-center items-center"
@@ -77,7 +77,7 @@ export default function KhoaHocPagination() {
           </div>
         </div>
       </div>
-      <div className="w-4/5 mx-auto grid grid-cols-12 gap-12 mb-12">
+      <div className="md:w-4/5 w-full mx-auto md:grid grid-cols-12 gap-12 mb-12">
         {renderCard.allCard(khoaHocPhanTrang.items)}
       </div>
       <div className="flex justify-center mb-12">

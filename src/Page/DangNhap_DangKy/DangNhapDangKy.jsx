@@ -94,7 +94,7 @@ export default function DangNhapDangKy() {
 
   return (
     <>
-      <div className="loginBody container-fluid">
+      <div className="loginBody">
         <div className={classContainer} id="container">
           <div className="form-container sign-up-container">
             <form action="#" onSubmit={formikSignup.handleSubmit}>

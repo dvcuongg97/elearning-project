@@ -7,7 +7,6 @@ import { layThongTinTaiKhoanAction } from "../../redux/clientProfileSlice";
 
 export default function KhoaHoc() {
   const { clientDetail } = useSelector((state) => state.clientProfileSlice);
-  console.log("clientDetail", clientDetail);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,15 +35,15 @@ export default function KhoaHoc() {
       {clientDetail.chiTietKhoaHocGhiDanh?.map((khoaHoc, index) => {
         return (
           <Fragment key={index}>
-            <div className="grid grid-cols-5 gap-3 mb-3 pb-3 border-b-2">
+            <div className="md:grid p-6 grid-cols-5 gap-3 mb-3 border-2 rounded-lg">
               <div className="col-span-1">
                 <img
-                  className="imgNet h-full"
+                  className="imgNet h-full rounded-md"
                   src={khoaHoc.hinhAnh}
                   alt="..."
                 />
               </div>
-              <div className="col-span-3 space-y-2 flex-col justify-start">
+              <div className="col-span-3 space-y-2 flex-col justify-start ">
                 <h6>{khoaHoc.tenKhoaHoc}</h6>
                 <p className="colorCardTitle">
                   ES6 là một chuẩn Javascript mới được đưa ra vào năm 2015 với
@@ -72,7 +71,7 @@ export default function KhoaHoc() {
                   <i className="fas fa-star" />
                   <i className="fas fa-star" />
                 </span>
-                <div className="flex items-center">
+                <div className=" items-center md:flex hidden">
                   <img
                     className="w-12 h-12 rounded-full"
                     src="https://cdn.dribbble.com/users/2364329/screenshots/6676961/02.jpg?compress=1&resize=800x600"

@@ -42,6 +42,6 @@ const khoaHocSlice = createSlice({
   },
 });
 
-// export const {} = khoaHocSlice.actions;
+// export const { } = khoaHocSlice.actions;
 
 export default khoaHocSlice.reducer;

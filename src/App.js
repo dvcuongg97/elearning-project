@@ -9,9 +9,13 @@ import TimKiemKhoaHoc from "./Page/TimKiemKhoaHoc/TimKiemKhoaHoc";
 import DangNhapDangKy from "./Page/DangNhap_DangKy/DangNhapDangKy";
 import ThongTinCaNhan from "./Page/ThongTinCaNhan/ThongTinTaiKhoan";
 
+import { FloatButton } from "antd";
+
 function App() {
   return (
     <div className="App">
+      <FloatButton.BackTop type="primary" />
+
       <BrowserRouter>
         <Routes>
           <Route

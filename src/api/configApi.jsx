@@ -1,5 +1,7 @@
 import axios from "axios";
 import { userLocalStorage } from "./localService";
+import { store } from "..";
+import { setSpinnerState } from "../redux/spinnerSlice";
 
 export const BASE_URL = "https://elearningnew.cybersoft.edu.vn/";
 export const TOKEN_CYBERSOFT =
@@ -15,7 +17,7 @@ export const https = axios.create({
 
 https.interceptors.request.use(
   function (config) {
-    // store.dispatch(setLoadingOn());
+    store.dispatch(setSpinnerState(true));
     // console.log("api request");
     return config;
   },
@@ -26,13 +28,13 @@ https.interceptors.request.use(
 
 https.interceptors.response.use(
   function (response) {
-    // store.dispatch(setLoadingOff());
+    store.dispatch(setSpinnerState(false));
 
     // console.log("api respone");
     return response;
   },
   function (error) {
-    // store.dispatch(setLoadingOff());
+    store.dispatch(setSpinnerState(false));
     return Promise.reject(error);
   }
 );
