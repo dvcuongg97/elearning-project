@@ -143,18 +143,22 @@ export default function TimKiemKhoaHoc() {
               </form>
             </div>
             <div className="grid col-span-12">
-              <span className="text-gray-500 text-md">
+              <span className="text-gray-500 text-md mb-6">
                 Tìm thấy {filterLength} khóa học
               </span>
             </div>
-            {filterResult.length > 0 ? (
-              allCard(filterResult)
-            ) : (
-              <div className="notFound">
-                <span>không tìm thấy từ khóa:</span>
-                <span>{search}</span>
-              </div>
-            )}
+            <div className="md:col-span-12">
+              {filterResult.length > 0 ? (
+                <div className="col-span-12 md:grid md:grid-cols-3 lg:grid-cols-12 lg:gap-12">
+                  {allCard(filterResult)}
+                </div>
+              ) : (
+                <div className="notFound">
+                  <span>không tìm thấy từ khóa:</span>
+                  <span>{search}</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

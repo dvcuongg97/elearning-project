@@ -29,7 +29,7 @@ export default function Header() {
       : header.classList.remove("headerFixed");
   };
   const renderMenuKhoaHoc = () => {
-    return danhMucKhoaHoc.map((item, index) => {
+    return danhMucKhoaHoc?.map((item, index) => {
       return (
         <li key={index}>
           <NavLink to={`/danhmuckhoahoc/${item.maDanhMuc}`}>

@@ -23,11 +23,11 @@
     .resultContainer {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: 50px;
+      gap: 30px;
     }
     .inputField {
       grid-column: 1/13;
-      margin: 50px auto;
+      margin: 20px auto;
       display: flex;
       flex-direction: column;
       width: 50%;
@@ -142,6 +142,42 @@
           font-size: 20px;
           text-transform: capitalize;
           margin-right: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .searchPage {
+    .searchContainer {
+      padding: 0 20px;
+      .searchCheckbox {
+        grid-column: 1/4;
+      }
+      .searchResult {
+        grid-column: 4/13;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .searchPage {
+    .searchContainer {
+      padding: 0 20px;
+      display: block;
+      .searchCheckbox {
+        display: none;
+      }
+      .searchResult {
+        display: block;
+        .resultContainer {
+          display: block;
+        }
+        .inputField {
+          display: block;
+          width: 100%;
         }
       }
     }

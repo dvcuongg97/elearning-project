@@ -247,7 +247,7 @@ export const renderCard = {
         >
           <div className="col-span-3 relative flex justify-center items-center md:mb-0 mb-6">
             <NavLink
-              className="cardGlobal "
+              className="cardGlobal"
               to={`/chitietkhoahoc/${khoaHoc.maKhoaHoc}`}
             >
               <img src={khoaHoc.hinhAnh} alt="..." />
@@ -293,7 +293,7 @@ export const renderCard = {
                   </p>
                 </div>
               </div>
-              <div className="cardSale">
+              <div className="cardSale ">
                 <span>Yêu thích</span>
               </div>
             </NavLink>
