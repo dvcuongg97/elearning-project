@@ -77,7 +77,7 @@ export default function KhoaHocPagination() {
           </div>
         </div>
       </div>
-      <div className="md:w-4/5 w-full mx-auto md:grid grid-cols-12 gap-12 mb-12">
+      <div className="md:w-4/5 w-full mx-auto md:grid md:grid-cols-6 lg:grid-cols-12 gap-12 mb-12">
         {renderCard.allCard(khoaHocPhanTrang.items)}
       </div>
       <div className="flex justify-center mb-12">
