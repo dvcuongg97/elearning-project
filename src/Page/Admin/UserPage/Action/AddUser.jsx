@@ -1,0 +1,173 @@
+import React, { useState } from 'react';
+import {
+  Button,
+  Form,
+  Input,
+  Radio,
+  Select,
+  message,
+} from 'antd';
+import { clientApi } from '../../../../api/api';
+const { Option } = Select;
+
+const formItemLayout = {
+  labelCol: {
+    xs: {
+      span: 24,
+    },
+    sm: {
+      span: 8,
+    },
+  },
+  wrapperCol: {
+    xs: {
+      span: 24,
+    },
+    sm: {
+      span: 16,
+    },
+  },
+};
+const tailFormItemLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
+    },
+    sm: {
+      span: 16,
+      offset: 8,
+    },
+  },
+};
+const AddUser = () => {
+  const [form] = Form.useForm();
+  const onFinish = (values) => {
+    console.log('Received values of form: ', values);
+    clientApi.themNguoiDung_Admin(values)
+    .then((res) => {
+            console.log(res);
+            message.success("Tạo người dùng thành công")
+          })
+          .catch((err) => {
+           console.log(err);
+          });
+  };
+  return (
+    <Form
+      {...formItemLayout}
+      form={form}
+      name="register"
+      onFinish={onFinish}
+      style={{
+        maxWidth: 600,
+      }}
+      scrollToFirstError
+    >
+      <Form.Item
+        name="taiKhoan"
+        label="Tài khoản"
+        rules={[
+          {
+            required: true,
+            message: 'Vui lòng nhập tài khoản',
+            whitespace: true,
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        name="matKhau"
+        label="Mật khẩu"
+        rules={[
+          {
+            required: true,
+            message: 'Vui lòng nhập mật khẩu',
+          },
+        ]}
+        hasFeedback
+      >
+        <Input.Password />
+      </Form.Item>
+
+      <Form.Item
+        name="hoTen"
+        label="Họ Tên"
+        rules={[
+          {
+            required: true,
+            message: 'Vui lòng nhập tên người dùng',
+            whitespace: true,
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      
+      <Form.Item
+        name="soDt"
+        label="Số điện thoại"
+        rules={[
+          {
+            required: true,
+            message: 'Vui lòng nhập số điện thoại',
+          },
+        ]}
+      >
+        <Input/>
+      </Form.Item>
+
+      <Form.Item name="maLoaiNguoiDung" label="Loại người dùng">
+      <Radio.Group>
+        <Radio value="HV">Học viên</Radio>
+        <Radio value="GV">Giáo vụ</Radio>
+      </Radio.Group>
+    </Form.Item>
+
+      <Form.Item
+        name="maNhom"
+        label="Mã nhóm"
+        rules={[
+          {
+            required: true,
+            message: 'Vui lòng chọn mã nhóm',
+          },
+        ]}
+      >
+        <Select placeholder="Chọn nhóm">
+          <Option value="GP01">GP01</Option>
+          <Option value="GP02">GP02</Option>
+          <Option value="GP03">GP03</Option>
+          <Option value="GP04">GP04</Option>
+          <Option value="GP05">GP05</Option>
+        </Select>
+      </Form.Item>
+
+      <Form.Item
+        name="email"
+        label="E-mail"
+        rules={[
+          {
+            type: 'email',
+            message: 'The input is not valid E-mail!',
+          },
+          {
+            required: true,
+            message: 'Please input your E-mail!',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item {...tailFormItemLayout}>
+        <Button type="primary bg-blue-500" htmlType="submit">
+          Tạo mới người dùng
+        </Button>
+      </Form.Item>
+    </Form>
+  );
+};
+export default AddUser;

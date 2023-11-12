@@ -9,6 +9,7 @@ export const https = axios.create({
   headers: {
     TokenCybersoft: TOKEN_CYBERSOFT,
     // Authorization: "Bearer " + userLocalStorage.get()?.accessToken,
+    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibmFtbmFtIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiSFYiLCJuYmYiOjE2OTk3NjYwNzksImV4cCI6MTY5OTc2OTY3OX0.7Hf9vRUwIv8EaROptFfLtWfqv2x-Ddv99SHqRdm6Ih0"
   },
 });
 

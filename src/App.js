@@ -6,6 +6,11 @@ import KhoaHocTheoDanhMuc from "./Page/KhoaHocTheoDanhMuc/KhoaHocTheoDanhMuc";
 import ChiTietKhoaHoc from "./Page/ChiTietKhoaHoc/ChiTietKhoaHoc";
 import KhoaHocPagination from "./Page/KhoaHocPagination/KhoaHocPagination";
 import TimKiemKhoaHoc from "./Page/TimKiemKhoaHoc/TimKiemKhoaHoc";
+import AdminLayout from "./template/AdminLayout/AdminLayout";
+import AdminPage from "./Page/Admin/AdminPage";
+import ListUser from "./Page/Admin/UserPage/ListUser";
+import AddUser from "./Page/Admin/UserPage/Action/AddUser";
+import EditUser from "./Page/Admin/UserPage/Action/EditUser";
 
 function App() {
   return (
@@ -52,6 +57,15 @@ function App() {
               </HomeLayout>
             }
           ></Route>
+          {/* Admin page */}
+          <Route
+            path=""
+            element={<AdminLayout/>}>
+              <Route path="/admin" element={<AdminPage/>}/>
+              <Route path="/admin/user" element={<ListUser/>}/>
+              <Route path="/admin/user/add" element={<AddUser/>}/>
+              <Route path="/admin/user/edit" element={<EditUser/>}/>
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -7,10 +7,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import danhMucKhoaHocSlice from "./redux/danhMucKhoaHocSlice";
 import danhSachKhoaHocSlice from "./redux/danhSachKhoaHocSlice";
+import adminSlice from "./redux/adminSlice";
 export let store = configureStore({
   reducer: {
     danhMucKhoaHocSlice,
     danhSachKhoaHocSlice,
+    adminSlice,
   },
 });
 const root = ReactDOM.createRoot(document.getElementById("root"));
