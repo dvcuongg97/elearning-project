@@ -52,4 +52,19 @@ export const clientApi = {
       `api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${API_GROUP}&tuKhoa=${tenNguoiDung}`
     );
    },
+   xoaKhoaHoc_Admin: (makhoaHoc) => { 
+    return https.delete(
+      `api/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${makhoaHoc}`
+    );
+   },
+   timKhoaHoc_Admin: (tenKhoaHoc) => {
+    return https.get(
+      `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${tenKhoaHoc}&MaNhom=${API_GROUP}`
+    );
+  },
+  themKhoaHoc_Admin: (khoaHoc) => { 
+    return https.post(
+      `api/QuanLyKhoaHoc/ThemKhoaHoc`
+    );
+   },
 };

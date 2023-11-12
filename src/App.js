@@ -11,6 +11,9 @@ import AdminPage from "./Page/Admin/AdminPage";
 import ListUser from "./Page/Admin/UserPage/ListUser";
 import AddUser from "./Page/Admin/UserPage/Action/AddUser";
 import EditUser from "./Page/Admin/UserPage/Action/EditUser";
+import ListKhoaHoc from "./Page/Admin/KhoaHoc/ListKhoaHoc";
+import AddKhoaHoc from "./Page/Admin/KhoaHoc/Action/AddKhoaHoc";
+import EditKhoaHoc from "./Page/Admin/KhoaHoc/Action/EditKhoaHoc";
 
 function App() {
   return (
@@ -65,6 +68,9 @@ function App() {
               <Route path="/admin/user" element={<ListUser/>}/>
               <Route path="/admin/user/add" element={<AddUser/>}/>
               <Route path="/admin/user/edit" element={<EditUser/>}/>
+              <Route path="/admin/khoahoc" element={<ListKhoaHoc/>}/>
+              <Route path="/admin/khoahoc/add" element={<AddKhoaHoc/>}/>
+              <Route path="/admin/khoahoc/edit" element={<EditKhoaHoc/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

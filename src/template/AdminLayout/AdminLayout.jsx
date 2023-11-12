@@ -26,17 +26,17 @@ const items2 = [
         ]
     },
     {
-        key: `key2`,
+        key: `khoahoc`,
         icon: React.createElement(LaptopOutlined),
-        label: `tit 2`,
+        label: <NavLink to={`/admin/khoahoc`} className='text-white hover:text-blue-300'>Quản lý khóa học</NavLink>,
         children: [ 
             {
-                key: 'key con 3',
-                label: 'key con 3',
+                key: 'add khoahoc',
+                label: <NavLink to={`/admin/khoahoc/add`} className='text-white'>Thêm khóa học</NavLink>,
             },
             {
-                key: 'key con 4',
-                label: 'key con 4',
+                key: 'edit khoahoc',
+                label: <NavLink to={`/admin/khoahoc/edit`} className='text-white'>Sửa khóa học</NavLink>,
             }
         ]
     },

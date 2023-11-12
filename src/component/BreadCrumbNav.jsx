@@ -15,12 +15,12 @@ let routes = [
     breadcrumb: IconDashboard,
   },
   {
-    path: "/user",
+    path: "/admin/user",
     breadcrumb: " Quản lý người dùng",
   },
   {
-    path: "/movie",
-    breadcrumb: " Quản lý phim",
+    path: "/admin/khoahoc",
+    breadcrumb: " Quản lý khóa học",
   },
 ];
 
