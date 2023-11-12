@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Table, Tag, message } from 'antd';
-import { clientApi } from '../../../api/api';
+import { adminApi, clientApi } from '../../../api/api';
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { setData, setKhoaHoc } from '../../../redux/adminSlice';
@@ -34,7 +34,7 @@ export default function TableKhoaHoc() {
             confirmButtonText: "Delete"
           }).then((result) => {
             if (result.isConfirmed) { 
-                clientApi.xoaKhoaHoc_Admin(maKhoaHoc)
+                adminApi.xoaKhoaHoc_Admin(maKhoaHoc)
                 .then((res) => {
                         console.log(res);
                         message.success("Xóa thành công")
@@ -53,7 +53,7 @@ export default function TableKhoaHoc() {
      }
      const onSearch = (value, _e, info) => {
       console.log(value);
-      clientApi.timKhoaHoc_Admin(value)
+      adminApi.timKhoaHoc_Admin(value)
       .then((res) => {
               console.log(res);
               setListKhoaHoc(res.data)

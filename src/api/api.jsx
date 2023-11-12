@@ -27,6 +27,9 @@ export const clientApi = {
       `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc_PhanTrang?page=${page}&pageSize=${PAGE_SIZE}&MaNhom=${API_GROUP}`
     );
   },
+};
+
+export const adminApi = {
   layDSNguoiDung_Admin: () => { 
     return https.get(
       `api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${API_GROUP}`
@@ -67,4 +70,4 @@ export const clientApi = {
       `api/QuanLyKhoaHoc/ThemKhoaHoc`
     );
    },
-};
+}

@@ -11,7 +11,7 @@ import {
   Upload,
   message,
 } from 'antd';
-import { clientApi } from '../../../../api/api';
+import { adminApi, clientApi } from '../../../../api/api';
 import {useSelector} from 'react-redux';
 import moment from 'moment/moment';
 const { Option } = Select;
@@ -58,7 +58,7 @@ const config = {
     rules: [
       {
         type: 'object',
-        required: true,
+        required: false,
         message: 'Please select time!',
       },
     ],
@@ -84,7 +84,7 @@ const [danhMucKhoaHoc, setDanhMucKhoaHoc] = useState([]);
     
 const [danhSachNguoiDung, setDanhSachNguoiDung] = useState([]);
     useEffect(() => {
-        clientApi.layDSNguoiDung_Admin()
+        adminApi.layDSNguoiDung_Admin()
         .then((res) => {
                 setDanhSachNguoiDung(res.data.map((item) => { 
                      if (item.maLoaiNguoiDung == 'GV') {
@@ -110,7 +110,7 @@ console.log(khoaHocData);
         ...fieldsValue,
         'ngayTao': fieldsValue['ngayTao'].format('DD/MM/YYYY')
     }
-    clientApi.themKhoaHoc_Admin(values)
+    adminApi.themKhoaHoc_Admin(values)
     .then((res) => {
             console.log(res);
           })
@@ -135,13 +135,13 @@ console.log(khoaHocData);
         label="Mã khóa học"
         rules={[
           {
-            required: true,
+            required: false,
             message: 'Vui lòng nhập mã khóa học',
             whitespace: true,
           },
         ]}
       >
-        <Input defaultValue={khoaHocData!=null?khoaHocData.maKhoaHoc:""}/>
+        <Input disabled defaultValue={khoaHocData!=null?khoaHocData.maKhoaHoc:""}/>
       </Form.Item>
 
       <Form.Item
@@ -149,7 +149,7 @@ console.log(khoaHocData);
         label="Bí danh"
         rules={[
           {
-            required: true,
+            required: false,
             message: 'Vui lòng nhập bí danh',
           },
         ]}
@@ -162,7 +162,7 @@ console.log(khoaHocData);
         label="Tên khóa học"
         rules={[
           {
-            required: true,
+            required: false,
             message: 'Vui lòng nhập tên khóa học',
             whitespace: true,
           },
@@ -176,7 +176,7 @@ console.log(khoaHocData);
         label="Mô tả"
         rules={[
           {
-            required: true,
+            required: false,
             message: 'Vui lòng nhập mô tả',
             whitespace: true,
           },
@@ -204,7 +204,7 @@ console.log(khoaHocData);
         label="Hình ảnh"
         rules={[
           {
-            required: true,
+            required: false,
             message: 'Vui lòng nhập hình ảnh',
             whitespace: true,
           },
@@ -218,7 +218,7 @@ console.log(khoaHocData);
         label="Mã nhóm"
         rules={[
           {
-            required: true,
+            required: false,
             message: 'Vui lòng chọn mã nhóm',
           },
         ]}
@@ -242,7 +242,7 @@ console.log(khoaHocData);
       hasFeedback
       rules={[
         {
-          required: true,
+          required: false,
           message: 'Please select your country!',
         },
       ]}
@@ -269,7 +269,7 @@ console.log(khoaHocData);
       hasFeedback
       rules={[
         {
-          required: true,
+          required: false,
           message: 'Please select your country!',
         },
       ]}

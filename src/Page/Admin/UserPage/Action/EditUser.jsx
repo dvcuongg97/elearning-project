@@ -8,7 +8,7 @@ import {
   message,
 } from 'antd';
 import { useSelector } from 'react-redux';
-import { clientApi } from '../../../../api/api';
+import { adminApi, clientApi } from '../../../../api/api';
 const { Option } = Select;
 
 const formItemLayout = {
@@ -47,7 +47,7 @@ const EditUser = () => {
   const [form] = Form.useForm();
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
-    clientApi.capNhatNguoiDung_Admin(values)
+    adminApi.capNhatNguoiDung_Admin(values)
     .then((res) => {
             console.log(res);
             message.success("Sửa thành công")
@@ -79,7 +79,7 @@ const EditUser = () => {
           },
         ]}
       >
-        <Input/>
+        <Input disabled/>
       </Form.Item>
 
       <Form.Item

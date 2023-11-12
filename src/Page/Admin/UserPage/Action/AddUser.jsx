@@ -7,7 +7,7 @@ import {
   Select,
   message,
 } from 'antd';
-import { clientApi } from '../../../../api/api';
+import { adminApi } from '../../../../api/api';
 const { Option } = Select;
 
 const formItemLayout = {
@@ -44,7 +44,7 @@ const AddUser = () => {
   const [form] = Form.useForm();
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
-    clientApi.themNguoiDung_Admin(values)
+    adminApi.themNguoiDung_Admin(values)
     .then((res) => {
             console.log(res);
             message.success("Tạo người dùng thành công")

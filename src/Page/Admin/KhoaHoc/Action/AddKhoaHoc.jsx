@@ -11,7 +11,7 @@ import {
   Upload,
   message,
 } from 'antd';
-import { clientApi } from '../../../../api/api';
+import { adminApi, clientApi } from '../../../../api/api';
 const { Option } = Select;
 
 const formItemLayout = {
@@ -82,7 +82,7 @@ const [danhMucKhoaHoc, setDanhMucKhoaHoc] = useState([]);
     
 const [danhSachNguoiDung, setDanhSachNguoiDung] = useState([]);
     useEffect(() => {
-        clientApi.layDSNguoiDung_Admin()
+        adminApi.layDSNguoiDung_Admin()
         .then((res) => {
                 setDanhSachNguoiDung(res.data.map((item) => { 
                      if (item.maLoaiNguoiDung == 'GV') {
@@ -105,7 +105,7 @@ let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
         ...fieldsValue,
         'ngayTao': fieldsValue['ngayTao'].format('DD/MM/YYYY')
     }
-    clientApi.themKhoaHoc_Admin(values)
+    adminApi.themKhoaHoc_Admin(values)
     .then((res) => {
             console.log(res);
           })

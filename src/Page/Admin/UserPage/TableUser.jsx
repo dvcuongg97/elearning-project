@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Table, Tag, message } from 'antd';
-import { clientApi } from '../../../api/api';
+import { adminApi } from '../../../api/api';
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { setData } from '../../../redux/adminSlice';
@@ -11,7 +11,7 @@ import Search from 'antd/es/input/Search';
 export default function TableUser() {
     const [listUser, setListUser] = useState([]);
     let fetchListUser = () => { 
-          clientApi.layDSNguoiDung_Admin()
+          adminApi.layDSNguoiDung_Admin()
           .then((res) => {
                   console.log(res);
                   setListUser(res.data)
@@ -34,7 +34,7 @@ export default function TableUser() {
             confirmButtonText: "Delete"
           }).then((result) => {
             if (result.isConfirmed) { 
-                clientApi.xoaNguoiDung_Admin(taiKhoan)
+                adminApi.xoaNguoiDung_Admin(taiKhoan)
                 .then((res) => {
                         console.log(res);
                         message.success("Xóa thành công")
@@ -52,7 +52,7 @@ export default function TableUser() {
      }
      const onSearch = (value, _e, info) => {
       console.log(value);
-      clientApi.timKiemNguoiDung_Admin(value)
+      adminApi.timKiemNguoiDung_Admin(value)
       .then((res) => {
               console.log(res);
               setListUser(res.data)
