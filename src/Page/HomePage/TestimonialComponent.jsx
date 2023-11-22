@@ -110,7 +110,7 @@ export default function TestimonialComponent() {
   return (
     <>
       <section className="md:block hidden couter-section relative">
-        <div className="container mx-auto">
+        <div className="mx-auto">
           <Swiper
             className="w-3/4 mb-3"
             modules={[Autoplay]}

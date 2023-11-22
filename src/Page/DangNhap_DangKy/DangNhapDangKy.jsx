@@ -3,13 +3,13 @@ import "../../asset/css/DangNhap_DangKy/DangNhapDangKy.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { clientSigninAction } from "../../redux/clientProfileSlice";
-import { clientProfileApi } from "../../api/api";
+import { userLoginAction } from "../../redux/userProfileSlice";
+import { userProfileApi } from "../../api/api";
 import { message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function DangNhapDangKy() {
-  const { clientInfo } = useSelector((state) => state.clientProfileSlice);
+  const { userLogin } = useSelector((state) => state.userProfileSlice);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [classContainer, setClassContainer] = useState("container");
@@ -58,7 +58,7 @@ export default function DangNhapDangKy() {
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
-        const res = await clientProfileApi.dangKy(values);
+        const res = await userProfileApi.dangKy(values);
         if (res.status === 200) {
           message.success("Đăng ký thành công!");
           resetForm();
@@ -80,17 +80,17 @@ export default function DangNhapDangKy() {
     }),
     // onSubmit: handleLogin,
     onSubmit: (values) => {
-      dispatch(clientSigninAction(values));
+      dispatch(userLoginAction(values));
     },
   });
 
   useEffect(() => {
-    if (clientInfo?.accessToken) {
+    if (userLogin?.accessToken) {
       setTimeout(() => {
         navigate("/");
       }, 2000);
     }
-  }, [clientInfo?.accessToken]);
+  }, [userLogin?.accessToken]);
 
   return (
     <>

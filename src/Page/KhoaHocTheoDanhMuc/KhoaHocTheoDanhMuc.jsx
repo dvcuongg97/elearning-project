@@ -4,7 +4,7 @@ import "../../asset/css/GlobalStyle/TabDanhMucKhoaHoc.scss";
 
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { renderCard } from "../renderCard/renderCard";
+import { renderCard } from "../../component/renderCard/renderCard";
 import { clientApi } from "../../api/api";
 
 export default function KhoaHocTheoDanhMuc() {

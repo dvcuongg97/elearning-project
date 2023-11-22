@@ -9,7 +9,7 @@ import { MenuFoldOutlined } from "@ant-design/icons";
 export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { clientInfo } = useSelector((state) => state.clientProfileSlice);
+  const { userLogin } = useSelector((state) => state.userProfileSlice);
   const { danhMucKhoaHoc } = useSelector((state) => state.khoaHocSlice);
   useEffect(() => {
     window.addEventListener("scroll", isSticky);
@@ -57,13 +57,13 @@ export default function Header() {
     }
   };
   const renderLogin = () => {
-    if (clientInfo) {
+    if (userLogin) {
       return (
         <div className="flex justify-between items-center">
           <NavLink className="infoHeader" to="/thongtintaikhoan">
             <img
               className="avatar"
-              src={`https://i.pravatar.cc/150?u=${clientInfo?.taiKhoan}`}
+              src={`https://i.pravatar.cc/150?u=${userLogin?.taiKhoan}`}
               alt="..."
             />
           </NavLink>

@@ -3,27 +3,32 @@ import "../../asset/css/ChiTietKhoaHocPage/ChiTietKhoaHocPage.scss";
 import { Rate, message } from "antd";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { renderCard } from "../renderCard/renderCard";
-import { clientApi, clientProfileApi } from "../../api/api";
+import { renderCard } from "../../component/renderCard/renderCard";
+import { clientApi, userProfileApi } from "../../api/api";
 import { layDanhSachKhoaHocAction } from "../../redux/khoaHocSlice";
-import { DangKyKhoaHoc } from "../../api/modal/clientAction";
-import { layThongTinTaiKhoanAction } from "../../redux/clientProfileSlice";
+import { DangKyKhoaHoc } from "../../model/userAction";
+import { layThongTinTaiKhoanAction } from "../../redux/userProfileSlice";
 
 export default function ChiTietKhoaHoc() {
-  const [chiTietKhoaHoc, setChiTietKhoaHoc] = useState({});
-  const { clientInfo, clientDetail } = useSelector(
-    (state) => state.clientProfileSlice
-  );
-  const { danhSachKhoaHoc } = useSelector((state) => state.khoaHocSlice);
-  let clientCourses = [];
-  if (clientInfo) {
-    clientCourses = clientDetail.chiTietKhoaHocGhiDanh?.filter(
-      (item) => item.maKhoaHoc === chiTietKhoaHoc.maKhoaHoc
-    );
-  }
-
   const param = useParams();
   const dispatch = useDispatch();
+  const [chiTietKhoaHoc, setChiTietKhoaHoc] = useState({});
+
+  const { userProfile, userLogin } = useSelector(
+    (state) => state.userProfileSlice
+  );
+  const { danhSachKhoaHoc } = useSelector((state) => state.khoaHocSlice);
+
+  const khoaHocDangKy = userProfile?.chiTietKhoaHocGhiDanh?.filter(
+    (khoaHoc) => {
+      return khoaHoc.maKhoaHoc === param.maKhoaHoc;
+    }
+  );
+  console.log(
+    "🚀 ~ file: ChiTietKhoaHoc.jsx:27 ~ ChiTietKhoaHoc ~ khoaHocDangKy:",
+    khoaHocDangKy
+  );
+
   useEffect(() => {
     dispatch(layDanhSachKhoaHocAction());
     dispatch(layThongTinTaiKhoanAction());
@@ -40,15 +45,15 @@ export default function ChiTietKhoaHoc() {
 
   const handleDangKy = async (chiTietKhoaHoc) => {
     try {
-      if (!clientInfo) {
+      if (!userLogin) {
         message.info("Bạn chưa đăng nhập!");
-      } else if (clientCourses.length > 0) {
+      } else if (khoaHocDangKy.length > 0) {
         message.info("Bạn đã đăng ký khóa học này!");
       } else {
         let dangKyKhoaHoc = new DangKyKhoaHoc();
-        dangKyKhoaHoc.taiKhoan = clientInfo.taiKhoan;
+        dangKyKhoaHoc.taiKhoan = userLogin.taiKhoan;
         dangKyKhoaHoc.maKhoaHoc = chiTietKhoaHoc.maKhoaHoc;
-        clientProfileApi.dangKyKhoaHoc(dangKyKhoaHoc);
+        userProfileApi.dangKyKhoaHoc(dangKyKhoaHoc);
         message.success("Đăng ký khóa học thành công");
         setTimeout(() => {
           window.location.reload();

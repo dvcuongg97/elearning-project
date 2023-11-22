@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../asset/css/TimKiemKhoaHoc/TimKiemKhoaHoc.scss";
 import { Rate } from "antd";
-import { renderCard } from "../renderCard/renderCard";
+import { renderCard } from "../../component/renderCard/renderCard";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {

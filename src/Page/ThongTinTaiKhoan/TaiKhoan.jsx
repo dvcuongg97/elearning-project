@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Button, Modal, Progress, Tabs, message } from "antd";
-import { clientProfileApi } from "../../api/api";
+import { Modal, Progress, message } from "antd";
+import { userProfileApi } from "../../api/api";
 import { useSelector } from "react-redux";
 
 export default function TaiKhoan() {
-  const { clientInfo } = useSelector((state) => state.clientProfileSlice);
+  const { userLogin } = useSelector((state) => state.userProfileSlice);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -16,12 +16,12 @@ export default function TaiKhoan() {
   };
   const formik = useFormik({
     initialValues: {
-      taiKhoan: clientInfo.taiKhoan,
+      taiKhoan: userLogin.taiKhoan,
       matKhau: "",
       hoTen: "",
       email: "",
       soDT: "",
-      maLoaiNguoiDung: clientInfo.maLoaiNguoiDung,
+      maLoaiNguoiDung: userLogin.maLoaiNguoiDung,
       maNhom: "GP01",
     },
     validationSchema: Yup.object().shape({
@@ -51,13 +51,13 @@ export default function TaiKhoan() {
       soDT: Yup.string()
         .required("Số điện thoại không được để trống")
         .matches(
-          /([\+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8})\b/,
+          /([+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8})\b/,
           "Số điện thoại chưa đúng định đạng"
         ),
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
-        const res = await clientProfileApi.capNhatThongTinTaiKhoan(values);
+        const res = await userProfileApi.capNhatThongTinTaiKhoan(values);
         if (res.status === 200) {
           message.success("Cập nhật thành công");
           resetForm();
@@ -74,19 +74,19 @@ export default function TaiKhoan() {
           <p className="font-medium">
             Email:{" "}
             <span className="text-gray-400 font-normal ml-2">
-              {clientInfo.email}
+              {userLogin.email}
             </span>
           </p>
           <p className="font-medium">
             Họ và tên:
             <span className="text-gray-400 font-normal ml-2">
-              {clientInfo.hoTen}
+              {userLogin.hoTen}
             </span>
           </p>
           <p className="font-medium">
             Số điện thoại:{" "}
             <span className="text-gray-400 font-normal ml-2">
-              {clientInfo.soDT}
+              {userLogin.soDT}
             </span>
           </p>
         </div>
@@ -94,19 +94,19 @@ export default function TaiKhoan() {
           <p className="font-medium">
             Tài khoản:{" "}
             <span className="text-gray-400 font-normal ml-2">
-              {clientInfo.taiKhoan}
+              {userLogin.taiKhoan}
             </span>
           </p>
           <p className="font-medium">
             Nhóm:{" "}
             <span className="text-gray-400 font-normal ml-2">
-              {clientInfo.maNhom}
+              {userLogin.maNhom}
             </span>
           </p>
           <p className="font-medium">
             Đối tượng:{" "}
             <span className="text-gray-400 font-normal ml-2">
-              {clientInfo.maLoaiNguoiDung === "HV" ? "Học viên" : "Admin"}
+              {userLogin.maLoaiNguoiDung === "HV" ? "Học viên" : "Admin"}
             </span>
           </p>
           <button

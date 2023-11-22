@@ -1,5 +1,5 @@
 import { https } from "./configApi";
-import { DangKyKhoaHoc, HuyGhiDanhKhoaHoc } from "./modal/clientAction";
+import { DangKyKhoaHoc, HuyGhiDanhKhoaHoc } from "../model/userAction";
 
 const API_GROUP = "GP01";
 const PAGE_SIZE = 12;
@@ -30,7 +30,7 @@ export const clientApi = {
   },
 };
 
-export const clientProfileApi = {
+export const userProfileApi = {
   dangNhap: (values) => {
     return https.post("api/QuanLyNguoiDung/DangNhap", values);
   },

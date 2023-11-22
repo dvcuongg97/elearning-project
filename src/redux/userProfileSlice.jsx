@@ -1,15 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { clientProfileApi } from "../api/api";
+import { userProfileApi } from "../api/api";
 import { userLocalStorage } from "../api/localService";
+
 import { message } from "antd";
-export const clientSigninAction = createAsyncThunk(
-  "clientSigninAction",
+
+export const userLoginAction = createAsyncThunk(
+  "userLoginAction",
   async (values) => {
     try {
-      const res = await clientProfileApi.dangNhap(values);
+      const res = await userProfileApi.dangNhap(values);
       if (res.status === 200) {
         message.success("Đăng Nhập Thành Công!");
         userLocalStorage.set(res.data);
+        window.location.reload();
         return res.data;
       }
     } catch (error) {
@@ -22,32 +25,33 @@ export const layThongTinTaiKhoanAction = createAsyncThunk(
   "layThongTinTaiKhoanAction",
   async () => {
     try {
-      const res = await clientProfileApi.layThongTinTaiKhoan();
+      const res = await userProfileApi.layThongTinTaiKhoan();
       if (res.status === 200) {
         return res.data;
       }
     } catch (error) {}
   }
 );
+
 const initialState = {
-  clientInfo: userLocalStorage.get(),
-  clientDetail: {},
+  userLogin: userLocalStorage.get(),
+  userProfile: {},
 };
 
-const clientProfileSlice = createSlice({
-  name: "clientProfileSlice",
+const userProfileSlice = createSlice({
+  name: "userProfileSlice",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(clientSigninAction.fulfilled, (state, action) => {
-      state.clientInfo = action.payload;
+    builder.addCase(userLoginAction.fulfilled, (state, action) => {
+      state.userLogin = action.payload;
     });
     builder.addCase(layThongTinTaiKhoanAction.fulfilled, (state, action) => {
-      state.clientDetail = action.payload;
+      state.userProfile = action.payload;
     });
   },
 });
 
-// export const { setClientDetail } = clientProfileSlice.actions;
+// export const {} = userProfileSlice.actions;
 
-export default clientProfileSlice.reducer;
+export default userProfileSlice.reducer;

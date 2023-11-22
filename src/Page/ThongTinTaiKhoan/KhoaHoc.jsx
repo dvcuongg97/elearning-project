@@ -1,23 +1,22 @@
-import React, { Fragment, useEffect } from "react";
-import { clientProfileApi } from "../../api/api";
-import { HuyGhiDanhKhoaHoc } from "../../api/modal/clientAction";
+import React, { Fragment } from "react";
+import { userProfileApi } from "../../api/api";
+import { HuyGhiDanhKhoaHoc } from "../../model/userAction";
 import { message } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { layThongTinTaiKhoanAction } from "../../redux/clientProfileSlice";
+import { useSelector } from "react-redux";
 
 export default function KhoaHoc() {
-  const { clientDetail } = useSelector((state) => state.clientProfileSlice);
-  const dispatch = useDispatch();
+  const { userProfile } = useSelector((state) => state.userProfileSlice);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(layThongTinTaiKhoanAction());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(layThongTinTaiKhoanAction());
+  // }, []);
 
   const handleHuyKhoaHoc = (khoaHoc) => {
     let huyGhiDanh = new HuyGhiDanhKhoaHoc();
-    huyGhiDanh.taiKhoan = clientDetail.taiKhoan;
+    huyGhiDanh.taiKhoan = userProfile.taiKhoan;
     huyGhiDanh.maKhoaHoc = khoaHoc.maKhoaHoc;
-    clientProfileApi
+    userProfileApi
       .huyGhiDanh(huyGhiDanh)
       .then((res) => {
         message.success("Hủy khóa học thành công");
@@ -32,7 +31,7 @@ export default function KhoaHoc() {
 
   return (
     <>
-      {clientDetail.chiTietKhoaHocGhiDanh?.map((khoaHoc, index) => {
+      {userProfile?.chiTietKhoaHocGhiDanh?.map((khoaHoc, index) => {
         return (
           <Fragment key={index}>
             <div className="md:grid p-6 grid-cols-5 gap-3 mb-3 border-2 rounded-lg">

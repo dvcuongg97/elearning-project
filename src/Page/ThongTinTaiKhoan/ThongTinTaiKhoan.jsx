@@ -1,13 +1,16 @@
-import React from "react";
-import { Tabs } from "antd";
-
+import React, { useEffect } from "react";
 import "../../asset/css/ThongTinTaiKhoan/ThongTinTaiKhoan.scss";
-import { useSelector } from "react-redux";
+
+import { Tabs } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 import TaiKhoan from "./TaiKhoan";
 import KhoaHoc from "./KhoaHoc";
+import { layThongTinTaiKhoanAction } from "../../redux/userProfileSlice";
 
 export default function ThongTinTaiKhoan() {
-  const { clientInfo } = useSelector((state) => state.clientProfileSlice);
+  // window.location.reload();
+
+  const { userLogin } = useSelector((state) => state.userProfileSlice);
   const onChange = (key) => {
     // console.log(key);
   };
@@ -32,6 +35,13 @@ export default function ThongTinTaiKhoan() {
     },
   ];
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(layThongTinTaiKhoanAction());
+    // window.location.reload();
+  }, []);
+
   return (
     <>
       <section className="infoPage">
@@ -44,9 +54,9 @@ export default function ThongTinTaiKhoan() {
             <div className="infoUserSection">
               <img
                 alt=".."
-                src={`https://i.pravatar.cc/150?u=${clientInfo?.taiKhoan}`}
+                src={`https://i.pravatar.cc/150?u=${userLogin?.taiKhoan}`}
               />
-              <p className="text-lg font-medium">{clientInfo?.hoTen}</p>
+              <p className="text-lg font-medium">{userLogin?.hoTen}</p>
               <p>Lập trình viên Front-End</p>
               <div className="px-6 py-3 bg-blue-400">Hồ sơ cá nhân</div>
             </div>

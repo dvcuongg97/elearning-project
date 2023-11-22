@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { renderCard } from "../renderCard/renderCard";
+import { renderCard } from "../../component/renderCard/renderCard";
 import { layDanhSachKhoaHocAction } from "../../redux/khoaHocSlice";
 
 export default function DanhSachKhoaHocComponent() {

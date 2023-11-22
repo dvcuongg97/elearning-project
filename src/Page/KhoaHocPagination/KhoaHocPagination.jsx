@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Pagination } from "antd";
 import { clientApi } from "../../api/api";
-import { renderCard } from "../renderCard/renderCard";
+import { renderCard } from "../../component/renderCard/renderCard";
 
 export default function KhoaHocPagination() {
   let [khoaHocPhanTrang, setKhoaHocPhanTrang] = useState({});

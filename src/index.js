@@ -5,12 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import clientProfileSlice from "./redux/clientProfileSlice";
+import userProfileSlice from "./redux/userProfileSlice";
 import khoaHocSlice from "./redux/khoaHocSlice";
+import spinnerSlice from "./redux/spinnerSlice";
+
 export let store = configureStore({
   reducer: {
-    clientProfileSlice,
     khoaHocSlice,
+    spinnerSlice,
+    userProfileSlice,
   },
 });
 const root = ReactDOM.createRoot(document.getElementById("root"));
