@@ -11,7 +11,7 @@ export const https = axios.create({
   baseURL: BASE_URL,
   headers: {
     TokenCybersoft: TOKEN_CYBERSOFT,
-    Authorization: "Bearer " + userLocalStorage.get()?.accessToken,
+    Authorization: userLocalStorage.get()?.accessToken,
   },
 });
 

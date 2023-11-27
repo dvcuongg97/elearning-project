@@ -8,12 +8,14 @@ import { Provider } from "react-redux";
 import userProfileSlice from "./redux/userProfileSlice";
 import khoaHocSlice from "./redux/khoaHocSlice";
 import spinnerSlice from "./redux/spinnerSlice";
+import adminSlice from "./redux/adminSlice";
 
 export let store = configureStore({
   reducer: {
     khoaHocSlice,
     spinnerSlice,
     userProfileSlice,
+    adminSlice,
   },
 });
 const root = ReactDOM.createRoot(document.getElementById("root"));

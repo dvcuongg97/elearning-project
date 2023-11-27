@@ -9,6 +9,15 @@ import TimKiemKhoaHoc from "./Page/TimKiemKhoaHoc/TimKiemKhoaHoc";
 import DangNhapDangKy from "./Page/DangNhap_DangKy/DangNhapDangKy";
 import ThongTinTaiKhoan from "./Page/ThongTinTaiKhoan/ThongTinTaiKhoan";
 import Spinner from "./component/Spinner/Spinner";
+import AdminLayout from "./template/AdminLayout/AdminLayout";
+import AdminPage from "./Page/Admin/AdminPage";
+import ListUser from "./Page/Admin/UserPage/ListUser";
+import AddUser from "./Page/Admin/UserPage/Action/AddUser";
+import EditUser from "./Page/Admin/UserPage/Action/EditUser";
+import ListKhoaHoc from "./Page/Admin/KhoaHoc/ListKhoaHoc";
+import AddKhoaHoc from "./Page/Admin/KhoaHoc/Action/AddKhoaHoc";
+import EditKhoaHoc from "./Page/Admin/KhoaHoc/Action/EditKhoaHoc";
+
 
 import { FloatButton } from "antd";
 import Page404 from "./Page/Page404/Page404";
@@ -70,6 +79,18 @@ function App() {
             }
           />
           <Route path="*" element={<Page404 />} />
+            {/* Admin page */}
+            <Route
+            path=""
+            element={<AdminLayout/>}>
+              <Route path="/admin" element={<AdminPage/>}/>
+              <Route path="/admin/user" element={<ListUser/>}/>
+              <Route path="/admin/user/add" element={<AddUser/>}/>
+              <Route path="/admin/user/edit" element={<EditUser/>}/>
+              <Route path="/admin/khoahoc" element={<ListKhoaHoc/>}/>
+              <Route path="/admin/khoahoc/add" element={<AddKhoaHoc/>}/>
+              <Route path="/admin/khoahoc/edit" element={<EditKhoaHoc/>}/>
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

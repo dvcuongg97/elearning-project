@@ -50,3 +50,46 @@ export const userProfileApi = {
     return https.post("api/QuanLyKhoaHoc/HuyGhiDanh", huyGhiDanh);
   },
 };
+
+export const adminApi = {
+  layDSNguoiDung_Admin: () => { 
+    return https.get(
+      `api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${API_GROUP}`
+    );
+   },
+   xoaNguoiDung_Admin: (taiKhoan) => { 
+    return https.delete(
+      `/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`
+    );
+   },
+   themNguoiDung_Admin: (user) => { 
+    return https.post(
+      `api/QuanLyNguoiDung/ThemNguoiDung`
+    );
+   },
+   capNhatNguoiDung_Admin: (user) => { 
+    return https.put(
+      `api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`
+    );
+   },
+   timKiemNguoiDung_Admin: (tenNguoiDung) => { 
+    return https.get(
+      `api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${API_GROUP}&tuKhoa=${tenNguoiDung}`
+    );
+   },
+   xoaKhoaHoc_Admin: (makhoaHoc) => { 
+    return https.delete(
+      `api/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${makhoaHoc}`
+    );
+   },
+   timKhoaHoc_Admin: (tenKhoaHoc) => {
+    return https.get(
+      `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${tenKhoaHoc}&MaNhom=${API_GROUP}`
+    );
+  },
+  themKhoaHoc_Admin: (khoaHoc) => { 
+    return https.post(
+      `api/QuanLyKhoaHoc/ThemKhoaHoc`
+    );
+   },
+}
