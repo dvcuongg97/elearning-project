@@ -22,6 +22,15 @@ let routes = [
     path: "/admin/khoahoc",
     breadcrumb: " Quản lý khóa học",
   },
+  {
+    path: "/admin/ghidanh",
+    breadcrumb: " Ghi danh",
+  },
+  {
+    path: "/admin/ghidanh/khoahoc",
+    breadcrumb: " Theo khóa học",
+  },
+
 ];
 
 export default function BreadCrumbNav() {

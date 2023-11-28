@@ -41,17 +41,17 @@ const items2 = [
         ]
     },
     {
-        key: `key3`,
+        key: `ghidanh`,
         icon: React.createElement(NotificationOutlined),
-        label: `tit 3`,
+        label: <span className='text-white hover:text-blue-300'>Ghi danh</span>,
         children: [ 
             {
-                key: 'key con 5',
-                label: 'key con 5',
+                key: 'ghidanh khoahoc',
+                label: <NavLink to={`/admin/ghidanh/khoahoc`} className='text-white'>Theo khóa học</NavLink>,
             },
             {
-                key: 'key con 6',
-                label: 'key con 6',
+                key: 'ghidanh hocvien',
+                label: <NavLink to={`/admin/ghidanh/hocvien`} className='text-white'>Theo học viên</NavLink>,
             }
         ]
     },

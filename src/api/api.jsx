@@ -93,3 +93,11 @@ export const adminApi = {
     );
    },
 }
+
+export const adminGhiDanh = {
+  nguoiDungChuaGhiDanh: (maKhoaHoc) => { 
+    return https.post(
+      `api/QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh`
+    );
+   },
+}
