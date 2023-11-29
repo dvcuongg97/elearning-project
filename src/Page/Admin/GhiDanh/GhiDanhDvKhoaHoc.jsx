@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {Select, Space, Button, DatePicker, Form, Input, InputNumber, message} from 'antd';
+import {Select, Space, Button, DatePicker, Form, Input, InputNumber, message, Table} from 'antd';
 import { adminGhiDanh, clientApi } from '../../../api/api';
+import { Option } from 'antd/es/mentions';
 
 const formItemLayout = {
     labelCol: {
@@ -33,8 +34,32 @@ const formItemLayout = {
     },
   };
 
-
-
+  const columns = [
+    {
+      title: 'Tài khoản',
+      dataIndex: 'taiKhoan',
+      key: 'taiKhoan',
+    },
+    {
+      title: 'Mật khẩu',
+      dataIndex: 'matKhau',
+      key: 'matKhau',
+    },
+    {
+      title: 'Bí danh',
+      dataIndex: 'biDanh',
+      key: 'biDanh',
+    },
+    {
+      title: 'Action',
+      render: (_,hocVien) => {
+        return <>
+        <Button>Ghi danh</Button>
+        <Button>Hủy ghi danh</Button>
+        </>
+      }
+    },
+  ];
 export default function GhiDanhDvKhoaHoc() {
 
     const [danhSachKhoaHoc, setDanhSachKhoaHoc] = useState([]);
@@ -52,17 +77,42 @@ export default function GhiDanhDvKhoaHoc() {
               });
     }, []);
 
-    // const [dsChuaGhiDanh, setDsChuaGhiDanh] = useEffect([])
+    const [danhSachHV, setDanhSachHV] = useState([])
     const [form] = Form.useForm();
-    const onFinish = (fieldsValue) => {
-        console.log(fieldsValue);
+    const onFinish = ({maKhoaHoc,maNhom}) => {
+        console.log(maKhoaHoc,maNhom);
+        if (maNhom == "chuaGhiDanh") {
+          adminGhiDanh.nguoiDungChuaGhiDanh(maKhoaHoc)
+          .then((res) => {
+                  console.log(res);
+                  setDanhSachHV(res.data)
+                })
+          .catch((err) => {
+                 console.log(err);
+                });
+        } else if (maNhom == "daGhiDanh") {
+          adminGhiDanh.hocVienDaGhiDanh(maKhoaHoc)
+          .then((res) => {
+                  console.log(res);
+                  setDanhSachHV(res.data)
+                })
+          .catch((err) => {
+                 console.log(err);
+                });
+        } else if (maNhom == "choXetDuyet") {
+          adminGhiDanh.hocVienChoXetDuyet(maKhoaHoc)
+          .then((res) => {
+                  console.log(res);
+                  setDanhSachHV(res.data)
+                })
+          .catch((err) => {
+                 console.log(err);
+                });
+        }
       };
-
   return (
-
     <div>
     <Form
-    
       {...formItemLayout}
       form={form}
       name="register"
@@ -70,9 +120,7 @@ export default function GhiDanhDvKhoaHoc() {
       style={{
         maxWidth: 600,
       }}
-      scrollToFirstError
-    >
-
+      scrollToFirstError>
       <Form.Item
       name="maKhoaHoc"
       label="Chọn khóa học">
@@ -87,16 +135,12 @@ export default function GhiDanhDvKhoaHoc() {
                 filterSort={(optionA, optionB) =>
                         (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
                         }
-                        options={danhSachKhoaHoc}
-  />
+                        options={danhSachKhoaHoc}/>
       </Form.Item>
-
       <Form.Item
         name="maNhom"
-        label="Mã nhóm"
-      >
+        label="Nhóm">
         <Select placeholder="Chọn nhóm">
-          <Option value="tatCa">Tất cả</Option>
           <Option value="chuaGhiDanh">Người dùng chưa ghi danh</Option>
           <Option value="daGhiDanh">Người dùng đã ghi danh</Option>
           <Option value="choXetDuyet">Người dùng chờ xét duyệt</Option>
@@ -109,6 +153,7 @@ export default function GhiDanhDvKhoaHoc() {
         </Button>
       </Form.Item>
     </Form>
+      <Table dataSource={danhSachHV} columns={columns} />;
     </div>
   )
 }

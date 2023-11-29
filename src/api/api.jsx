@@ -100,4 +100,24 @@ export const adminGhiDanh = {
       `api/QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh`
     );
    },
+   hocVienDaGhiDanh: (maKhoaHoc) => { 
+    return https.post(
+      `api/QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc`
+    );
+   },
+   hocVienChoXetDuyet: (maKhoaHoc) => { 
+    return https.post(
+      `api/QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet`
+    );
+   },
+   ghiDanhKhoaHoc: (taiKhoanDangKy) => { 
+    return https.post(
+      `api/QuanLyKhoaHoc/GhiDanhKhoaHoc`
+    );
+   },
+   huyGhiDanh: (taiKhoanDangKy) => { 
+    return https.post(
+      `api/QuanLyKhoaHoc/HuyGhiDanh`
+    );
+   },
 }
