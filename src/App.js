@@ -22,6 +22,7 @@ import EditKhoaHoc from "./Page/Admin/KhoaHoc/Action/EditKhoaHoc";
 import { FloatButton } from "antd";
 import Page404 from "./Page/Page404/Page404";
 import GhiDanhDvKhoaHoc from "./Page/Admin/GhiDanh/GhiDanhDvKhoaHoc";
+import GhiDanhDvNguoiDung from "./Page/Admin/GhiDanh/GhiDanhDvNguoiDung";
 
 function App() {
   return (
@@ -92,6 +93,7 @@ function App() {
               <Route path="/admin/khoahoc/add" element={<AddKhoaHoc/>}/>
               <Route path="/admin/khoahoc/edit" element={<EditKhoaHoc/>}/>
               <Route path="/admin/ghidanh/khoahoc" element={<GhiDanhDvKhoaHoc/>}/>
+              <Route path="/admin/ghidanh/hocvien" element={<GhiDanhDvNguoiDung/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

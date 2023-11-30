@@ -120,4 +120,19 @@ export const adminGhiDanh = {
       `api/QuanLyKhoaHoc/HuyGhiDanh`
     );
    },
+   khoaHocChuaGhiDanh: (taiKhoan) => { 
+    return https.post(
+      `api/QuanLyNguoiDung/LayDanhSachKhoaHocChuaGhiDanh?TaiKhoan=${taiKhoan}`
+    );
+   },
+   khoaHocDaGhiDanh: (taiKhoan) => { 
+    return https.post(
+      `api/QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet`
+    );
+   },
+   khoaHocChoXetDuyet: (taiKhoan) => { 
+    return https.post(
+      `api/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet`
+    );
+   },
 }
