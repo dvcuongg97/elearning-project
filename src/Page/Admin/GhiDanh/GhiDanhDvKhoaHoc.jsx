@@ -79,10 +79,10 @@ export default function GhiDanhDvKhoaHoc() {
 
     const [danhSachHV, setDanhSachHV] = useState([])
     const [form] = Form.useForm();
-    const onFinish = ({maKhoaHoc,maNhom}) => {
-        console.log(maKhoaHoc,maNhom);
-        if (maNhom == "chuaGhiDanh") {
-          adminGhiDanh.nguoiDungChuaGhiDanh(maKhoaHoc)
+    const onFinish = (fieldsValue) => {
+        console.log(fieldsValue);
+        if (fieldsValue.maNhom == "chuaGhiDanh") {
+          adminGhiDanh.nguoiDungChuaGhiDanh(fieldsValue)
           .then((res) => {
                   console.log(res);
                   setDanhSachHV(res.data)
@@ -90,8 +90,8 @@ export default function GhiDanhDvKhoaHoc() {
           .catch((err) => {
                  console.log(err);
                 });
-        } else if (maNhom == "daGhiDanh") {
-          adminGhiDanh.hocVienDaGhiDanh(maKhoaHoc)
+        } else if (fieldsValue.maNhom == "daGhiDanh") {
+          adminGhiDanh.hocVienDaGhiDanh(fieldsValue)
           .then((res) => {
                   console.log(res);
                   setDanhSachHV(res.data)
@@ -99,8 +99,8 @@ export default function GhiDanhDvKhoaHoc() {
           .catch((err) => {
                  console.log(err);
                 });
-        } else if (maNhom == "choXetDuyet") {
-          adminGhiDanh.hocVienChoXetDuyet(maKhoaHoc)
+        } else if (fieldsValue.maNhom == "choXetDuyet") {
+          adminGhiDanh.hocVienChoXetDuyet(fieldsValue)
           .then((res) => {
                   console.log(res);
                   setDanhSachHV(res.data)
@@ -110,6 +110,7 @@ export default function GhiDanhDvKhoaHoc() {
                 });
         }
       };
+
   return (
     <div>
     <Form

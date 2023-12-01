@@ -40,7 +40,7 @@ export default function TableUser() {
                         message.success("Xóa thành công")
                     })
                 .catch((err) => {
-                    message.error(err.response.data.content)
+                    message.error(err.response.data)
                     console.log(err);
                     });
             }
