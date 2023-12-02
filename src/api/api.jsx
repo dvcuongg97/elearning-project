@@ -62,16 +62,6 @@ export const adminApi = {
       `/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`
     );
    },
-   themNguoiDung_Admin: (user) => { 
-    return https.post(
-      `api/QuanLyNguoiDung/ThemNguoiDung`
-    );
-   },
-   capNhatNguoiDung_Admin: (user) => { 
-    return https.put(
-      `api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`
-    );
-   },
    timKiemNguoiDung_Admin: (tenNguoiDung) => { 
     return https.get(
       `api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${API_GROUP}&tuKhoa=${tenNguoiDung}`
@@ -87,52 +77,12 @@ export const adminApi = {
       `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${tenKhoaHoc}&MaNhom=${API_GROUP}`
     );
   },
-  themKhoaHoc_Admin: (khoaHoc) => { 
-    return https.post(
-      `api/QuanLyKhoaHoc/ThemKhoaHoc`
-    );
-   },
 }
 
 export const adminGhiDanh = {
-  nguoiDungChuaGhiDanh: (maKhoaHoc) => { 
-    return https.post(
-      `api/QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh`
-    );
-   },
-   hocVienDaGhiDanh: (maKhoaHoc) => { 
-    return https.post(
-      `api/QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc`
-    );
-   },
-   hocVienChoXetDuyet: (maKhoaHoc) => { 
-    return https.post(
-      `api/QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet`
-    );
-   },
-   ghiDanhKhoaHoc: (taiKhoanDangKy) => { 
-    return https.post(
-      `api/QuanLyKhoaHoc/GhiDanhKhoaHoc`
-    );
-   },
-   huyGhiDanh: (taiKhoanDangKy) => { 
-    return https.post(
-      `api/QuanLyKhoaHoc/HuyGhiDanh`
-    );
-   },
    khoaHocChuaGhiDanh: (taiKhoan) => { 
     return https.post(
       `api/QuanLyNguoiDung/LayDanhSachKhoaHocChuaGhiDanh?TaiKhoan=${taiKhoan}`
-    );
-   },
-   khoaHocDaGhiDanh: (taiKhoan) => { 
-    return https.post(
-      `api/QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet`
-    );
-   },
-   khoaHocChoXetDuyet: (taiKhoan) => { 
-    return https.post(
-      `api/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet`
     );
    },
 }

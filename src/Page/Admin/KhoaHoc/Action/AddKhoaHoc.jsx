@@ -12,6 +12,9 @@ import {
   message,
 } from 'antd';
 import { adminApi, clientApi } from '../../../../api/api';
+import axios from 'axios';
+import {TOKEN_CYBERSOFT} from '../../../../api/configApi';
+import {userLocalStorage} from '../../../../api/localService';
 const { Option } = Select;
 
 const formItemLayout = {
@@ -105,28 +108,18 @@ let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
         ...fieldsValue,
         'ngayTao': fieldsValue['ngayTao'].format('DD/MM/YYYY')
     }
-    let formData = new FormData()
-    formData.append('maKhoaHoc', values.maKhoaHoc)
-    formData.append('biDanh', values.biDanh)
-    formData.append('tenKhoaHoc', values.tenKhoaHoc)
-    formData.append('moTa', values.moTa)
-    formData.append('luotXem', values.luotXem)
-    formData.append('danhGia', values.danhGia)
-    formData.append('hinhAnh', values.hinhAnh)
-    formData.append('maNhom', values.maNhom)
-    formData.append('ngayTao', values.ngayTao)
-    formData.append('maDanhMucKhoaHoc', values.maDanhMucKhoaHoc)
-    formData.append('taiKhoanNguoiTao', values.taiKhoanNguoiTao)
-
-    adminApi.themKhoaHoc_Admin(formData)
-    .then((res) => {
-            console.log(res);
-            closeModal()
-          })
-    .catch((err) => {
-           console.log(err);
-          });
-    
+    axios.post('https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/ThemKhoaHoc',values, 
+        {  headers: {
+          TokenCybersoft: TOKEN_CYBERSOFT,
+          Authorization: "Bearer " + userLocalStorage.get()?.accessToken,
+        },}
+        )
+        .then((res) => {
+                message.success("Thêm thành công")
+              })
+        .catch((err) => {
+               console.log(err);
+              });
     console.log('Received values of form: ', values);
   };
   return (

@@ -8,6 +8,9 @@ import {
   message,
 } from 'antd';
 import { adminApi } from '../../../../api/api';
+import axios from 'axios';
+import {TOKEN_CYBERSOFT} from '../../../../api/configApi';
+import {userLocalStorage} from '../../../../api/localService';
 const { Option } = Select;
 
 const formItemLayout = {
@@ -44,24 +47,19 @@ const AddUser = (props) => {
   const { closeModal } = props;
   const [form] = Form.useForm();
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-    let formData = new FormData();
-    formData.append('taiKhoan', values.taiKhoan);
-    formData.append('hoTen', values.hoTen);
-    formData.append('matKhau', values.matKhau);
-    formData.append('email', values.email);
-    formData.append('maLoaiNguoiDung', values.maLoaiNguoiDung);
-    formData.append('maNhom', values.maNhom);
-    formData.append('soDt', values.soDt);
-    adminApi.themNguoiDung_Admin(formData)
-    .then((res) => {
-            console.log(res);
-            message.success("Tạo người dùng thành công")
-            closeModal();
-          })
-          .catch((err) => {
-           console.log(err);
-          });
+    axios.post('https://elearningnew.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung',values, 
+        {  headers: {
+          TokenCybersoft: TOKEN_CYBERSOFT,
+          Authorization: "Bearer " + userLocalStorage.get()?.accessToken,
+        },}
+        )
+        .then((res) => {
+                message.success("Thêm thành công")
+                closeModal()
+              })
+        .catch((err) => {
+               console.log(err);
+              });
   };
   return (
     <Form

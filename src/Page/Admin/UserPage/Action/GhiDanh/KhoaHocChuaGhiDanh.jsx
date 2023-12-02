@@ -1,9 +1,11 @@
 import React from 'react'
 import {useSelector} from 'react-redux';
 import {Select, Button, Form, Table, message} from 'antd';
-import {Option} from 'antd/es/mentions';
-import {adminGhiDanh, clientApi} from '../../../../../api/api';
+import {adminGhiDanh, } from '../../../../../api/api';
 import {useEffect, useState} from 'react';
+import axios from 'axios';
+import { TOKEN_CYBERSOFT } from '../../../../../api/configApi';
+import { userLocalStorage } from '../../../../../api/localService';
 
 const formItemLayout = {
     labelCol: {
@@ -54,15 +56,17 @@ export default function KhoaHocChuaGhiDanh() {
               });
     }, []);
     const onFinish = (value) => {
-        console.log(value);
-        let dangky = {
+        let ttdk = {
           maKhoaHoc: value.maKhoaHoc,
           taiKhoan: userData.taiKhoan
         }
-        console.log(dangky);
-        adminGhiDanh.ghiDanhKhoaHoc(dangky)
+        axios.post('https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/GhiDanhKhoaHoc',ttdk, 
+        {  headers: {
+          TokenCybersoft: TOKEN_CYBERSOFT,
+          Authorization: "Bearer " + userLocalStorage.get()?.accessToken,
+        },}
+        )
         .then((res) => {
-                console.log(res);
                 message.success("Ghi danh thành công")
               })
         .catch((err) => {

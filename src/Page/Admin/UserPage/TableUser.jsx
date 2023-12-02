@@ -86,7 +86,6 @@ export default function TableUser() {
       showModal()
      }
     let handleGhiDanh = (user) => {
-      console.log(user);
       dispatch(setData(user))
       setHandleType("ghiDanh")
       showModal()
