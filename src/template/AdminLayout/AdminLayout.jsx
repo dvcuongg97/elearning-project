@@ -22,7 +22,6 @@ const items2 = [
     },
 ]
 
-
 const AdminLayout = () => {
   const {
     token: { colorBgContainer },

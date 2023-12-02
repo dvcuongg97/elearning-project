@@ -4,11 +4,9 @@ import { adminApi } from '../../../api/api';
 import Swal from 'sweetalert2';
 import {useDispatch, useSelector} from 'react-redux';
 import { setData } from '../../../redux/adminSlice';
-import { NavLink } from 'react-router-dom';
 import Search from 'antd/es/input/Search';
 import AddUser from './Action/AddUser';
 import EditUser from './Action/EditUser';
-import GhiDanhDvNguoiDung from '../GhiDanh/GhiDanhDvNguoiDung';
 import GhiDanhHV from './Action/GhiDanhHV';
 
 export default function TableUser() {
