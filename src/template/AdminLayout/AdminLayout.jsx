@@ -24,6 +24,10 @@ const items2 = [
 ]
 
 const AdminLayout = () => {
+  let handleLogout = () => { 
+    userLocalStorage.remove()
+    window.location.href="/"
+ }
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -42,9 +46,7 @@ const AdminLayout = () => {
         </span>
         <span>
           <span className="text-blue-100 px-5 h-10 text-lg font-bold">Chào {userLocalStorage.get().hoTen}</span> 
-        <button className="text-blue-500 bg-white px-5 h-10 leading-10 shadow shadow-white rounded-full font-bold">
-          Đăng xuất
-        </button>
+        <NavLink to={"/"}><button className="text-blue-500 bg-white px-5 h-10 leading-10 shadow shadow-white rounded-full font-bold" onClick={handleLogout}>Đăng xuất</button></NavLink>
         </span>
       </Header>
       <Layout>
