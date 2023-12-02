@@ -82,13 +82,13 @@ export default function KhoaHocChuaGhiDanh() {
       scrollToFirstError>
       <Form.Item
       name="maKhoaHoc"
-      label="Chọn khóa học">
+      label={<div className='text-lg font-semibold'>Chọn khóa học</div>}>
             <Select
                 showSearch
                 style={{
                 width: 200,
                 }}
-                placeholder="Search to Select"
+                placeholder="Nhập để tìm"
                 optionFilterProp="children"
                 filterOption={(input, option) => (option?.label ?? '').includes(input)}
                 filterSort={(optionA, optionB) =>

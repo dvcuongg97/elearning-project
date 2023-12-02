@@ -208,3 +208,23 @@ a:hover {
     justify-content: center;
     padding: 20px !important;
 }
+:where(.css-dev-only-do-not-override-xu9wm8).ant-table-wrapper .ant-table-thead >tr>th, :where(.css-dev-only-do-not-override-xu9wm8).ant-table-wrapper .ant-table-thead >tr>td {
+    text-align: center;
+    font-size: large;
+}
+:where(.css-dev-only-do-not-override-xu9wm8).ant-table-wrapper .ant-table-tbody >tr >th, :where(.css-dev-only-do-not-override-xu9wm8).ant-table-wrapper .ant-table-tbody >tr >td {
+    text-align: center;
+    font-size: large;
+}
+:where(.css-dev-only-do-not-override-xu9wm8).ant-menu-dark, :where(.css-dev-only-do-not-override-xu9wm8).ant-menu-dark>.ant-menu {
+    background: url(./asset/image/DangNhap_DangKy/dndk2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+:where(.css-dev-only-do-not-override-xu9wm8).ant-layout-header {
+    background: url(./asset/image/DangNhap_DangKy/dndk2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

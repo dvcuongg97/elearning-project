@@ -114,7 +114,7 @@ let columnsHeader = [
         key: 'soDt',
       },
       {
-        title: 'Type',
+        title: 'Mã người dùng',
         dataIndex: 'maLoaiNguoiDung',
         key: 'maLoaiNguoiDung',
         render: (text) => {
@@ -126,7 +126,7 @@ let columnsHeader = [
         }
       },
       {
-        title: 'Action',
+        title: 'Thao tác',
         render: (_,user) => { 
             return <>
             <Button onClick={() => {handleGhiDanh(user)}} className='bg-green-500 text-white'>Ghi danh</Button>
@@ -138,13 +138,13 @@ let columnsHeader = [
 ]
   return (
     <div>
-       <Button type="primary" onClick={handleAdd}>
+       <Button className='bg-blue-500 text-lg' size="large" type="primary" onClick={handleAdd}>
         Thêm người dùng
       </Button>
-        <Search placeholder="Nhập tên người dùng" onSearch={onSearch} enterButton/>
+        <Search className='mt-5 bg-blue-500 rounded-md' placeholder="Nhập tên người dùng" onSearch={onSearch} enterButton/>
         <Table dataSource={listUser} columns={columnsHeader} />
       <Modal
-        title={handleType=="ghiDanh"?`Thông tin khóa học của ${userData.hoTen}`:"Thông tin học viên"}
+        title={handleType=="ghiDanh"?<div className='text-lg mb-2'>Thông tin khóa học của {userData.hoTen}</div>:<div className='text-lg mb-2'>Thông tin học viên</div>}
         visible={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}

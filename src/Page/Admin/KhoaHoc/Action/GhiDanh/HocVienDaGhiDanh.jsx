@@ -42,7 +42,7 @@ export default function HocVienDaGhiDanh() {
   ];
   return (
     <div>
-        <h1>Học viên chờ xét duyệt</h1>
+        <h1 className='text-lg font-semibold'>Học viên chờ xét duyệt</h1>
         <Table dataSource={danhSachHV} columns={columns} />
     </div>
   )

@@ -110,6 +110,18 @@ console.log(khoaHocData);
         ...fieldsValue,
         'ngayTao': fieldsValue['ngayTao'].format('DD/MM/YYYY')
     }
+    let formData = new FormData()
+    formData.append('maKhoaHoc', values.maKhoaHoc)
+    formData.append('biDanh', values.biDanh)
+    formData.append('tenKhoaHoc', values.tenKhoaHoc)
+    formData.append('moTa', values.moTa)
+    formData.append('luotXem', values.luotXem)
+    formData.append('danhGia', values.danhGia)
+    formData.append('hinhAnh', values.hinhAnh)
+    formData.append('maNhom', values.maNhom)
+    formData.append('ngayTao', values.ngayTao)
+    formData.append('maDanhMucKhoaHoc', values.maDanhMucKhoaHoc)
+    formData.append('taiKhoanNguoiTao', values.taiKhoanNguoiTao)
     adminApi.themKhoaHoc_Admin(values)
     .then((res) => {
             console.log(res);
@@ -201,18 +213,15 @@ console.log(khoaHocData);
       </Form.Item>
 
       <Form.Item
-        name="hinhAnh"
-        label="Hình ảnh"
-        rules={[
-          {
-            required: false,
-            message: 'Vui lòng nhập hình ảnh',
-            whitespace: true,
-          },
-        ]}
-      >
-        <Input defaultValue={khoaHocData!=null?khoaHocData.hinhAnh:""}/>
-      </Form.Item>
+      name="hinhAnh"
+      label="Hình ảnh"
+      valuePropName="fileList"
+      getValueFromEvent={normFile}
+    >
+      <Upload name="logo" action={"http://localhost:3000/"} type="picture" beforeUpload={(file) => { console.log({file}); return false }}>
+        <Button icon={<UploadOutlined />}>Tải ảnh lên</Button>
+      </Upload>
+    </Form.Item>
 
       <Form.Item
         name="maNhom"

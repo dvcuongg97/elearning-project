@@ -46,7 +46,7 @@ export default function TableKhoaHoc() {
                         message.success("Xóa thành công")
                     })
                 .catch((err) => {
-                    message.error(err.response.data.content)
+                    message.error(err.response.data)
                     console.log(err);
                     });
             }
@@ -115,26 +115,16 @@ let columnsHeader = [
         key: 'tenKhoaHoc',
       },
       {
-        title: 'Mô tả',
-        dataIndex: 'moTa',
-        key: 'moTa',
-      },
-      {
         title: 'Lượt xem',
         dataIndex: 'luotXem',
         key: 'luotXem',
-      },
-      {
-        title: 'Đánh giá',
-        dataIndex: 'danhGia',
-        key: 'danhGia',
       },
       {
         title: 'Hình ảnh',
         dataIndex: 'hinhAnh',
         key: 'hinhAnh',
         render: (_,khoaHoc) => { 
-            return <img className='h-60 w-60 object-fill' src={khoaHoc.hinhAnh}/>
+            return <img className='h-60 w-80 object-fill' src={khoaHoc.hinhAnh}/>
          }
       },
       {
@@ -176,13 +166,13 @@ let columnsHeader = [
 ]
   return (
     <div>
-       <Button type="primary" onClick={handleAdd}>
+        <Button className='bg-blue-500 text-lg' size="large" type="primary" onClick={handleAdd}>
         Thêm khóa học
       </Button>
-        <Search placeholder="Nhập tên khóa học" onSearch={onSearch} enterButton/>
+        <Search className='mt-5 bg-blue-500 rounded-md' placeholder="Nhập tên khóa học" onSearch={onSearch} enterButton/>
         <Table dataSource={listKhoaHoc} columns={columnsHeader} />
         <Modal
-        title={handleType=="ghiDanh"?`Thông tin học viên của khóa ${khoaHocData.tenKhoaHoc}`:"Thông tin khóa học"}
+        title={handleType=="ghiDanh"?<div className='text-lg mb-2'>Thông tin học viên của khóa {khoaHocData.tenKhoaHoc}</div>:<div className='text-lg mb-2'>Thông tin khóa học</div>}
         visible={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}

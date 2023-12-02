@@ -50,7 +50,7 @@ export default function KhoaHocChoXetDuyet() {
       
   return (
     <div>
-        <h1>Khóa học chờ xét duyệt</h1>
+        <h1 className='text-lg font-semibold'>Khóa học chờ xét duyệt</h1>
         <Table dataSource={danhSachKH} columns={columns} />
     </div>
   )

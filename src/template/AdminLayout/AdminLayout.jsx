@@ -7,18 +7,19 @@ import {
 import { Layout, Menu, theme } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
 import BreadCrumbNav from "../../component/BreadCrumbNav";
+import { userLocalStorage } from "../../api/localService";
 const { Header, Content, Sider } = Layout;
 
 const items2 = [
     {
         key: `users`,
         icon: React.createElement(UserOutlined),
-        label: <NavLink to={`/admin/user`} className='text-white hover:text-blue-300'>Quản lý người dùng</NavLink>,
+        label: <NavLink to={`/admin/user`} className='text-black hover:text-blue-300 text-lg font-bold'>Quản lý người dùng</NavLink>,
     },
     {
         key: `khoahoc`,
         icon: React.createElement(LaptopOutlined),
-        label: <NavLink to={`/admin/khoahoc`} className='text-white hover:text-blue-300'>Quản lý khóa học</NavLink>,
+        label: <NavLink to={`/admin/khoahoc`} className='text-black hover:text-blue-300 text-lg font-bold'>Quản lý khóa học</NavLink>,
     },
 ]
 
@@ -36,12 +37,15 @@ const AdminLayout = () => {
           paddingLeft: 300
         }}
       >
-        <span className="text-white font-medium text-2xl">
+        <span className="text-white font-medium text-2xl italic">
           E Learning Admin
         </span>
-        <button className="text-black bg-white rounded px-5 h-10 leading-10 shadow shadow-white">
-          Log out
+        <span>
+          <span className="text-blue-100 px-5 h-10 text-lg font-bold">Chào {userLocalStorage.get().hoTen}</span> 
+        <button className="text-blue-500 bg-white px-5 h-10 leading-10 shadow shadow-white rounded-full font-bold">
+          Đăng xuất
         </button>
+        </span>
       </Header>
       <Layout>
         <Sider

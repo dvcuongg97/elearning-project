@@ -53,7 +53,6 @@ const AddUser = (props) => {
     formData.append('maLoaiNguoiDung', values.maLoaiNguoiDung);
     formData.append('maNhom', values.maNhom);
     formData.append('soDt', values.soDt);
-    console.log(formData);
     adminApi.themNguoiDung_Admin(formData)
     .then((res) => {
             console.log(res);

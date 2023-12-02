@@ -48,7 +48,7 @@ export default function KhoaHocDaGhiDanh() {
       
   return (
     <div>
-        <h1>Khóa học đã ghi danh</h1>
+        <h1 className='text-lg font-semibold'>Khóa học đã ghi danh</h1>
         <Table dataSource={danhSachKH} columns={columns} />
     </div>
   )
