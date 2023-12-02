@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { Button, Modal, Table, Tag, message } from 'antd';
 import { adminApi, clientApi } from '../../../api/api';
 import Swal from 'sweetalert2';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { setData, setKhoaHoc } from '../../../redux/adminSlice';
 import { NavLink } from 'react-router-dom';
 import Search from 'antd/es/input/Search';
 import AddKhoaHoc from './Action/AddKhoaHoc';
 import EditKhoaHoc from './Action/EditKhoaHoc';
+import AddUser from '../UserPage/Action/AddUser';
+import EditUser from '../UserPage/Action/EditUser';
+import GhiDanhHV from '../UserPage/Action/GhiDanhHV';
+import GhiDanhKH from './Action/GhiDanhKH';
 
 
 export default function TableKhoaHoc() {
@@ -51,8 +55,8 @@ export default function TableKhoaHoc() {
     const dispatch = useDispatch();
     let handleEditKhoaHoc = (khoaHoc) => { 
       console.log(khoaHoc);
+      setHandleType("edit")
       dispatch(setKhoaHoc(khoaHoc))
-      setIsAdd(false)
       showModal()
      }
      const onSearch = (value, _e, info) => {
@@ -67,7 +71,7 @@ export default function TableKhoaHoc() {
             });
      }
      const [isModalOpen, setIsModalOpen] = useState(false);
-     const [isAdd, setIsAdd] = useState(true);
+     const [handleType, setHandleType] = useState();
 
      const showModal = () => {
        setIsModalOpen(true);
@@ -84,9 +88,16 @@ export default function TableKhoaHoc() {
       setIsModalOpen(false);
     };
     let handleAdd = () => { 
-      setIsAdd(true)
+      setHandleType("add")
       showModal()
      }
+     let handleGhiDanh = (khoaHoc) => {
+      console.log(khoaHoc);
+      dispatch(setKhoaHoc(khoaHoc))
+      setHandleType("ghiDanh")
+      showModal()
+     }
+     const khoaHocData = useSelector((state) => state.adminSlice.khoaHoc)
 let columnsHeader = [
       {
         title: 'Mã khóa học',
@@ -155,8 +166,8 @@ let columnsHeader = [
       {
         title: 'Action',
         render: (_,khoaHoc) => { 
-            // console.log(user);
             return <>
+            <Button onClick={() => {handleGhiDanh(khoaHoc)}} className='bg-green-500 text-white'>Ghi danh</Button>
             <Button onClick={() => { handleEditKhoaHoc(khoaHoc) }} className='bg-yellow-500 text-white'>Edit</Button>
             <Button onClick={() => { handleDeleteKhoaHoc(khoaHoc.maKhoaHoc) }} className='bg-red-600 text-white'>Delete</Button>
             </>
@@ -169,16 +180,16 @@ let columnsHeader = [
         Thêm khóa học
       </Button>
         <Search placeholder="Nhập tên khóa học" onSearch={onSearch} enterButton/>
-        {/* {isLoanding && <Spiner/>} */}
         <Table dataSource={listKhoaHoc} columns={columnsHeader} />
         <Modal
-        title="Basic Modal"
+        title={handleType=="ghiDanh"?`Thông tin học viên của khóa ${khoaHocData.tenKhoaHoc}`:"Thông tin khóa học"}
         visible={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}>
-        {isAdd?<AddKhoaHoc closeModal={closeModal}/>:<EditKhoaHoc closeModal={closeModal}/>}
-        {/* <AddUser handleOk={handleOk} closeAddUserModal={closeAddUserModal}/> */}
+        {handleType=="add"&& <AddKhoaHoc closeModal={closeModal}/>}
+        {handleType=="edit"&& <EditKhoaHoc closeModal={closeModal}/>}
+        {handleType=="ghiDanh"&& <GhiDanhKH/>}
       </Modal>
     </div>
   )

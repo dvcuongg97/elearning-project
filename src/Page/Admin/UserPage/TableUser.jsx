@@ -130,7 +130,6 @@ let columnsHeader = [
       {
         title: 'Action',
         render: (_,user) => { 
-            // console.log(user);
             return <>
             <Button onClick={() => {handleGhiDanh(user)}} className='bg-green-500 text-white'>Ghi danh</Button>
             <Button onClick={() => {handleEdit(user)}}className='bg-yellow-500 text-white'>Sửa</Button>
@@ -145,7 +144,6 @@ let columnsHeader = [
         Thêm người dùng
       </Button>
         <Search placeholder="Nhập tên người dùng" onSearch={onSearch} enterButton/>
-        {/* {isLoanding && <Spiner/>} */}
         <Table dataSource={listUser} columns={columnsHeader} />
       <Modal
         title={handleType=="ghiDanh"?`Thông tin khóa học của ${userData.hoTen}`:"Thông tin học viên"}
@@ -154,9 +152,6 @@ let columnsHeader = [
         onCancel={handleCancel}
         footer={null}
       >
-        {/* {isAdd?<AddUser closeModal={closeModal}/>:<EditUser closeModal={closeModal}/>} */}
-        {/* <AddUser handleOk={handleOk} closeAddUserModal={closeAddUserModal}/> */}
-        {/* {handleType=="add"?<AddUser closeModal={closeModal}/>:handleType=="edit"?<EditUser closeModal={closeModal}/>:handleType=="ghiDanh"?<GhiDanhDvNguoiDung/>:null} */}
         {handleType=="add"&& <AddUser closeModal={closeModal}/>}
         {handleType=="edit"&& <EditUser closeModal={closeModal}/>}
         {handleType=="ghiDanh"&& <GhiDanhHV/>}
