@@ -42,7 +42,8 @@ const tailFormItemLayout = {
   },
 };
 
-const EditUser = () => {
+const EditUser = (props) => {
+  const { closeModal } = props;
   const userData = useSelector((state) => state.adminSlice.nguoiDung)
   const [form] = Form.useForm();
   const onFinish = (values) => {
@@ -51,6 +52,7 @@ const EditUser = () => {
     .then((res) => {
             console.log(res);
             message.success("Sửa thành công")
+            closeModal()
           })
           .catch((err) => {
            console.log(err);

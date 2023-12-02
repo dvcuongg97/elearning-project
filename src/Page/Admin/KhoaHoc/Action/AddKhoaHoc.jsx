@@ -63,8 +63,8 @@ const config = {
   };
 
 
-const AddKhoaHoc = () => {
-
+const AddKhoaHoc = (props) => {
+const { closeModal } = props;
 const [danhMucKhoaHoc, setDanhMucKhoaHoc] = useState([]);
     useEffect(() => {
         clientApi.layDanhMucKhoaHoc()
@@ -108,6 +108,7 @@ let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
     adminApi.themKhoaHoc_Admin(values)
     .then((res) => {
             console.log(res);
+            closeModal()
           })
     .catch((err) => {
            console.log(err);

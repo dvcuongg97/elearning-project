@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Table, Tag, message } from 'antd';
+import { Button, Modal, Table, Tag, message } from 'antd';
 import { adminApi } from '../../../api/api';
 import Swal from 'sweetalert2';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { setData } from '../../../redux/adminSlice';
 import { NavLink } from 'react-router-dom';
 import Search from 'antd/es/input/Search';
-
+import AddUser from './Action/AddUser';
+import EditUser from './Action/EditUser';
+import GhiDanhDvNguoiDung from '../GhiDanh/GhiDanhDvNguoiDung';
+import GhiDanhHV from './Action/GhiDanhHV';
 
 export default function TableUser() {
     const [listUser, setListUser] = useState([]);
@@ -47,9 +50,6 @@ export default function TableUser() {
           });
     }
     const dispatch = useDispatch();
-    let handleEdit = (user) => { 
-      dispatch(setData(user))
-     }
      const onSearch = (value, _e, info) => {
       console.log(value);
       adminApi.timKiemNguoiDung_Admin(value)
@@ -61,6 +61,39 @@ export default function TableUser() {
              console.log(err);
             });
      }
+     const [isModalOpen, setIsModalOpen] = useState(false);
+     const [handleType, setHandleType] = useState();
+
+     const showModal = () => {
+       setIsModalOpen(true);
+     };
+     const handleOk = () => {
+      setIsModalOpen(false);
+    };
+  
+    const handleCancel = () => {
+      setIsModalOpen(false);
+    };
+
+    const closeModal = () => {
+      setIsModalOpen(false);
+    };
+    let handleAdd = () => { 
+      setHandleType("add")
+      showModal()
+     }
+    let handleEdit = (user) => {
+      setHandleType("edit")
+      dispatch(setData(user))
+      showModal()
+     }
+    let handleGhiDanh = (user) => {
+      console.log(user);
+      dispatch(setData(user))
+      setHandleType("ghiDanh")
+      showModal()
+     }
+     const userData = useSelector((state) => state.adminSlice.nguoiDung)
 let columnsHeader = [
       {
         title: 'Tài khoản',
@@ -99,17 +132,35 @@ let columnsHeader = [
         render: (_,user) => { 
             // console.log(user);
             return <>
-            <NavLink to={"/admin/user/edit"}><Button onClick={() => {handleEdit(user)}}className='bg-yellow-500 text-white'>Edit</Button></NavLink>
-            <Button onClick={() => {handleDelete(user.taiKhoan)}} className='bg-red-600 text-white'>Delete</Button>
+            <Button onClick={() => {handleGhiDanh(user)}} className='bg-green-500 text-white'>Ghi danh</Button>
+            <Button onClick={() => {handleEdit(user)}}className='bg-yellow-500 text-white'>Sửa</Button>
+            <Button onClick={() => {handleDelete(user.taiKhoan)}} className='bg-red-600 text-white'>Xóa</Button>
             </>
          }
       },
 ]
   return (
     <div>
+       <Button type="primary" onClick={handleAdd}>
+        Thêm người dùng
+      </Button>
         <Search placeholder="Nhập tên người dùng" onSearch={onSearch} enterButton/>
         {/* {isLoanding && <Spiner/>} */}
-        <Table dataSource={listUser} columns={columnsHeader} />;
+        <Table dataSource={listUser} columns={columnsHeader} />
+      <Modal
+        title={handleType=="ghiDanh"?`Thông tin khóa học của ${userData.hoTen}`:"Thông tin học viên"}
+        visible={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}
+      >
+        {/* {isAdd?<AddUser closeModal={closeModal}/>:<EditUser closeModal={closeModal}/>} */}
+        {/* <AddUser handleOk={handleOk} closeAddUserModal={closeAddUserModal}/> */}
+        {/* {handleType=="add"?<AddUser closeModal={closeModal}/>:handleType=="edit"?<EditUser closeModal={closeModal}/>:handleType=="ghiDanh"?<GhiDanhDvNguoiDung/>:null} */}
+        {handleType=="add"&& <AddUser closeModal={closeModal}/>}
+        {handleType=="edit"&& <EditUser closeModal={closeModal}/>}
+        {handleType=="ghiDanh"&& <GhiDanhHV/>}
+      </Modal>
     </div>
   )
 }

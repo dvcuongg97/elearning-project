@@ -14,62 +14,12 @@ const items2 = [
         key: `users`,
         icon: React.createElement(UserOutlined),
         label: <NavLink to={`/admin/user`} className='text-white hover:text-blue-300'>Quản lý người dùng</NavLink>,
-        children: [ 
-            {
-                key: 'add user',
-                label: <NavLink to={`/admin/user/add`} className='text-white'>Thêm người dùng</NavLink>,
-            },
-            {
-                key: 'edit user',
-                label: <NavLink to={`/admin/user/edit`} className='text-white'>Sửa người dùng</NavLink>,
-            }
-        ]
     },
     {
         key: `khoahoc`,
         icon: React.createElement(LaptopOutlined),
         label: <NavLink to={`/admin/khoahoc`} className='text-white hover:text-blue-300'>Quản lý khóa học</NavLink>,
-        children: [ 
-            {
-                key: 'add khoahoc',
-                label: <NavLink to={`/admin/khoahoc/add`} className='text-white'>Thêm khóa học</NavLink>,
-            },
-            {
-                key: 'edit khoahoc',
-                label: <NavLink to={`/admin/khoahoc/edit`} className='text-white'>Sửa khóa học</NavLink>,
-            }
-        ]
     },
-    {
-        key: `ghidanh`,
-        icon: React.createElement(NotificationOutlined),
-        label: <span className='text-white hover:text-blue-300'>Ghi danh</span>,
-        children: [ 
-            {
-                key: 'ghidanh khoahoc',
-                label: <NavLink to={`/admin/ghidanh/khoahoc`} className='text-white'>Theo khóa học</NavLink>,
-            },
-            {
-                key: 'ghidanh hocvien',
-                label: <NavLink to={`/admin/ghidanh/hocvien`} className='text-white'>Theo học viên</NavLink>,
-            }
-        ]
-    },
-    // {
-    //     key: `key4`,
-    //     icon: React.createElement(NotificationOutlined),
-    //     label: `tit 4`,
-    //     children: [ 
-    //         {
-    //             key: 'key con 7',
-    //             label: 'key con 7',
-    //         },
-    //         {
-    //             key: 'key con 8',
-    //             label: 'key con 8',
-    //         }
-    //     ]
-    // },
 ]
 
 

@@ -40,14 +40,25 @@ const tailFormItemLayout = {
     },
   },
 };
-const AddUser = () => {
+const AddUser = (props) => {
+  const { closeModal } = props;
   const [form] = Form.useForm();
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
-    adminApi.themNguoiDung_Admin(values)
+    let formData = new FormData();
+    formData.append('taiKhoan', values.taiKhoan);
+    formData.append('hoTen', values.hoTen);
+    formData.append('matKhau', values.matKhau);
+    formData.append('email', values.email);
+    formData.append('maLoaiNguoiDung', values.maLoaiNguoiDung);
+    formData.append('maNhom', values.maNhom);
+    formData.append('soDt', values.soDt);
+    console.log(formData);
+    adminApi.themNguoiDung_Admin(formData)
     .then((res) => {
             console.log(res);
             message.success("Tạo người dùng thành công")
+            closeModal();
           })
           .catch((err) => {
            console.log(err);

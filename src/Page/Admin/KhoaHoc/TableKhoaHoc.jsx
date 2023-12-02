@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Table, Tag, message } from 'antd';
+import { Button, Modal, Table, Tag, message } from 'antd';
 import { adminApi, clientApi } from '../../../api/api';
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { setData, setKhoaHoc } from '../../../redux/adminSlice';
 import { NavLink } from 'react-router-dom';
 import Search from 'antd/es/input/Search';
+import AddKhoaHoc from './Action/AddKhoaHoc';
+import EditKhoaHoc from './Action/EditKhoaHoc';
 
 
 export default function TableKhoaHoc() {
@@ -50,6 +52,8 @@ export default function TableKhoaHoc() {
     let handleEditKhoaHoc = (khoaHoc) => { 
       console.log(khoaHoc);
       dispatch(setKhoaHoc(khoaHoc))
+      setIsAdd(false)
+      showModal()
      }
      const onSearch = (value, _e, info) => {
       console.log(value);
@@ -61,6 +65,27 @@ export default function TableKhoaHoc() {
       .catch((err) => {
              console.log(err);
             });
+     }
+     const [isModalOpen, setIsModalOpen] = useState(false);
+     const [isAdd, setIsAdd] = useState(true);
+
+     const showModal = () => {
+       setIsModalOpen(true);
+     };
+     const handleOk = () => {
+      setIsModalOpen(false);
+    };
+  
+    const handleCancel = () => {
+      setIsModalOpen(false);
+    };
+
+    const closeModal = () => {
+      setIsModalOpen(false);
+    };
+    let handleAdd = () => { 
+      setIsAdd(true)
+      showModal()
      }
 let columnsHeader = [
       {
@@ -132,7 +157,7 @@ let columnsHeader = [
         render: (_,khoaHoc) => { 
             // console.log(user);
             return <>
-            <NavLink to={"/admin/khoahoc/edit"}><Button onClick={() => { handleEditKhoaHoc(khoaHoc) }} className='bg-yellow-500 text-white'>Edit</Button></NavLink>
+            <Button onClick={() => { handleEditKhoaHoc(khoaHoc) }} className='bg-yellow-500 text-white'>Edit</Button>
             <Button onClick={() => { handleDeleteKhoaHoc(khoaHoc.maKhoaHoc) }} className='bg-red-600 text-white'>Delete</Button>
             </>
          }
@@ -140,9 +165,21 @@ let columnsHeader = [
 ]
   return (
     <div>
+       <Button type="primary" onClick={handleAdd}>
+        Thêm khóa học
+      </Button>
         <Search placeholder="Nhập tên khóa học" onSearch={onSearch} enterButton/>
         {/* {isLoanding && <Spiner/>} */}
-        <Table dataSource={listKhoaHoc} columns={columnsHeader} />;
+        <Table dataSource={listKhoaHoc} columns={columnsHeader} />
+        <Modal
+        title="Basic Modal"
+        visible={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}>
+        {isAdd?<AddKhoaHoc closeModal={closeModal}/>:<EditKhoaHoc closeModal={closeModal}/>}
+        {/* <AddUser handleOk={handleOk} closeAddUserModal={closeAddUserModal}/> */}
+      </Modal>
     </div>
   )
 }

@@ -65,8 +65,8 @@ const config = {
   };
 
 
-const EditKhoaHoc = () => {
-
+const EditKhoaHoc = (props) => {
+  const { closeModal } = props;
 const [danhMucKhoaHoc, setDanhMucKhoaHoc] = useState([]);
     useEffect(() => {
         clientApi.layDanhMucKhoaHoc()
@@ -113,6 +113,7 @@ console.log(khoaHocData);
     adminApi.themKhoaHoc_Admin(values)
     .then((res) => {
             console.log(res);
+            closeModal()
           })
     .catch((err) => {
            console.log(err);
