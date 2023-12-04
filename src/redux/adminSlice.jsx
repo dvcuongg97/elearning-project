@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit"
 
 let initialState = {
     nguoiDung: null,
-    khoaHoc: null
+    khoaHoc: null,
+    khoaHocDaDangKy: null
 }
 
 let adminSlice = createSlice({
@@ -15,8 +16,11 @@ let adminSlice = createSlice({
         setKhoaHoc: (state,action) => { 
             state.khoaHoc = action.payload
          },
+        setKhoaHocDaDangKy: (state,action) => { 
+            state.khoaHoc = action.payload
+        },
     }
 })
 
-export let { setData , setKhoaHoc } = adminSlice.actions;
+export let { setData , setKhoaHoc, setKhoaHocDaDangKy } = adminSlice.actions;
 export default adminSlice.reducer

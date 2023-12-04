@@ -70,7 +70,12 @@ export default function HocVienDaGhiDanh() {
   return (
     <div>
         <h1 className='text-lg font-semibold'>Học viên chờ xét duyệt</h1>
-        <Table dataSource={danhSachHV} columns={columns} />
+        <Table dataSource={danhSachHV} columns={columns} 
+         pagination={{
+          pageSize: 3,
+          showSizeChanger: false,
+        }}
+        />
     </div>
   )
 }

@@ -1,11 +1,13 @@
 import { Button, Table, message } from 'antd';
 import {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import axios from 'axios';
 import {TOKEN_CYBERSOFT} from '../../../../../api/configApi';
 import {userLocalStorage} from '../../../../../api/localService';
+import { setKhoaHocDaDangKy } from '../../../../../redux/adminSlice';
 
 export default function KhoaHocDaGhiDanh() {
+    const dispatch = useDispatch();
     const userData = useSelector((state) => state.adminSlice.nguoiDung)
     const [danhSachKH, setdanhSachKH] = useState([]);
     let fetchListKh = () => { 
@@ -17,6 +19,7 @@ export default function KhoaHocDaGhiDanh() {
       )
       .then((res) => {
               setdanhSachKH(res.data)
+              dispatch(setKhoaHocDaDangKy(res.data))
             })
       .catch((err) => {
              console.log(err);
@@ -69,7 +72,12 @@ export default function KhoaHocDaGhiDanh() {
   return (
     <div>
         <h1 className='text-lg font-semibold'>Khóa học đã ghi danh</h1>
-        <Table dataSource={danhSachKH} columns={columns} />
+        <Table dataSource={danhSachKH} columns={columns} 
+         pagination={{
+          pageSize: 3,
+          showSizeChanger: false,
+        }}
+        />
     </div>
   )
 }

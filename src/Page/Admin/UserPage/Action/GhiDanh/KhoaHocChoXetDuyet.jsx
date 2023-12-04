@@ -91,7 +91,12 @@ export default function KhoaHocChoXetDuyet() {
   return (
     <div>
         <h1 className='text-lg font-semibold'>Khóa học chờ xét duyệt</h1>
-        <Table dataSource={danhSachKH} columns={columns} />
+        <Table dataSource={danhSachKH} columns={columns} 
+         pagination={{
+                  pageSize: 3,
+                  showSizeChanger: false,
+        }}
+        />
     </div>
   )
 }

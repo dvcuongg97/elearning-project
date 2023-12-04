@@ -4,13 +4,9 @@ import { adminApi, clientApi } from '../../../api/api';
 import Swal from 'sweetalert2';
 import {useDispatch, useSelector} from 'react-redux';
 import { setData, setKhoaHoc } from '../../../redux/adminSlice';
-import { NavLink } from 'react-router-dom';
 import Search from 'antd/es/input/Search';
 import AddKhoaHoc from './Action/AddKhoaHoc';
 import EditKhoaHoc from './Action/EditKhoaHoc';
-import AddUser from '../UserPage/Action/AddUser';
-import EditUser from '../UserPage/Action/EditUser';
-import GhiDanhHV from '../UserPage/Action/GhiDanhHV';
 import GhiDanhKH from './Action/GhiDanhKH';
 
 
@@ -80,6 +76,7 @@ export default function TableKhoaHoc() {
   
     const handleCancel = () => {
       setIsModalOpen(false);
+      fetchListKhoaHoc()
     };
 
     const closeModal = () => {
@@ -122,7 +119,7 @@ let columnsHeader = [
         dataIndex: 'hinhAnh',
         key: 'hinhAnh',
         render: (_,khoaHoc) => { 
-            return <img className='h-60 w-80 object-fill' src={khoaHoc.hinhAnh}/>
+            return <img className='h-40 w-80 object-fill mx-auto block' src={khoaHoc.hinhAnh}/>
          }
       },
       {
@@ -170,6 +167,7 @@ let columnsHeader = [
         <Search className='mt-5 bg-blue-500 rounded-md' placeholder="Nhập tên khóa học" onSearch={onSearch} enterButton/>
         <Table dataSource={listKhoaHoc} columns={columnsHeader} />
         <Modal
+        width= {handleType=="ghiDanh"?1000:600}
         title={handleType=="ghiDanh"?<div className='text-lg mb-2'>Thông tin học viên của khóa {khoaHocData.tenKhoaHoc}</div>:<div className='text-lg mb-2'>Thông tin khóa học</div>}
         visible={isModalOpen}
         onOk={handleOk}

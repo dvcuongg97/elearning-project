@@ -12,7 +12,7 @@ import {
   message,
 } from 'antd';
 import { adminApi, clientApi } from '../../../../api/api';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import moment from 'moment/moment';
 import axios from 'axios';
 import { TOKEN_CYBERSOFT } from '../../../../api/configApi';
@@ -104,13 +104,8 @@ const [danhSachNguoiDung, setDanhSachNguoiDung] = useState([]);
     }, []);
 
 let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
-
 const khoaHocData = useSelector((state) => state.adminSlice.khoaHoc)
-console.log(khoaHocData);
-const khoaHocDefaut = {
-  ...khoaHocData,
-  'ngayTao': null,
-}
+const [khoaHocDefaut, setkhoaHocDefaut] = useState();
   const [form] = Form.useForm();
   const [file, setFile] = useState(null);
   const onFinish = (fieldsValue) => {
@@ -156,8 +151,10 @@ const khoaHocDefaut = {
   useEffect(() => {
     console.log("khoaHocData changed:", khoaHocData);
     setFormKey((prevKey) => prevKey + 1);
+    setkhoaHocDefaut({...khoaHocData,'ngayTao': null})
   }, [khoaHocData]);
   console.log(formKey);
+  console.log(khoaHocDefaut);
   return (
     <Form
       key={formKey}

@@ -42,8 +42,8 @@ export default function KhoaHocChuaGhiDanh() {
     const userData = useSelector((state) => state.adminSlice.nguoiDung)
     const [form] = Form.useForm();
     const [danhSachKhoaHoc, setDanhSachKhoaHoc] = useState([]);
-    useEffect(() => {
-        adminGhiDanh.khoaHocChuaGhiDanh(userData.taiKhoan)
+    const fetchListKh = () => {
+      adminGhiDanh.khoaHocChuaGhiDanh(userData.taiKhoan)
         .then((res) => {
                 setDanhSachKhoaHoc(res.data.map((item) => { 
                     return {
@@ -54,6 +54,9 @@ export default function KhoaHocChuaGhiDanh() {
         .catch((err) => {
                console.log(err);
               });
+    }
+    useEffect(() => {
+       fetchListKh()
     }, []);
     const onFinish = (value) => {
         let ttdk = {
@@ -68,6 +71,7 @@ export default function KhoaHocChuaGhiDanh() {
         )
         .then((res) => {
                 message.success("Ghi danh thành công")
+                fetchListKh()
               })
         .catch((err) => {
                console.log(err);

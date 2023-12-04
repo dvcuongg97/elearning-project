@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   LaptopOutlined,
-  NotificationOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
@@ -31,6 +30,25 @@ const AdminLayout = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+
+  const [isMobile, setIsMobile] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  useEffect(() => {
+    setCollapsed(isMobile);
+  }, [isMobile]);
   return (
     <Layout>
       <Header
@@ -51,6 +69,7 @@ const AdminLayout = () => {
       </Header>
       <Layout>
         <Sider
+          collapsed={collapsed}
           theme="dark"
           width={250}
           // style={{
