@@ -7,6 +7,7 @@ export default function Spinner() {
   return spinnerState ? (
     <div
       style={{
+        maxWidth: "2000px",
         width: "100%",
         height: "100%",
         background: "#000",
