@@ -103,25 +103,47 @@ const [danhSachNguoiDung, setDanhSachNguoiDung] = useState([]);
 let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
 
   const [form] = Form.useForm();
-  const onFinish = (fieldsValue) => {
+  const [file, setFile] = useState(null);
+  const onFinish = async (fieldsValue) => {
     const values = {
-        ...fieldsValue,
-        'ngayTao': fieldsValue['ngayTao'].format('DD/MM/YYYY')
-    }
-    axios.post('https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/ThemKhoaHoc',values, 
-        {  headers: {
+      ...fieldsValue,
+      'ngayTao': fieldsValue['ngayTao'].format('DD/MM/YYYY')
+  }
+    const formData = new FormData();
+    formData.append('maKhoaHoc', values.maKhoaHoc);
+    formData.append('biDanh', values.biDanh);
+    formData.append('tenKhoaHoc', values.tenKhoaHoc);
+    formData.append('moTa', values.moTa);
+    formData.append('luotXem', values.luotXem);
+    formData.append('danhGia', values.danhGia);
+    formData.append('hinhAnh', file);
+    formData.append('maNhom', values.maNhom);
+    formData.append('ngayTao', values.ngayTao);
+    formData.append('maDanhMucKhoaHoc', values.maDanhMucKhoaHoc);
+    formData.append('taiKhoanNguoiTao', values.taiKhoanNguoiTao);
+    try {
+      const response = await axios.post('https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/ThemKhoaHoc', formData, {
+        headers: {
           TokenCybersoft: TOKEN_CYBERSOFT,
           Authorization: "Bearer " + userLocalStorage.get()?.accessToken,
-        },}
-        )
-        .then((res) => {
-                message.success("Thêm thành công")
-              })
-        .catch((err) => {
-               console.log(err);
-              });
-    console.log('Received values of form: ', values);
+        },
+      });
+      message.success("Thêm thành công")
+      console.log('Server response:', response.data);
+      closeModal()
+    } catch (error) {
+      console.error('Error uploading data:', error);
+    }
   };
+  const customRequest = ({ file, onSuccess, onError }) => {
+    try {
+      setFile(file);
+      onSuccess();
+    } catch (error) {
+      onError(error);
+    }
+  };
+  
   return (
     <Form
     
@@ -209,7 +231,7 @@ let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
       valuePropName="fileList"
       getValueFromEvent={normFile}
     >
-      <Upload name="logo" action={"http://localhost:3000/"} type="picture" beforeUpload={(file) => { console.log({file}); return false }}>
+      <Upload name="logo" customRequest={customRequest} action={"http://localhost:3000/"} type="picture">
         <Button icon={<UploadOutlined />}>Tải ảnh lên</Button>
       </Upload>
     </Form.Item>
@@ -244,7 +266,7 @@ let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
       rules={[
         {
           required: true,
-          message: 'Please select your country!',
+          message: 'Vui lòng chọn mã',
         },
       ]}
     >
@@ -253,7 +275,7 @@ let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
                 style={{
                 width: 200,
                 }}
-                placeholder="Search to Select"
+                placeholder="Nhập để tìm"
                 optionFilterProp="children"
                 filterOption={(input, option) => (option?.label ?? '').includes(input)}
                 filterSort={(optionA, optionB) =>
@@ -270,7 +292,7 @@ let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
       rules={[
         {
           required: true,
-          message: 'Please select your country!',
+          message: 'Vui lòng chọn tài khoản',
         },
       ]}
     >
@@ -279,7 +301,7 @@ let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
                 style={{
                 width: 200,
                 }}
-                placeholder="Search to Select"
+                placeholder="Nhập để tìm"
                 optionFilterProp="children"
                 filterOption={(input, option) => (option?.label ?? '').includes(input)}
                 filterSort={(optionA, optionB) =>

@@ -19,7 +19,6 @@ export default function TableKhoaHoc() {
     let fetchListKhoaHoc = () => { 
           clientApi.layDanhSachKhoaHoc()
           .then((res) => {
-                  console.log(res);
                   setListKhoaHoc(res.data)
                 })
           .catch((err) => {
@@ -54,7 +53,6 @@ export default function TableKhoaHoc() {
     }
     const dispatch = useDispatch();
     let handleEditKhoaHoc = (khoaHoc) => { 
-      console.log(khoaHoc);
       setHandleType("edit")
       dispatch(setKhoaHoc(khoaHoc))
       showModal()

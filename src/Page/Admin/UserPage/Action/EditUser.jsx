@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   Form,
@@ -64,6 +64,11 @@ const EditUser = (props) => {
            console.log(err);
           });
   };
+  const [formKey, setFormKey] = useState(0);
+  useEffect(() => {
+    console.log("userData changed:", userData);
+    setFormKey((prevKey) => prevKey + 1);
+  }, [userData]);
   return (
     <Form
        initialValues={userData}

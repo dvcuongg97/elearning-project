@@ -107,13 +107,30 @@ let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
 
 const khoaHocData = useSelector((state) => state.adminSlice.khoaHoc)
 console.log(khoaHocData);
+const khoaHocDefaut = {
+  ...khoaHocData,
+  'ngayTao': null,
+}
   const [form] = Form.useForm();
+  const [file, setFile] = useState(null);
   const onFinish = (fieldsValue) => {
     const values = {
       ...fieldsValue,
       'ngayTao': fieldsValue['ngayTao'].format('DD/MM/YYYY')
   }
-  axios.put('https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/CapNhatKhoaHoc',values, 
+    const formData = new FormData();
+    formData.append('maKhoaHoc', values.maKhoaHoc);
+    formData.append('biDanh', values.biDanh);
+    formData.append('tenKhoaHoc', values.tenKhoaHoc);
+    formData.append('moTa', values.moTa);
+    formData.append('luotXem', values.luotXem);
+    formData.append('danhGia', values.danhGia);
+    formData.append('hinhAnh', file);
+    formData.append('maNhom', values.maNhom);
+    formData.append('ngayTao', values.ngayTao);
+    formData.append('maDanhMucKhoaHoc', values.maDanhMucKhoaHoc);
+    formData.append('taiKhoanNguoiTao', values.taiKhoanNguoiTao);
+    axios.post('https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/CapNhatKhoaHocUpload',formData, 
       {  headers: {
         TokenCybersoft: TOKEN_CYBERSOFT,
         Authorization: "Bearer " + userLocalStorage.get()?.accessToken,
@@ -127,8 +144,24 @@ console.log(khoaHocData);
             });
   console.log('Received values of form: ', values);
   };
+  const customRequest = ({ file, onSuccess, onError }) => {
+    try {
+      setFile(file);
+      onSuccess();
+    } catch (error) {
+      onError(error);
+    }
+  };
+  const [formKey, setFormKey] = useState(0);
+  useEffect(() => {
+    console.log("khoaHocData changed:", khoaHocData);
+    setFormKey((prevKey) => prevKey + 1);
+  }, [khoaHocData]);
+  console.log(formKey);
   return (
     <Form
+      key={formKey}
+      initialValues={khoaHocDefaut}
       {...formItemLayout}
       form={form}
       name="register"
@@ -149,7 +182,7 @@ console.log(khoaHocData);
           },
         ]}
       >
-        <Input disabled defaultValue={khoaHocData!=null?khoaHocData.maKhoaHoc:""}/>
+        <Input/>
       </Form.Item>
 
       <Form.Item
@@ -162,7 +195,7 @@ console.log(khoaHocData);
           },
         ]}
       >
-        <Input defaultValue={khoaHocData!=null?khoaHocData.biDanh:""}/>
+        <Input/>
       </Form.Item>
 
       <Form.Item
@@ -176,7 +209,7 @@ console.log(khoaHocData);
           },
         ]}
       >
-        <Input defaultValue={khoaHocData!=null?khoaHocData.tenKhoaHoc:""}/>
+        <Input/>
       </Form.Item>
       
       <Form.Item
@@ -190,30 +223,29 @@ console.log(khoaHocData);
           },
         ]}
       >
-        <Input defaultValue={khoaHocData!=null?khoaHocData.moTa:""}/>
+        <Input/>
       </Form.Item>
 
       <Form.Item
         name="luotXem"
         label="Lượt xem"
       >
-        <InputNumber defaultValue={khoaHocData!=null?khoaHocData.luotXem:""}/>
+        <InputNumber/>
       </Form.Item>
 
       <Form.Item
         name="danhGia"
         label="Đánh giá"
       >
-        <InputNumber defaultValue={khoaHocData!=null?khoaHocData.danhGia:""}/>
+        <InputNumber/>
       </Form.Item>
 
       <Form.Item
       name="hinhAnh"
       label="Hình ảnh"
-      valuePropName="fileList"
       getValueFromEvent={normFile}
     >
-      <Upload name="logo" action={"http://localhost:3000/"} type="picture" beforeUpload={(file) => { console.log({file}); return false }}>
+      <Upload name="logo" action={"http://localhost:3000/"} customRequest={customRequest} type="picture">
         <Button icon={<UploadOutlined />}>Tải ảnh lên</Button>
       </Upload>
     </Form.Item>
@@ -228,7 +260,7 @@ console.log(khoaHocData);
           },
         ]}
       >
-        <Select placeholder="Chọn nhóm" defaultValue={khoaHocData!=null?khoaHocData.maNhom.toUpperCase():""}>
+        <Select placeholder="Chọn nhóm">
           <Option value="GP01">GP01</Option>
           <Option value="GP02">GP02</Option>
           <Option value="GP03">GP03</Option>
@@ -248,17 +280,16 @@ console.log(khoaHocData);
       rules={[
         {
           required: false,
-          message: 'Please select your country!',
+          message: 'Vui lòng chọn mã',
         },
       ]}
     >
             <Select
-                defaultValue={khoaHocData!=null?khoaHocData.danhMucKhoaHoc.maDanhMucKhoahoc:""}
                 showSearch
                 style={{
                 width: 200,
                 }}
-                placeholder="Search to Select"
+                placeholder="Nhập để tìm"
                 optionFilterProp="children"
                 filterOption={(input, option) => (option?.label ?? '').includes(input)}
                 filterSort={(optionA, optionB) =>
@@ -275,17 +306,16 @@ console.log(khoaHocData);
       rules={[
         {
           required: false,
-          message: 'Please select your country!',
+          message: 'Vui lòng chọn tài khoản',
         },
       ]}
     >
             <Select
-                defaultValue={khoaHocData!=null?khoaHocData.nguoiTao.taiKhoan:""}
                 showSearch
                 style={{
                 width: 200,
                 }}
-                placeholder="Search to Select"
+                placeholder="SNhập để tìm"
                 optionFilterProp="children"
                 filterOption={(input, option) => (option?.label ?? '').includes(input)}
                 filterSort={(optionA, optionB) =>

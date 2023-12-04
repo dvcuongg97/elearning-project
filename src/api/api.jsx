@@ -77,6 +77,11 @@ export const adminApi = {
       `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${tenKhoaHoc}&MaNhom=${API_GROUP}`
     );
   },
+  upLoadAnh: () => { 
+    return https.post(
+      `api/QuanLyKhoaHoc/UploadHinhAnhKhoaHoc`
+    );
+   }
 }
 
 export const adminGhiDanh = {
@@ -86,3 +91,4 @@ export const adminGhiDanh = {
     );
    },
 }
+
