@@ -4,9 +4,11 @@ import * as Yup from "yup";
 import { Modal, Progress, message } from "antd";
 import { userProfileApi } from "../../api/api";
 import { useSelector } from "react-redux";
+import { userLocalStorage } from "../../api/localService";
 
 export default function TaiKhoan() {
   const { userLogin } = useSelector((state) => state.userProfileSlice);
+  // const userLogin = localStorage.get();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -16,7 +18,7 @@ export default function TaiKhoan() {
   };
   const formik = useFormik({
     initialValues: {
-      taiKhoan: userLogin.taiKhoan,
+      taiKhoan: userLogin?.taiKhoan,
       matKhau: "",
       hoTen: "",
       email: "",
@@ -60,6 +62,8 @@ export default function TaiKhoan() {
         const res = await userProfileApi.capNhatThongTinTaiKhoan(values);
         if (res.status === 200) {
           message.success("Cập nhật thành công");
+          userLocalStorage.set(res.data);
+          window.location.reload();
           resetForm();
         }
       } catch (error) {
@@ -67,6 +71,7 @@ export default function TaiKhoan() {
       }
     },
   });
+
   return (
     <>
       <div className="md:grid grid-cols-2 mb-12">
@@ -183,7 +188,7 @@ export default function TaiKhoan() {
           {" "}
           <h6>Họ và tên</h6>
           <input
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 py-2 w-full"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 w-full"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             type="text"
@@ -198,7 +203,7 @@ export default function TaiKhoan() {
           )}
           <h6>Mật khẩu</h6>
           <input
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 py-2 w-full"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 w-full"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             type="password"
@@ -213,7 +218,7 @@ export default function TaiKhoan() {
           )}
           <h6>Email</h6>
           <input
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 py-2 w-full"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 w-full"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             type="email"
@@ -228,7 +233,7 @@ export default function TaiKhoan() {
           )}
           <h6>Số điện thoại</h6>
           <input
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 py-2 w-full"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 w-full"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
             type="phone"
@@ -244,7 +249,7 @@ export default function TaiKhoan() {
           <div className="modal-footer">
             <button
               type="submit"
-              className="bg-slate-500 hover:bg-slate-400 py-2 px-1 rounded-lg font-medium"
+              className="bg-slate-500 hover:bg-slate-400 p-2 px-1 rounded-lg font-medium"
             >
               Hoàn thành
             </button>

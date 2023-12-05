@@ -155,7 +155,7 @@ export default function Header() {
             <ul className="courseCateListMobie">{renderMenuKhoaHoc()}</ul>
           </li>
           <li>
-            <NavLink to="/">Khóa học</NavLink>
+            <NavLink to="/khoahoc">Khóa học</NavLink>
           </li>
           <li>
             <NavLink to="/">Blog</NavLink>

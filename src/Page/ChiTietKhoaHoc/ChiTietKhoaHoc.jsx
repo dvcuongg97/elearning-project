@@ -24,10 +24,6 @@ export default function ChiTietKhoaHoc() {
       return khoaHoc.maKhoaHoc === param.maKhoaHoc;
     }
   );
-  console.log(
-    "🚀 ~ file: ChiTietKhoaHoc.jsx:27 ~ ChiTietKhoaHoc ~ khoaHocDangKy:",
-    khoaHocDangKy
-  );
 
   useEffect(() => {
     dispatch(layDanhSachKhoaHocAction());

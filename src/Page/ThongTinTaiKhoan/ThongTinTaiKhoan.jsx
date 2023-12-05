@@ -35,13 +35,6 @@ export default function ThongTinTaiKhoan() {
     },
   ];
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(layThongTinTaiKhoanAction());
-    // window.location.reload();
-  }, []);
-
   return (
     <>
       <section className="infoPage">

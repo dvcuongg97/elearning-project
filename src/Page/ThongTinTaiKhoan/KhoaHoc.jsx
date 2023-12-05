@@ -1,16 +1,19 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { userProfileApi } from "../../api/api";
 import { HuyGhiDanhKhoaHoc } from "../../model/userAction";
 import { message } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { layThongTinTaiKhoanAction } from "../../redux/userProfileSlice";
 
 export default function KhoaHoc() {
-  const { userProfile } = useSelector((state) => state.userProfileSlice);
-  // const dispatch = useDispatch();
+  const { userProfile, userLogin } = useSelector(
+    (state) => state.userProfileSlice
+  );
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(layThongTinTaiKhoanAction());
-  // }, []);
+  useEffect(() => {
+    dispatch(layThongTinTaiKhoanAction());
+  }, [userLogin]);
 
   const handleHuyKhoaHoc = (khoaHoc) => {
     let huyGhiDanh = new HuyGhiDanhKhoaHoc();

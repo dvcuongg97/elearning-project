@@ -99,7 +99,7 @@ export default function DangNhapDangKy() {
       if (userLogin?.maLoaiNguoiDung === "GV") {
         navigate("/admin");
       } else {
-        navigate("/");
+        navigate(-1);
       }
     }, 500);
   }
