@@ -79,7 +79,7 @@ export default function HocVienChoXetDuyet() {
       key: 'biDanh',
     },
     {
-      title: 'Action',
+      title: 'Thao tác',
       render: (_,hocVien) => {
         return <>
              <Button className='bg-green-500 text-white' onClick={() => { handleDangKy(hocVien) }}>Xác thực</Button>
