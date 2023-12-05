@@ -59,7 +59,7 @@ export default function HocVienDaGhiDanh() {
       key: 'biDanh',
     },
     {
-      title: 'Action',
+      title: 'Thao tác',
       render: (_,hocVien) => {
         return <>
             <Button className='bg-red-500 text-white' onClick={() => { handleXoaHocVien(hocVien) }}>Xóa</Button>

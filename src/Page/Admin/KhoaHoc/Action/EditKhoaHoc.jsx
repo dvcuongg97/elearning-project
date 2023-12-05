@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
+import React, { useEffect, useState } from 'react';
+import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
 import {
   Button,
   DatePicker,
@@ -10,12 +10,6 @@ import {
   Select,
   Upload,
   message,
-<<<<<<< HEAD
-} from "antd";
-import { adminApi, clientApi } from "../../../../api/api";
-import { useSelector } from "react-redux";
-import moment from "moment/moment";
-=======
 } from 'antd';
 import { adminApi, clientApi } from '../../../../api/api';
 import {useDispatch, useSelector} from 'react-redux';
@@ -23,7 +17,6 @@ import moment from 'moment/moment';
 import axios from 'axios';
 import { TOKEN_CYBERSOFT } from '../../../../api/configApi';
 import { userLocalStorage } from '../../../../api/localService';
->>>>>>> refs/remotes/origin/admin2
 const { Option } = Select;
 
 const formItemLayout = {
@@ -58,105 +51,66 @@ const tailFormItemLayout = {
 };
 
 const normFile = (e) => {
-  console.log("Upload event:", e);
-  if (Array.isArray(e)) {
-    return e;
-  }
-  return e?.fileList;
-};
+    console.log('Upload event:', e);
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e?.fileList;
+  };
 const config = {
-  rules: [
-    {
-      type: "object",
-      required: false,
-      message: "Please select time!",
-    },
-  ],
-};
+    rules: [
+      {
+        type: 'object',
+        required: false,
+        message: 'Please select time!',
+      },
+    ],
+  };
+
 
 const EditKhoaHoc = (props) => {
   const { closeModal } = props;
-  const [danhMucKhoaHoc, setDanhMucKhoaHoc] = useState([]);
-  useEffect(() => {
-    clientApi
-      .layDanhMucKhoaHoc()
-      .then((res) => {
-        setDanhMucKhoaHoc(
-          res.data.map((item) => {
-            return {
-              value: item.maDanhMuc,
-              label: item.tenDanhMuc,
-            };
-          })
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+const [danhMucKhoaHoc, setDanhMucKhoaHoc] = useState([]);
+    useEffect(() => {
+        clientApi.layDanhMucKhoaHoc()
+        .then((res) => {
+                setDanhMucKhoaHoc(res.data.map((item) => { 
+                    return {
+                        value: item.maDanhMuc,
+                        label: item.tenDanhMuc,
+                    } }))
+              })
+        .catch((err) => {
+               console.log(err);
+              });
+    }, []);
+    
+const [danhSachNguoiDung, setDanhSachNguoiDung] = useState([]);
+    useEffect(() => {
+        adminApi.layDSNguoiDung_Admin()
+        .then((res) => {
+                setDanhSachNguoiDung(res.data.map((item) => { 
+                     if (item.maLoaiNguoiDung == 'GV') {
+                        return {
+                            value: item.taiKhoan,
+                            label: item.hoTen,
+                        }
+                     }
+                 }))
+              })
+        .catch((err) => {
+               console.log(err);
+              });
+    }, []);
 
-<<<<<<< HEAD
-  const [danhSachNguoiDung, setDanhSachNguoiDung] = useState([]);
-  useEffect(() => {
-    adminApi
-      .layDSNguoiDung_Admin()
-      .then((res) => {
-        setDanhSachNguoiDung(
-          res.data.map((item) => {
-            if (item.maLoaiNguoiDung == "GV") {
-              return {
-                value: item.taiKhoan,
-                label: item.hoTen,
-              };
-            }
-          })
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined);
-
-  const khoaHocData = useSelector((state) => state.adminSlice.khoaHoc);
-  console.log(khoaHocData);
-=======
 let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
 const khoaHocData = useSelector((state) => state.adminSlice.khoaHoc)
 const [khoaHocDefaut, setkhoaHocDefaut] = useState();
->>>>>>> refs/remotes/origin/admin2
   const [form] = Form.useForm();
   const [file, setFile] = useState(null);
   const onFinish = (fieldsValue) => {
     const values = {
       ...fieldsValue,
-<<<<<<< HEAD
-      ngayTao: fieldsValue["ngayTao"].format("DD/MM/YYYY"),
-    };
-    let formData = new FormData();
-    formData.append("maKhoaHoc", values.maKhoaHoc);
-    formData.append("biDanh", values.biDanh);
-    formData.append("tenKhoaHoc", values.tenKhoaHoc);
-    formData.append("moTa", values.moTa);
-    formData.append("luotXem", values.luotXem);
-    formData.append("danhGia", values.danhGia);
-    formData.append("hinhAnh", values.hinhAnh);
-    formData.append("maNhom", values.maNhom);
-    formData.append("ngayTao", values.ngayTao);
-    formData.append("maDanhMucKhoaHoc", values.maDanhMucKhoaHoc);
-    formData.append("taiKhoanNguoiTao", values.taiKhoanNguoiTao);
-    adminApi
-      .themKhoaHoc_Admin(values)
-      .then((res) => {
-        console.log(res);
-        closeModal();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log("Received values of form: ", values);
-=======
       'ngayTao': fieldsValue['ngayTao'].format('DD/MM/YYYY')
   }
     const formData = new FormData();
@@ -184,7 +138,6 @@ const [khoaHocDefaut, setkhoaHocDefaut] = useState();
              console.log(err);
             });
   console.log('Received values of form: ', values);
->>>>>>> refs/remotes/origin/admin2
   };
   const customRequest = ({ file, onSuccess, onError }) => {
     try {
@@ -221,19 +174,12 @@ const [khoaHocDefaut, setkhoaHocDefaut] = useState();
         rules={[
           {
             required: false,
-            message: "Vui lòng nhập mã khóa học",
+            message: 'Vui lòng nhập mã khóa học',
             whitespace: true,
           },
         ]}
       >
-<<<<<<< HEAD
-        <Input
-          disabled
-          defaultValue={khoaHocData != null ? khoaHocData.maKhoaHoc : ""}
-        />
-=======
         <Input/>
->>>>>>> refs/remotes/origin/admin2
       </Form.Item>
 
       <Form.Item
@@ -242,15 +188,11 @@ const [khoaHocDefaut, setkhoaHocDefaut] = useState();
         rules={[
           {
             required: false,
-            message: "Vui lòng nhập bí danh",
+            message: 'Vui lòng nhập bí danh',
           },
         ]}
       >
-<<<<<<< HEAD
-        <Input defaultValue={khoaHocData != null ? khoaHocData.biDanh : ""} />
-=======
         <Input/>
->>>>>>> refs/remotes/origin/admin2
       </Form.Item>
 
       <Form.Item
@@ -259,72 +201,32 @@ const [khoaHocDefaut, setkhoaHocDefaut] = useState();
         rules={[
           {
             required: false,
-            message: "Vui lòng nhập tên khóa học",
+            message: 'Vui lòng nhập tên khóa học',
             whitespace: true,
           },
         ]}
       >
-<<<<<<< HEAD
-        <Input
-          defaultValue={khoaHocData != null ? khoaHocData.tenKhoaHoc : ""}
-        />
-=======
         <Input/>
->>>>>>> refs/remotes/origin/admin2
       </Form.Item>
-
+      
       <Form.Item
         name="moTa"
         label="Mô tả"
         rules={[
           {
             required: false,
-            message: "Vui lòng nhập mô tả",
+            message: 'Vui lòng nhập mô tả',
             whitespace: true,
           },
         ]}
       >
-<<<<<<< HEAD
-        <Input defaultValue={khoaHocData != null ? khoaHocData.moTa : ""} />
-      </Form.Item>
-
-      <Form.Item name="luotXem" label="Lượt xem">
-        <InputNumber
-          defaultValue={khoaHocData != null ? khoaHocData.luotXem : ""}
-        />
-      </Form.Item>
-
-      <Form.Item name="danhGia" label="Đánh giá">
-        <InputNumber
-          defaultValue={khoaHocData != null ? khoaHocData.danhGia : ""}
-        />
-=======
         <Input/>
->>>>>>> refs/remotes/origin/admin2
       </Form.Item>
 
       <Form.Item
-        name="hinhAnh"
-        label="Hình ảnh"
-        valuePropName="fileList"
-        getValueFromEvent={normFile}
+        name="luotXem"
+        label="Lượt xem"
       >
-<<<<<<< HEAD
-        <Upload
-          name="logo"
-          action={"http://localhost:3000/"}
-          type="picture"
-          beforeUpload={(file) => {
-            console.log({ file });
-            return false;
-          }}
-        >
-          <Button icon={<UploadOutlined />}>Tải ảnh lên</Button>
-        </Upload>
-      </Form.Item>
-
-      <Form.Item
-=======
         <InputNumber/>
       </Form.Item>
 
@@ -346,26 +248,16 @@ const [khoaHocDefaut, setkhoaHocDefaut] = useState();
     </Form.Item>
 
       <Form.Item
->>>>>>> refs/remotes/origin/admin2
         name="maNhom"
         label="Mã nhóm"
         rules={[
           {
             required: false,
-            message: "Vui lòng chọn mã nhóm",
+            message: 'Vui lòng chọn mã nhóm',
           },
         ]}
       >
-<<<<<<< HEAD
-        <Select
-          placeholder="Chọn nhóm"
-          defaultValue={
-            khoaHocData != null ? khoaHocData.maNhom.toUpperCase() : ""
-          }
-        >
-=======
         <Select placeholder="Chọn nhóm">
->>>>>>> refs/remotes/origin/admin2
           <Option value="GP01">GP01</Option>
           <Option value="GP02">GP02</Option>
           <Option value="GP03">GP03</Option>
@@ -375,77 +267,10 @@ const [khoaHocDefaut, setkhoaHocDefaut] = useState();
       </Form.Item>
 
       <Form.Item shouldUpdate name="ngayTao" label="Ngày tạo" {...config}>
-        <DatePicker format="DD/MM/YYYY" />
+      <DatePicker format="DD/MM/YYYY" />
       </Form.Item>
 
       <Form.Item
-<<<<<<< HEAD
-        name="maDanhMucKhoaHoc"
-        label="Danh mục"
-        hasFeedback
-        rules={[
-          {
-            required: false,
-            message: "Please select your country!",
-          },
-        ]}
-      >
-        <Select
-          defaultValue={
-            khoaHocData != null
-              ? khoaHocData.danhMucKhoaHoc.maDanhMucKhoahoc
-              : ""
-          }
-          showSearch
-          style={{
-            width: 200,
-          }}
-          placeholder="Search to Select"
-          optionFilterProp="children"
-          filterOption={(input, option) =>
-            (option?.label ?? "").includes(input)
-          }
-          filterSort={(optionA, optionB) =>
-            (optionA?.label ?? "")
-              .toLowerCase()
-              .localeCompare((optionB?.label ?? "").toLowerCase())
-          }
-          options={danhMucKhoaHoc}
-        />
-      </Form.Item>
-
-      <Form.Item
-        name="taiKhoanNguoiTao"
-        label="Tài khoản người tạo"
-        hasFeedback
-        rules={[
-          {
-            required: false,
-            message: "Please select your country!",
-          },
-        ]}
-      >
-        <Select
-          defaultValue={
-            khoaHocData != null ? khoaHocData.nguoiTao.taiKhoan : ""
-          }
-          showSearch
-          style={{
-            width: 200,
-          }}
-          placeholder="Search to Select"
-          optionFilterProp="children"
-          filterOption={(input, option) =>
-            (option?.label ?? "").includes(input)
-          }
-          filterSort={(optionA, optionB) =>
-            (optionA?.label ?? "")
-              .toLowerCase()
-              .localeCompare((optionB?.label ?? "").toLowerCase())
-          }
-          options={danhSachGV}
-        />
-=======
       name="maDanhMucKhoaHoc"
       label="Danh mục"
       hasFeedback
@@ -495,7 +320,6 @@ const [khoaHocDefaut, setkhoaHocDefaut] = useState();
                         }
                         options={danhSachGV}
   />
->>>>>>> refs/remotes/origin/admin2
       </Form.Item>
 
       <Form.Item {...tailFormItemLayout}>

@@ -1,10 +1,11 @@
 import React from 'react'
 import {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { Button, Table, message } from 'antd';
 import axios from 'axios';
 import { TOKEN_CYBERSOFT } from '../../../../../api/configApi';
 import { userLocalStorage } from '../../../../../api/localService';
+import { setKhoaHocDaDangKy } from '../../../../../redux/adminSlice';
 
 export default function KhoaHocChoXetDuyet() {
     const userData = useSelector((state) => state.adminSlice.nguoiDung)
@@ -78,7 +79,7 @@ export default function KhoaHocChoXetDuyet() {
           key: 'tenKhoaHoc',
         },
         {
-          title: 'Action',
+          title: 'Thao tác',
           render: (_,khoaHoc) => {
             return <>
             <Button className='bg-green-500 text-white' onClick={() => { handleDangKy(khoaHoc) }}>Xác thực</Button>
