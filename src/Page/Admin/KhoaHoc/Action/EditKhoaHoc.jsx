@@ -13,7 +13,7 @@ import {
 } from "antd";
 import { adminApi, clientApi } from "../../../../api/api";
 import { useSelector } from "react-redux";
-// import moment from 'moment/moment';
+import moment from "moment/moment";
 const { Option } = Select;
 
 const formItemLayout = {
