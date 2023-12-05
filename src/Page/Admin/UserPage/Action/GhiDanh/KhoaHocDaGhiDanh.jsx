@@ -58,7 +58,7 @@ export default function KhoaHocDaGhiDanh() {
           key: 'tenKhoaHoc',
         },
         {
-          title: 'Action',
+          title: 'Thao tác',
           render: (_,khoaHoc) => {
             return <>
             <Button className='bg-red-500 text-white' onClick={() => { handleXoaKhoaHoc(khoaHoc) }}>Xóa</Button>

@@ -79,7 +79,7 @@ export default function KhoaHocChoXetDuyet() {
           key: 'tenKhoaHoc',
         },
         {
-          title: 'Action',
+          title: 'Thao tác',
           render: (_,khoaHoc) => {
             return <>
             <Button className='bg-green-500 text-white' onClick={() => { handleDangKy(khoaHoc) }}>Xác thực</Button>

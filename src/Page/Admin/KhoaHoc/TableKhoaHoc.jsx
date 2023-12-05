@@ -149,12 +149,12 @@ let columnsHeader = [
          }
       },
       {
-        title: 'Action',
+        title: 'Thao tác',
         render: (_,khoaHoc) => { 
             return <>
             <Button onClick={() => {handleGhiDanh(khoaHoc)}} className='bg-green-500 text-white'>Ghi danh</Button>
-            <Button onClick={() => { handleEditKhoaHoc(khoaHoc) }} className='bg-yellow-500 text-white'>Edit</Button>
-            <Button onClick={() => { handleDeleteKhoaHoc(khoaHoc.maKhoaHoc) }} className='bg-red-600 text-white'>Delete</Button>
+            <Button onClick={() => { handleEditKhoaHoc(khoaHoc) }} className='bg-yellow-500 text-white'>Sửa</Button>
+            <Button onClick={() => { handleDeleteKhoaHoc(khoaHoc.maKhoaHoc) }} className='bg-red-600 text-white'>Xóa</Button>
             </>
          }
       },
