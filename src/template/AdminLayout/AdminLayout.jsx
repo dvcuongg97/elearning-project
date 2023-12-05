@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 import React, { useEffect } from "react";
+=======
+import React, { useEffect, useState } from "react";
+>>>>>>> refs/remotes/origin/admin2
 import {
   LaptopOutlined,
-  NotificationOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
@@ -38,11 +41,37 @@ const items2 = [
 ];
 
 const AdminLayout = () => {
+<<<<<<< HEAD
   const navigate = useNavigate();
 
+=======
+  let handleLogout = () => { 
+    userLocalStorage.remove()
+    window.location.href="/"
+ }
+>>>>>>> refs/remotes/origin/admin2
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+
+  const [isMobile, setIsMobile] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  useEffect(() => {
+    setCollapsed(isMobile);
+  }, [isMobile]);
   return (
     <Layout>
       <Header
@@ -57,6 +86,7 @@ const AdminLayout = () => {
           E Learning Admin
         </span>
         <span>
+<<<<<<< HEAD
           <span className="text-blue-100 px-5 h-10 text-lg font-bold">
             Chào {userLocalStorage.get().hoTen}
           </span>
@@ -70,10 +100,15 @@ const AdminLayout = () => {
           >
             Đăng xuất
           </button>
+=======
+          <span className="text-blue-100 px-5 h-10 text-lg font-bold">Chào {userLocalStorage.get().hoTen}</span> 
+        <NavLink to={"/"}><button className="text-blue-500 bg-white px-5 h-10 leading-10 shadow shadow-white rounded-full font-bold" onClick={handleLogout}>Đăng xuất</button></NavLink>
+>>>>>>> refs/remotes/origin/admin2
         </span>
       </Header>
       <Layout>
         <Sider
+          collapsed={collapsed}
           theme="dark"
           width={250}
           // style={{

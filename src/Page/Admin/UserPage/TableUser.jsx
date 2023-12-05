@@ -86,7 +86,6 @@ export default function TableUser() {
       showModal()
      }
     let handleGhiDanh = (user) => {
-      console.log(user);
       dispatch(setData(user))
       setHandleType("ghiDanh")
       showModal()
@@ -144,6 +143,7 @@ let columnsHeader = [
         <Search className='mt-5 bg-blue-500 rounded-md' placeholder="Nhập tên người dùng" onSearch={onSearch} enterButton/>
         <Table dataSource={listUser} columns={columnsHeader} />
       <Modal
+        width= {handleType=="ghiDanh"?1000:600}
         title={handleType=="ghiDanh"?<div className='text-lg mb-2'>Thông tin khóa học của {userData.hoTen}</div>:<div className='text-lg mb-2'>Thông tin học viên</div>}
         visible={isModalOpen}
         onOk={handleOk}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   Form,
@@ -9,6 +9,9 @@ import {
 } from 'antd';
 import { useSelector } from 'react-redux';
 import { adminApi, clientApi } from '../../../../api/api';
+import axios from 'axios';
+import { TOKEN_CYBERSOFT } from '../../../../api/configApi';
+import { userLocalStorage } from '../../../../api/localService';
 const { Option } = Select;
 
 const formItemLayout = {
@@ -47,17 +50,25 @@ const EditUser = (props) => {
   const userData = useSelector((state) => state.adminSlice.nguoiDung)
   const [form] = Form.useForm();
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-    adminApi.capNhatNguoiDung_Admin(values)
+    axios.put('https://elearningnew.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung',values, 
+    {  headers: {
+      TokenCybersoft: TOKEN_CYBERSOFT,
+      Authorization: "Bearer " + userLocalStorage.get()?.accessToken,
+    },}
+    )
     .then((res) => {
-            console.log(res);
             message.success("Sửa thành công")
             closeModal()
           })
-          .catch((err) => {
+    .catch((err) => {
            console.log(err);
           });
   };
+  const [formKey, setFormKey] = useState(0);
+  useEffect(() => {
+    console.log("userData changed:", userData);
+    setFormKey((prevKey) => prevKey + 1);
+  }, [userData]);
   return (
     <Form
        initialValues={userData}
