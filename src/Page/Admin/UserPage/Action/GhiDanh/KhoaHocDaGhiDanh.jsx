@@ -7,7 +7,6 @@ import {userLocalStorage} from '../../../../../api/localService';
 import { setKhoaHocDaDangKy } from '../../../../../redux/adminSlice';
 
 export default function KhoaHocDaGhiDanh() {
-    const dispatch = useDispatch();
     const userData = useSelector((state) => state.adminSlice.nguoiDung)
     const [danhSachKH, setdanhSachKH] = useState([]);
     let fetchListKh = () => { 
@@ -19,7 +18,6 @@ export default function KhoaHocDaGhiDanh() {
       )
       .then((res) => {
               setdanhSachKH(res.data)
-              dispatch(setKhoaHocDaDangKy(res.data))
             })
       .catch((err) => {
              console.log(err);
