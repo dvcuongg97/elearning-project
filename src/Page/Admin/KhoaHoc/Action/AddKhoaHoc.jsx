@@ -107,7 +107,8 @@ let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
   const onFinish = async (fieldsValue) => {
     const values = {
       ...fieldsValue,
-      'ngayTao': fieldsValue['ngayTao'].format('DD/MM/YYYY')
+      'ngayTao': fieldsValue['ngayTao'].format('DD/MM/YYYY'),
+      'hinhAnh': file
   }
     const formData = new FormData();
     formData.append('maKhoaHoc', values.maKhoaHoc);
@@ -122,7 +123,7 @@ let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
     formData.append('maDanhMucKhoaHoc', values.maDanhMucKhoaHoc);
     formData.append('taiKhoanNguoiTao', values.taiKhoanNguoiTao);
     try {
-      const response = await axios.post('https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/ThemKhoaHoc', formData, {
+      const response = await axios.post('https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/ThemKhoaHocUploadHinh', formData, {
         headers: {
           TokenCybersoft: TOKEN_CYBERSOFT,
           Authorization: "Bearer " + userLocalStorage.get()?.accessToken,

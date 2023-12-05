@@ -1,11 +1,12 @@
 import React from 'react'
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Select, Button, Form, Table, message} from 'antd';
 import {adminGhiDanh, } from '../../../../../api/api';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 import { TOKEN_CYBERSOFT } from '../../../../../api/configApi';
 import { userLocalStorage } from '../../../../../api/localService';
+import { setKhoaHocDaDangKy } from '../../../../../redux/adminSlice';
 
 const formItemLayout = {
     labelCol: {
@@ -71,7 +72,6 @@ export default function KhoaHocChuaGhiDanh() {
         )
         .then((res) => {
                 message.success("Ghi danh thành công")
-                fetchListKh()
               })
         .catch((err) => {
                console.log(err);
