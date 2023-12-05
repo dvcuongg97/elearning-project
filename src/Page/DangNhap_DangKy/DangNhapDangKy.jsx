@@ -84,13 +84,25 @@ export default function DangNhapDangKy() {
     },
   });
 
-  useEffect(() => {
-    if (userLogin?.accessToken) {
-      setTimeout(() => {
+  // useEffect(() => {
+  //   if (userLogin?.accessToken) {
+  //     setTimeout(() => {
+  //       // navigate("/");
+
+  //       navigate(-1);
+  //     }, 2000);
+  //   }
+  // }, [userLogin?.accessToken]);
+
+  if (userLogin) {
+    setTimeout(() => {
+      if (userLogin?.maLoaiNguoiDung === "GV") {
+        navigate("/admin");
+      } else {
         navigate("/");
-      }, 2000);
-    }
-  }, [userLogin?.accessToken]);
+      }
+    }, 500);
+  }
 
   return (
     <>

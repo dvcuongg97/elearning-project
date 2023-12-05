@@ -12,7 +12,7 @@ export const userLoginAction = createAsyncThunk(
       if (res.status === 200) {
         message.success("Đăng Nhập Thành Công!");
         userLocalStorage.set(res.data);
-        window.location.reload();
+        // window.location.reload();
         return res.data;
       }
     } catch (error) {
