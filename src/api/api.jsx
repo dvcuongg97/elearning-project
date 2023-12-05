@@ -61,6 +61,7 @@ export const adminApi = {
     return https.delete(
       `/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`
     );
+<<<<<<< HEAD
   },
   themNguoiDung_Admin: (user) => {
     return https.post(`api/QuanLyNguoiDung/ThemNguoiDung`);
@@ -69,6 +70,10 @@ export const adminApi = {
     return https.put(`api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`);
   },
   timKiemNguoiDung_Admin: (tenNguoiDung) => {
+=======
+   },
+   timKiemNguoiDung_Admin: (tenNguoiDung) => { 
+>>>>>>> refs/remotes/origin/admin2
     return https.get(
       `api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=${API_GROUP}&tuKhoa=${tenNguoiDung}`
     );
@@ -81,6 +86,7 @@ export const adminApi = {
       `api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${tenKhoaHoc}&MaNhom=${API_GROUP}`
     );
   },
+<<<<<<< HEAD
   themKhoaHoc_Admin: (khoaHoc) => {
     return https.post(`/api/QuanLyKhoaHoc/ThemKhoaHocUploadHinh`, khoaHoc);
   },
@@ -114,3 +120,20 @@ export const adminGhiDanh = {
     return https.post(`api/QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet`);
   },
 };
+=======
+  upLoadAnh: () => { 
+    return https.post(
+      `api/QuanLyKhoaHoc/UploadHinhAnhKhoaHoc`
+    );
+   }
+}
+
+export const adminGhiDanh = {
+   khoaHocChuaGhiDanh: (taiKhoan) => { 
+    return https.post(
+      `api/QuanLyNguoiDung/LayDanhSachKhoaHocChuaGhiDanh?TaiKhoan=${taiKhoan}`
+    );
+   },
+}
+
+>>>>>>> refs/remotes/origin/admin2

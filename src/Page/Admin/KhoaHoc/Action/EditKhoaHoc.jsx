@@ -10,10 +10,20 @@ import {
   Select,
   Upload,
   message,
+<<<<<<< HEAD
 } from "antd";
 import { adminApi, clientApi } from "../../../../api/api";
 import { useSelector } from "react-redux";
 import moment from "moment/moment";
+=======
+} from 'antd';
+import { adminApi, clientApi } from '../../../../api/api';
+import {useDispatch, useSelector} from 'react-redux';
+import moment from 'moment/moment';
+import axios from 'axios';
+import { TOKEN_CYBERSOFT } from '../../../../api/configApi';
+import { userLocalStorage } from '../../../../api/localService';
+>>>>>>> refs/remotes/origin/admin2
 const { Option } = Select;
 
 const formItemLayout = {
@@ -85,6 +95,7 @@ const EditKhoaHoc = (props) => {
       });
   }, []);
 
+<<<<<<< HEAD
   const [danhSachNguoiDung, setDanhSachNguoiDung] = useState([]);
   useEffect(() => {
     adminApi
@@ -110,10 +121,17 @@ const EditKhoaHoc = (props) => {
 
   const khoaHocData = useSelector((state) => state.adminSlice.khoaHoc);
   console.log(khoaHocData);
+=======
+let danhSachGV = danhSachNguoiDung.filter((item) => item !== undefined)
+const khoaHocData = useSelector((state) => state.adminSlice.khoaHoc)
+const [khoaHocDefaut, setkhoaHocDefaut] = useState();
+>>>>>>> refs/remotes/origin/admin2
   const [form] = Form.useForm();
+  const [file, setFile] = useState(null);
   const onFinish = (fieldsValue) => {
     const values = {
       ...fieldsValue,
+<<<<<<< HEAD
       ngayTao: fieldsValue["ngayTao"].format("DD/MM/YYYY"),
     };
     let formData = new FormData();
@@ -138,9 +156,56 @@ const EditKhoaHoc = (props) => {
         console.log(err);
       });
     console.log("Received values of form: ", values);
+=======
+      'ngayTao': fieldsValue['ngayTao'].format('DD/MM/YYYY')
+  }
+    const formData = new FormData();
+    formData.append('maKhoaHoc', values.maKhoaHoc);
+    formData.append('biDanh', values.biDanh);
+    formData.append('tenKhoaHoc', values.tenKhoaHoc);
+    formData.append('moTa', values.moTa);
+    formData.append('luotXem', values.luotXem);
+    formData.append('danhGia', values.danhGia);
+    formData.append('hinhAnh', file);
+    formData.append('maNhom', values.maNhom);
+    formData.append('ngayTao', values.ngayTao);
+    formData.append('maDanhMucKhoaHoc', values.maDanhMucKhoaHoc);
+    formData.append('taiKhoanNguoiTao', values.taiKhoanNguoiTao);
+    axios.post('https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/CapNhatKhoaHocUpload',formData, 
+      {  headers: {
+        TokenCybersoft: TOKEN_CYBERSOFT,
+        Authorization: "Bearer " + userLocalStorage.get()?.accessToken,
+      },}
+      )
+      .then((res) => {
+              message.success("Sửa thành công")
+            })
+      .catch((err) => {
+             console.log(err);
+            });
+  console.log('Received values of form: ', values);
+>>>>>>> refs/remotes/origin/admin2
   };
+  const customRequest = ({ file, onSuccess, onError }) => {
+    try {
+      setFile(file);
+      onSuccess();
+    } catch (error) {
+      onError(error);
+    }
+  };
+  const [formKey, setFormKey] = useState(0);
+  useEffect(() => {
+    console.log("khoaHocData changed:", khoaHocData);
+    setFormKey((prevKey) => prevKey + 1);
+    setkhoaHocDefaut({...khoaHocData,'ngayTao': null})
+  }, [khoaHocData]);
+  console.log(formKey);
+  console.log(khoaHocDefaut);
   return (
     <Form
+      key={formKey}
+      initialValues={khoaHocDefaut}
       {...formItemLayout}
       form={form}
       name="register"
@@ -161,10 +226,14 @@ const EditKhoaHoc = (props) => {
           },
         ]}
       >
+<<<<<<< HEAD
         <Input
           disabled
           defaultValue={khoaHocData != null ? khoaHocData.maKhoaHoc : ""}
         />
+=======
+        <Input/>
+>>>>>>> refs/remotes/origin/admin2
       </Form.Item>
 
       <Form.Item
@@ -177,7 +246,11 @@ const EditKhoaHoc = (props) => {
           },
         ]}
       >
+<<<<<<< HEAD
         <Input defaultValue={khoaHocData != null ? khoaHocData.biDanh : ""} />
+=======
+        <Input/>
+>>>>>>> refs/remotes/origin/admin2
       </Form.Item>
 
       <Form.Item
@@ -191,9 +264,13 @@ const EditKhoaHoc = (props) => {
           },
         ]}
       >
+<<<<<<< HEAD
         <Input
           defaultValue={khoaHocData != null ? khoaHocData.tenKhoaHoc : ""}
         />
+=======
+        <Input/>
+>>>>>>> refs/remotes/origin/admin2
       </Form.Item>
 
       <Form.Item
@@ -207,6 +284,7 @@ const EditKhoaHoc = (props) => {
           },
         ]}
       >
+<<<<<<< HEAD
         <Input defaultValue={khoaHocData != null ? khoaHocData.moTa : ""} />
       </Form.Item>
 
@@ -220,6 +298,9 @@ const EditKhoaHoc = (props) => {
         <InputNumber
           defaultValue={khoaHocData != null ? khoaHocData.danhGia : ""}
         />
+=======
+        <Input/>
+>>>>>>> refs/remotes/origin/admin2
       </Form.Item>
 
       <Form.Item
@@ -228,6 +309,7 @@ const EditKhoaHoc = (props) => {
         valuePropName="fileList"
         getValueFromEvent={normFile}
       >
+<<<<<<< HEAD
         <Upload
           name="logo"
           action={"http://localhost:3000/"}
@@ -242,6 +324,29 @@ const EditKhoaHoc = (props) => {
       </Form.Item>
 
       <Form.Item
+=======
+        <InputNumber/>
+      </Form.Item>
+
+      <Form.Item
+        name="danhGia"
+        label="Đánh giá"
+      >
+        <InputNumber/>
+      </Form.Item>
+
+      <Form.Item
+      name="hinhAnh"
+      label="Hình ảnh"
+      getValueFromEvent={normFile}
+    >
+      <Upload name="logo" action={"http://localhost:3000/"} customRequest={customRequest} type="picture">
+        <Button icon={<UploadOutlined />}>Tải ảnh lên</Button>
+      </Upload>
+    </Form.Item>
+
+      <Form.Item
+>>>>>>> refs/remotes/origin/admin2
         name="maNhom"
         label="Mã nhóm"
         rules={[
@@ -251,12 +356,16 @@ const EditKhoaHoc = (props) => {
           },
         ]}
       >
+<<<<<<< HEAD
         <Select
           placeholder="Chọn nhóm"
           defaultValue={
             khoaHocData != null ? khoaHocData.maNhom.toUpperCase() : ""
           }
         >
+=======
+        <Select placeholder="Chọn nhóm">
+>>>>>>> refs/remotes/origin/admin2
           <Option value="GP01">GP01</Option>
           <Option value="GP02">GP02</Option>
           <Option value="GP03">GP03</Option>
@@ -270,6 +379,7 @@ const EditKhoaHoc = (props) => {
       </Form.Item>
 
       <Form.Item
+<<<<<<< HEAD
         name="maDanhMucKhoaHoc"
         label="Danh mục"
         hasFeedback
@@ -335,6 +445,57 @@ const EditKhoaHoc = (props) => {
           }
           options={danhSachGV}
         />
+=======
+      name="maDanhMucKhoaHoc"
+      label="Danh mục"
+      hasFeedback
+      rules={[
+        {
+          required: false,
+          message: 'Vui lòng chọn mã',
+        },
+      ]}
+    >
+            <Select
+                showSearch
+                style={{
+                width: 200,
+                }}
+                placeholder="Nhập để tìm"
+                optionFilterProp="children"
+                filterOption={(input, option) => (option?.label ?? '').includes(input)}
+                filterSort={(optionA, optionB) =>
+                        (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                        }
+                        options={danhMucKhoaHoc}
+  />
+      </Form.Item>
+
+      <Form.Item
+      name="taiKhoanNguoiTao"
+      label="Tài khoản người tạo"
+      hasFeedback
+      rules={[
+        {
+          required: false,
+          message: 'Vui lòng chọn tài khoản',
+        },
+      ]}
+    >
+            <Select
+                showSearch
+                style={{
+                width: 200,
+                }}
+                placeholder="SNhập để tìm"
+                optionFilterProp="children"
+                filterOption={(input, option) => (option?.label ?? '').includes(input)}
+                filterSort={(optionA, optionB) =>
+                        (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                        }
+                        options={danhSachGV}
+  />
+>>>>>>> refs/remotes/origin/admin2
       </Form.Item>
 
       <Form.Item {...tailFormItemLayout}>

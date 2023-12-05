@@ -4,6 +4,9 @@ import {Option} from 'antd/es/mentions';
 import {useEffect, useState} from 'react';
 import {adminApi, adminGhiDanh} from '../../../../../api/api';
 import {useSelector} from 'react-redux';
+import axios from 'axios';
+import {TOKEN_CYBERSOFT} from '../../../../../api/configApi';
+import {userLocalStorage} from '../../../../../api/localService';
 
 const formItemLayout = {
     labelCol: {
@@ -40,35 +43,41 @@ export default function HocVienChuaGhiDanh() {
     const khoaHocData = useSelector((state) => state.adminSlice.khoaHoc)
     const [danhSachHocVien, setDanhSachHocVien] = useState([]);
     useEffect(() => {
-        adminGhiDanh.nguoiDungChuaGhiDanh(khoaHocData)
-        .then((res) => {
-            console.log(res.data);
+      axios.post('https://elearningnew.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh',khoaHocData, 
+      {  headers: {
+        TokenCybersoft: TOKEN_CYBERSOFT,
+        Authorization: "Bearer " + userLocalStorage.get()?.accessToken,
+      },}
+      )
+      .then((res) => {
             setDanhSachHocVien(res.data.map((item) => { 
                     return {
                         value: item.taiKhoan,
                         label: item.hoTen,
                     } }))
               })
-        .catch((err) => {
+      .catch((err) => {
                console.log(err);
               });
     }, []);
    const [form] = Form.useForm();
     const onFinish = (values) => {
-        console.log(values);
-        let dangky = {
+        let ttdk = {
             maKhoaHoc: khoaHocData.maKhoaHoc,
             taiKhoan: values.taiKhoan
           }
-          console.log(dangky);
-          adminGhiDanh.ghiDanhKhoaHoc(dangky)
-          .then((res) => {
-                  console.log(res);
-                  message.success("Ghi danh thành công")
-                })
-          .catch((err) => {
-                 console.log(err);
-                });
+          axios.post('https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/GhiDanhKhoaHoc',ttdk, 
+        {  headers: {
+          TokenCybersoft: TOKEN_CYBERSOFT,
+          Authorization: "Bearer " + userLocalStorage.get()?.accessToken,
+        },}
+        )
+        .then((res) => {
+                message.success("Ghi danh thành công")
+              })
+        .catch((err) => {
+               console.log(err);
+              });
       };
   return (
     <div>
