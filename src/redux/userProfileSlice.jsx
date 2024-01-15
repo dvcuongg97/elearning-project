@@ -7,16 +7,12 @@ import { message } from "antd";
 export const userLoginAction = createAsyncThunk(
   "userLoginAction",
   async (values) => {
-    try {
-      const res = await userProfileApi.dangNhap(values);
-      if (res.status === 200) {
-        message.success("Đăng Nhập Thành Công!");
-        userLocalStorage.set(res.data);
-        window.location.reload();
-        return res.data;
-      }
-    } catch (error) {
-      message.error(error.response.data);
+    const res = await userProfileApi.dangNhap(values);
+    if (res.status === 200) {
+      message.success("Đăng Nhập Thành Công!");
+      userLocalStorage.set(res.data);
+      window.location.reload();
+      return res.data;
     }
   }
 );
@@ -24,12 +20,10 @@ export const userLoginAction = createAsyncThunk(
 export const layThongTinTaiKhoanAction = createAsyncThunk(
   "layThongTinTaiKhoanAction",
   async () => {
-    try {
-      const res = await userProfileApi.layThongTinTaiKhoan();
-      if (res.status === 200) {
-        return res.data;
-      }
-    } catch (error) {}
+    const res = await userProfileApi.layThongTinTaiKhoan();
+    if (res.status === 200) {
+      return res.data;
+    }
   }
 );
 
